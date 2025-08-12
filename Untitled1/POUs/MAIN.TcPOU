@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{5ffd7926-5d16-4ef4-80ac-73e67cfe458d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	bInput AT%I*:BOOL;
+	Axis1:AXIS_REF;
+	MC_Power: MC_Power;
+	bEnable: BOOL;
+	MC_MoveAbsolute: MC_MoveAbsolute;
+	bMove: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Axis1.ReadStatus();
+
+Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
+
+Axis1.Parameter.MaxVelocity	:= 6000;
+
+MC_Power(
+	Axis:=Axis1 , 
+	Enable:=bEnable , 
+	Status=> , 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );
+
+MC_MoveAbsolute(
+	Axis:=Axis1 , 
+	Execute:=bMove , 
+	Position:=0.0 , 
+	Velocity:=100 , 
+	Acceleration:=100 , 
+	Deceleration:=100 , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );
+	
+	]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
