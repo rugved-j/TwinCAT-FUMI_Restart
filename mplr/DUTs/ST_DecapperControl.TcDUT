@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_DecapperControl" Id="{a020b09a-7936-44fb-9ed4-19e01c0000ba}">
+    <Declaration><![CDATA[TYPE ST_DecapperControl :
+STRUCT
+	Axis1:AXIS_REF;
+	MC_Power: MC_Power;
+	MC_MoveAbsolute: MC_MoveAbsolute;
+	bMove: BOOL;
+	bInput AT%I*:BOOL;
+	bEnable: BOOL;
+	
+	bCappingPosition		:LREAL	:=2000;
+	bCappingVelocity		:LREAL	:=150;
+	bCappingAcceleration	:LREAL	:=100;
+	bCappingDeceleration	:LREAL	:=100;
+	
+	bDecappingPosition		:LREAL	:=-2000;
+	bDecappingVelocity		:LREAL	:=150;
+	bDecappingAcceleration	:LREAL	:=100;
+	bDecappingDeceleration	:LREAL	:=100;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MagStirrer" Id="{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MagStirrer EXTENDS FB_Tools
+VAR_IN_OUT
+	RxBufferEL : ComBuffer; (* Receive data buffer; used with all receive function blocks *)
+    TxBufferEL : ComBuffer; (* Transmit data buffer; used with all receive function blocks *)
+END_VAR
+VAR
+	
+	
+	stIn_EL6001 AT %I*     : EL6inData22B; (* linked to the EL6001 in the TwinCAT System Manager *)
+    stOut_EL6001 AT %Q*    : EL6outData22B;(* linked to the EL6001 in the TwinCAT System Manager *)
+	fbEL6001Ctrl       : SerialLineControl;
+    bEL6001CtrlError   : BOOL;
+    eEL6001CtrlErrorID : ComError_t;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbEL6001Ctrl(
+    Mode:= SERIALLINEMODE_EL6_22B, 
+    pComIn:= ADR(stIn_EL6001), 
+    pComOut:= ADR(stOut_EL6001), 
+    SizeComIn:= SIZEOF(stIn_EL6001), 
+    Error=> bEL6001CtrlError, 
+    ErrorID=> eEL6001CtrlErrorID, 
+    TxBuffer:= TxBufferEL, 
+    RxBuffer:= RxBufferEL );]]></ST>
+    </Implementation>
+    <Method Name="SetRPM" Id="{9741f4a9-b63d-4e7e-a917-215542e64c2f}">
+      <Declaration><![CDATA[METHOD SetRPM : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerStirrer" Id="{c93e46bf-d865-413d-a102-85f1d1c216c4}">
+      <Declaration><![CDATA[METHOD TriggerStirrer : BOOL
+VAR
+// 	fbReceiveString	:	ReceiveString;
+// 	fbSendString	:	SendString := 'start';
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// SendString(SendString:= SentString,
+// 			TxBuffer := TxBuffer);
+// ReceiveString(Prefix := Prefix,
+// 			Suffix := Suffix,
+// 			Timeout	:= Timeout,
+// 			Reset	:=	Reset,
+// 			ReceivedString:= ReceivedString,
+// 			RXbuffer := RXBuffer);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

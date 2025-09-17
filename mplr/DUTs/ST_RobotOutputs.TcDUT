@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RobotOutputs" Id="{514dd492-1a92-43ef-8622-73e25fbcf5c0}">
+    <Declaration><![CDATA[TYPE ST_RobotOutputs :
+STRUCT
+	plcIN0 AT%I* : ARRAY [0..7] OF UINT;		//PLC inputs (DO00[4] on Box) mapped to DIs on FANUC DO145
+
+	plcIN1 AT%I* : ARRAY [0..7] OF UINT;		//PLC inputs (DO01[0] on Box) mapped to DIs on FANUC DO209
+	plcIN2 AT%I* : ARRAY [0..7] OF UINT;		//PLC inputs (DO02[0] on Box) mapped to DIs on FANUC DO337
+	plcIN3 AT%I* : ARRAY [0..7] OF UINT;		//PLC inputs (DO01[0] on Box) mapped to DIs on FANUC DO465
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

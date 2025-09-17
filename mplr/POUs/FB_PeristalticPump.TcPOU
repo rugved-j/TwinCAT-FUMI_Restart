@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_PeristalticPump" Id="{6a98df46-caea-4a8a-a9c8-9436707488f6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PeristalticPump EXTENDS FB_AnalyticalDevices
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="TriggerPumpOff" Id="{fda3337d-a54d-4819-bd4c-1e4f5f640540}">
+      <Declaration><![CDATA[METHOD TriggerPumpOff : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerPumpOn" Id="{87cc8a40-452c-41b4-97a7-da175f8d52c4}">
+      <Declaration><![CDATA[METHOD TriggerPumpOn : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

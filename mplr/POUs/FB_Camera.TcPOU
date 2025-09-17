@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Camera" Id="{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Camera
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	hr                :    HRESULT;
+    fbCameraControl   :    FB_VN_SimpleCameraControl;
+	bTrigger		  :	   BOOL:=	TRUE;
+    eCameraState            :    ETcVnCameraState;
+    ipImageIn         :    ITcVnImage;
+	ipDecodedData   : ITcVnContainer;		// QR code var
+    ipContours      : ITcVnContainer;		// QR code var
+	 nCodeNumber     : DINT	:= 1;							// QR code var
+    eSearchStrategy : UDINT;							// QR code var
+    ipAngles        :   ITcVnContainer;		// QR code var
+    ipImageInDisp     :    ITcVnDisplayableImage; 
+    nNewImageCounter  :    UINT;	
+	
+// 	// Watchdog
+// 	hrWD                :    HRESULT;
+// 	tStop               :    DINT := 20000;
+// 	tRest               :    DINT;
+	
+// 	aTexts : ARRAY[0..5] OF STRING(MAX_QR_LENGTH);
+	sText	:	STRING;
+END_VAR
+VAR CONSTANT
+	MAX_QR_LENGTH : ULINT := 1000; 
+END_VAR
+VAR
+	ipImageRes          :    ITcVnImage;
+	ipImageResDisp      :    ITcVnDisplayableImage;
+	ipCodeDecodedList   :    ITcVnContainer; 
+	ipCodeContourList   :    ITcVnContainer;
+	stOrientation : TcVnRotatedRectangle;
+	aColorRed           :    TcVnVector4_LREAL := [255, 0, 0];
+	aColorRedDINT		:	DINT;
+	aColorBlue			:	 TcVnVector4_LREAL := [0, 0, 255];
+	aColorBlueDINT		:	DINT;
+	fFontScale		: LREAL := 2;          
+	nThickness 		: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="DetectQRCode" Id="{82243952-66c7-4357-a30a-e28449390f85}">
+      <Declaration><![CDATA[METHOD DetectQRCode : BOOL
+VAR
+// 	fbQrCode	:	FB_Camera;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// process_gvl.fCameraControl.eCameraState :=process_gvl.fCameraControl.fbCameraControl.GetState();
+// 
+// process_gvl.fCameraControl.hr := F_VN_ReadQRCode(
+// 				process_gvl.fCameraControl.ipImageIn,
+// 				process_gvl.fCameraControl.ipDecodedData,
+// // 				process_gvl.fCameraControl.ipContours,
+// // 				process_gvl.fCameraControl.nCodeNumber,
+// // 				process_gvl.fCameraControl.eSearchStrategy,
+// // 				process_gvl.fCameraControl.ipAngles,
+// 				process_gvl.fCameraControl.hr);
+				
+				
+				]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="EstimatePose" Id="{5ce97ce8-47dc-4044-9d0a-d7addc7f0154}">
+      <Declaration><![CDATA[METHOD EstimatePose : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="TriggerCamera" Id="{9802e0e5-f872-4b06-8a83-9f3b0e36212d}">
+      <Declaration><![CDATA[METHOD TriggerCamera : BOOL
+VAR
+	fbCamera		:	FB_Camera;
+	bTrigger					: BOOL;
+	i : ULINT;
+	numElements : ULINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[eCameraState := fbCameraControl.GetState();
+
+// CameraControl is in error state, so try to reset the camera connection
+IF eCameraState = TCVN_CS_ERROR THEN
+    hr := fbCameraControl.Reset();
+
+// Camera trigger image
+ELSIF eCameraState = TCVN_CS_TRIGGERING THEN
+    hr := fbCameraControl.TriggerImage();
+
+// Camera not yet streaming
+ELSIF eCameraState < TCVN_CS_ACQUIRING THEN
+    hr := fbCameraControl.StartAcquisition();
+
+// Camera streaming
+ELSIF eCameraState = TCVN_CS_ACQUIRING THEN
+
+    IF bTrigger THEN
+        hr := fbCameraControl.TriggerImage();
+        IF SUCCEEDED(hr) THEN
+            bTrigger := FALSE;
+        END_IF
+    ELSE
+        hr := fbCameraControl.GetCurrentImage(ipImageIn);
+// 		hr := F_VN_CopyIntoDisplayableImage(ipImageIn, ipImageResDisp, hr);
+        // Check if new Image was received
+        IF SUCCEEDED(hr) AND ipImageIn <> 0 THEN
+            nNewImageCounter := nNewImageCounter + 1;
+
+            // Trigger next image
+            bTrigger := TRUE;
+			hr := F_VN_CopyIntoDisplayableImage(ipImageIn, ipImageInDisp, hr);
+// Place TO call vision algorithms
+			hr := F_VN_ConvertColorSpace(ipImageIn, ipImageIn, ETcVnColorSpaceTransform.TCVN_CST_BAYER_GR_TO_GRAY, hr);
+			hr := F_VN_CopyIntoDisplayableImage(ipImageIn, ipImageInDisp, hr);
+// // 			hr := F_VN_ReadQRCode(
+// // 				ipImageIn,
+// // 				ipDecodedData,
+// // // 				fbCamera.ipContours,
+// // // 				fbCamera.nCodeNumber,
+// // // 				fbCamera.eSearchStrategy,
+// // // 				fbCamera.ipAngles,
+// // 				hr);
+// // 			
+// 			  hr := F_VN_ReadQRCodeExp(
+// 				ipSrcImage      :=  ipImageIn,
+// 				ipDecodedData   :=  ipCodeDecodedList,
+// 				ipContours      :=  ipCodeContourList,
+// 				nCodeNumber     :=  1,
+// 				eSearchStrategy :=  TCVN_CSS_ONLY_NOT_INVERTED + TCVN_CSS_ONLY_NOT_FLIPPED,
+// 				hrPrev          :=  hr
+// 		);
+// 				
+// // 			hr := F_VN_ExportSubContainer_String(ipCodeDecodedList, 0, aTexts[0], MAX_QR_LENGTH, hr);
+// 			hr := F_VN_ExportSubContainer_String(ipCodeDecodedList, 0, sText, MAX_QR_LENGTH, hr);
+// 			
+// 			IF SUCCEEDED(hr) AND ipCodeDecodedList <> 0 THEN
+// 				ipCodeDecodedList.GetElementNum(numElements);
+// // 				FOR i := 0 TO numElements DO
+// // 					hr := F_VN_ExportSubContainer_String(ipDecodedData, i, aTexts[i], MAX_QR_LENGTH, hr);
+// // 				END_FOR
+// 			END_IF
+// 			
+			hr := F_VN_ReadQRCodeExp2(
+							ipSrcImage      :=  ipImageIn,
+							ipDecodedData   :=  ipCodeDecodedList,
+							ipContours      :=  ipCodeContourList,
+							nCodeNumber     :=  1,
+							eSearchStrategy :=  TCVN_CSS_ONLY_NOT_INVERTED + TCVN_CSS_ONLY_NOT_FLIPPED,
+							ipAngles		:= ipAngles,
+							hrPrev          :=  hr
+					);
+			hr := F_VN_ExportSubContainer_String(ipCodeDecodedList, 0, sText, MAX_QR_LENGTH, hr);
+			
+			hr := F_VN_CopyImage(ipImageIn, ipImageRes, hr);
+			hr := F_VN_CopyIntoDisplayableImage(ipImageIn, ipImageResDisp, hr);
+			hr := F_VN_ConvertColorSpace(ipImageres, ipImageRes, ETcVnColorSpaceTransform.TCVN_CST_GRAY_TO_RGB, hr);
+			
+// Extract Contour orientation			
+			hr := F_VN_ContourOrientation(ipCodeContourList, stOrientation, hr);
+// Draw Contour and it's orientation
+// 			hr := F_VN_DrawContours(ipCodeContourList, -1, ipImageRes, aColorRed, 3, hr); 
+			hr := F_VN_DrawOrientationExp(	hrPrev:= hr, 
+											stOrientation := stOrientation, 
+											ipDestImage := ipImageRes, 
+											aColorMainAxis := aColorRed, 
+											nThickness := 3, 
+											aColorHorizontalAxis := aColorBlue, 
+											fFontScale:= fFontScale);
+			
+			
+// 			hr := F_VN_TransformIntoDisplayableImage(ipImageIn, ipImageInDisp, S_OK);
+			hr := F_VN_TransformIntoDisplayableImage(ipImageRes, ipImageResDisp, hr);
+			hr := FW_SafeRelease(ADR(ipDecodedData));
+			
+			
+		END_IF
+    END_IF
+
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

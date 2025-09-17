@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_Test" Id="{d2133566-34af-4223-8aae-879fda99afd5}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Test
+VAR
+    hr              :   HRESULT;
+    ipImageIn       :   ITcVnImage;
+    ipImageInDisp   :   ITcVnDisplayableImage;
+    fbCameraControl :   FB_VN_SimpleCameraControl;
+    eCameraState    :   ETcVnCameraState;
+    nNewImageCounter:   UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[eCameraState := fbCameraControl.GetState();
+
+// CameraControl is in error state, so try to reset the camera connection
+IF eCameraState = TCVN_CS_ERROR THEN
+    hr := fbCameraControl.Reset();
+
+// Camera not yet streaming
+ELSIF eCameraState < TCVN_CS_ACQUIRING THEN
+    hr := fbCameraControl.StartAcquisition();
+
+// Camera streaming
+ELSIF eCameraState = TCVN_CS_ACQUIRING THEN
+    hr := fbCameraControl.GetCurrentImage(ipImageIn);
+
+    // Check if new Image was received
+    IF SUCCEEDED(hr) AND ipImageIn <> 0 THEN
+        nNewImageCounter := nNewImageCounter + 1;
+
+        // Place to call vision algorithms
+        hr := F_VN_TransformIntoDisplayableImage(ipImageIn, ipImageInDisp, hr);
+    END_IF
+
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

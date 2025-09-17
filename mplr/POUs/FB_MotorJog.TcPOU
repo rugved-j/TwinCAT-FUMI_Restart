@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MotorJog" Id="{572e2650-5346-4e2a-bd24-17aaf2aabb29}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorJog EXTENDS FB_SolidSamplingModule
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CapContainer" Id="{e3cd6ade-eb2a-4b3d-983e-1db523e62881}">
+      <Declaration><![CDATA[METHOD CapContainer : BOOL
+VAR
+	fbMC_MoveAbsolute	:	MC_MoveAbsolute;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[process_gvl.fDecapperControl.Axis1.ReadStatus();
+process_gvl.fDecapperControl.Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
+process_gvl.fDecapperControl.Axis1.Parameter.MaxVelocity	:= 6000;
+
+fbMC_MoveAbsolute(
+	Axis:=process_gvl.fDecapperControl.Axis1, 
+	Execute:=process_gvl.fDecapperControl.bMove, 
+	Position:=process_gvl.fDecapperControl.bCappingPosition , 
+	Velocity:=process_gvl.fDecapperControl.bCappingVelocity , 
+	Acceleration:=process_gvl.fDecapperControl.bCappingAcceleration , 
+	Deceleration:=process_gvl.fDecapperControl.bCappingDeceleration , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DecapContainer" Id="{eb2e6be0-5f96-46b7-97df-e6516b908059}">
+      <Declaration><![CDATA[METHOD DecapContainer : BOOL
+VAR
+	fbMC_MoveAbsolute	:	MC_MoveAbsolute;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[process_gvl.fDecapperControl.Axis1.ReadStatus();
+process_gvl.fDecapperControl.Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
+process_gvl.fDecapperControl.Axis1.Parameter.MaxVelocity	:= 6000;
+
+fbMC_MoveAbsolute(
+	Axis:=process_gvl.fDecapperControl.Axis1, 
+	Execute:=process_gvl.fDecapperControl.bMove, 
+	Position:=process_gvl.fDecapperControl.bDecappingPosition , 
+	Velocity:=process_gvl.fDecapperControl.bDecappingVelocity , 
+	Acceleration:=process_gvl.fDecapperControl.bDecappingAcceleration , 
+	Deceleration:=process_gvl.fDecapperControl.bDecappingDeceleration , 
+	Options:= , 
+	Done=> , 
+	Busy=> , 
+	Active=> , 
+	CommandAborted=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="EnablePower" Id="{bbd8026d-cdfa-44b8-9db6-db11045b5e31}">
+      <Declaration><![CDATA[METHOD EnablePower : BOOL
+VAR
+	fbMC_Power	:	MC_Power;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+process_gvl.fDecapperControl.Axis1.ReadStatus();
+
+fbMC_Power(
+	Axis:=process_gvl.fDecapperControl.Axis1, 
+	Enable:=process_gvl.fDecapperControl.bEnable, 
+	Status=> , 
+	Busy=> , 
+	Active=> , 
+	Error=> , 
+	ErrorID=> );]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -7,6 +7,9 @@
 		<Text TxtId="Calibration data corrupted or missing">
 			<Text LcId="1031">Abgleichsdaten fehlerhaft/nicht vorhanden</Text>
 		</Text>
+		<Text TxtId="Calibration has not been processed successfully. RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.">
+			<Text LcId="1031">Die Kalibrierung wurde nicht erfolgreich durchgeführt. RawHigh muss größer als RawLow sein. ReferenceHigh muss größer als ReferenceLow sein.</Text>
+		</Text>
 		<Text TxtId="Combination of Mode of Operation and Commutation Type is invalid">
 			<Text LcId="1031">Kombination aus Mode of Operation und Commutation Type ist nicht zulässig</Text>
 		</Text>
@@ -21,6 +24,15 @@
 		</Text>
 		<Text TxtId="Content of PDO 0x{0,X} is invalid: Item 0x{1,X}:{2,X} has an unsupported length ({3} bit)">
 			<Text LcId="1031">Inhalt von PDO 0x{0,X} ist ungÃ¼ltig: Eintrag 0x{1,X}:{2,X} hat eine falsche Lä®§e ({3} Bit)</Text>
+		</Text>
+		<Text TxtId="Cutoff must be greater than zero and smaller than Samplingrate/2.">
+			<Text LcId="1031">Cuttoff muss größer als Null und kleiner als Samplingrate/2 sein.</Text>
+		</Text>
+		<Text TxtId="Cyclic caller is assigned. Methods can not be called.">
+			<Text LcId="1031">Das Cyclic caller interface ist zugewiesen. Methoden dürfen nicht aufgerufen werden.</Text>
+		</Text>
+		<Text TxtId="Dbg: {0}.">
+			<Text LcId="1031">Dbg: {0}.</Text>
 		</Text>
 		<Text TxtId="DC-Link overvoltage">
 			<Text LcId="1031">Überspannung DC-Zwischenkreis</Text>
@@ -52,6 +64,24 @@
 		<Text TxtId="Error detected, but disabled by suppression mask">
 			<Text LcId="1031">Ausmaskierter Fehler erkannt</Text>
 		</Text>
+		<Text TxtId="Error during runtime. Invalid data type.">
+			<Text LcId="1031">Fehler während der Laufzeit. Ungültiger Datentyp.</Text>
+		</Text>
+		<Text TxtId="Error in Transition OP-&gt;SAFEOP.">
+			<Text LcId="1031"><![CDATA[Fehler in der Transition OP->SAFEOP.]]></Text>
+		</Text>
+		<Text TxtId="Error in Transition PREOP-&gt;SAFEOP.">
+			<Text LcId="1031"><![CDATA[Fehler in der Transition PREOP->SAFEOP.]]></Text>
+		</Text>
+		<Text TxtId="Error in Transition SAFEOP-&gt;OP.">
+			<Text LcId="1031"><![CDATA[Fehler in der Transition SAFEOP->OP.]]></Text>
+		</Text>
+		<Text TxtId="Error in Transition SAFEOP-&gt;OP: No Task assigned. Module will not be executed cyclically.">
+			<Text LcId="1031"><![CDATA[Fehler in der Transition SAFEOP->OP: Keine Task zugewiesen. Das Modul wird nicht zyklisch ausgeführt.]]></Text>
+		</Text>
+		<Text TxtId="Error in Transition SAFEOP-&gt;PREOP.">
+			<Text LcId="1031"><![CDATA[Fehler in der Transition SAFEOP->PREOP.]]></Text>
+		</Text>
 		<Text TxtId="Error: 0x{0,X}, 0x{1,X}, 0x{2,X}">
 			<Text LcId="1031">Fehler: 0x{0,X}, 0x{1,X}, 0x{2,X}</Text>
 		</Text>
@@ -61,17 +91,32 @@
 		<Text TxtId="Invalid configuration of touchprobe inputs">
 			<Text LcId="1031">Ungültige Konfiguration der Touchprobe-Eingänge</Text>
 		</Text>
+		<Text TxtId="Invalid data area number.">
+			<Text LcId="1031">Ungültiger Nummer des Datenbereichs.</Text>
+		</Text>
+		<Text TxtId="Invalid input size.">
+			<Text LcId="1031">Ungültige Eingangsgröße.</Text>
+		</Text>
 		<Text TxtId="Invalid limit switch level">
 			<Text LcId="1031">Ungültiger Endschalter Zustand</Text>
 		</Text>
 		<Text TxtId="Invalid modulo range">
 			<Text LcId="1031">Ungültiger Modulo-Bereich</Text>
 		</Text>
+		<Text TxtId="Invalid object state.">
+			<Text LcId="1031">Ungültiger Zustand des Moduls.</Text>
+		</Text>
 		<Text TxtId="Invalid process data format (number of singleturn bits+multiturn bits != 32)">
 			<Text LcId="1031">Prozessdatenformat ungültig (Anzahl Singleturnbits+Multiturnbits != 32)</Text>
 		</Text>
 		<Text TxtId="Invalid start type 0x{0,x}">
 			<Text LcId="1031">Ungültiger Start-Typ 0x{0,x}</Text>
+		</Text>
+		<Text TxtId="Invalid state.">
+			<Text LcId="1031">Ungültiger Zustand.</Text>
+		</Text>
+		<Text TxtId="Invalid symbol size.">
+			<Text LcId="1031">Ungültige Symbolgröße.</Text>
 		</Text>
 		<Text TxtId="Invalid target position window">
 			<Text LcId="1031">Ungültiges Zielpositionsfenster</Text>
@@ -97,6 +142,18 @@
 		<Text TxtId="Maximum rotating field velocity exceeded">
 			<Text LcId="1031">Maximale Drehfeldfrequenz überschritten</Text>
 		</Text>
+		<Text TxtId="MaxStd must be equal or greater than zero.">
+			<Text LcId="1031">MaxStd muss größer oder gleich Null sein.</Text>
+		</Text>
+		<Text TxtId="MaxWeightDeviation must be equal or greater than zero.">
+			<Text LcId="1031">MaxWeightDeviation muss größer oder gleich Null sein.</Text>
+		</Text>
+		<Text TxtId="Memory could not be allocated dynamically. Check size of rotuer memory.">
+			<Text LcId="1031">Fehler beim allokieren von dynamischem Speicher. Bitte überprüfen sie die Größe des Routerspeichers.</Text>
+		</Text>
+		<Text TxtId="Missing configuration.">
+			<Text LcId="1031">Fehlende Konfiguration.</Text>
+		</Text>
 		<Text TxtId="Modes of operation invalid">
 			<Text LcId="1031">Ungültiger Wert für Modes of operation</Text>
 		</Text>
@@ -105,6 +162,18 @@
 		</Text>
 		<Text TxtId="Motor not connected">
 			<Text LcId="1031">Kabelbruch Motoranschluss</Text>
+		</Text>
+		<Text TxtId="NotchFrequency must be greater than zero and smaller than fSamplingrate/2.">
+			<Text LcId="1031">NotchFrequency muss größer als Null oder kleiner als fSamplingrate/2 sein.</Text>
+		</Text>
+		<Text TxtId="Null pointer was allocated.">
+			<Text LcId="1031">Ein Null-Zeiger wurde zugewiesen.</Text>
+		</Text>
+		<Text TxtId="Order must be greater than zero and smaller than eleven.">
+			<Text LcId="1031">Order muss größer als Null und kleiner als elf sein.</Text>
+		</Text>
+		<Text TxtId="Output size array cant be smaller than input array size.">
+			<Text LcId="1031">Die Größe vom Ausgang darf nicht kleinr als der Eingang sein.</Text>
 		</Text>
 		<Text TxtId="Overall current threshold exceeded">
 			<Text LcId="1031">Summenstrom überschritten</Text>
@@ -124,17 +193,44 @@
 		<Text TxtId="PDO-configuration is incompatible to the selected mode of operation">
 			<Text LcId="1031">PDO-Konfiguration ist zur gewählten Betriebsart nicht kompatibel</Text>
 		</Text>
+		<Text TxtId="RawHigh must be greater than RawLow.">
+			<Text LcId="1031">RawHigh muss größer als RawLow sein.</Text>
+		</Text>
+		<Text TxtId="RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.">
+			<Text LcId="1031">RawHigh muss größer als RawLow sein. ReferenceHigh muss größer als ReferenceLow sein.</Text>
+		</Text>
+		<Text TxtId="ReferenceHigh must be greater than ReferenceLow.">
+			<Text LcId="1031">ReferenceHigh muss größer als ReferenceLow sein.</Text>
+		</Text>
+		<Text TxtId="RelativeWeightLimit must be greater or equal than zero and smaller than one.">
+			<Text LcId="1031">RelativeWeightLimit muss größer oder gleich null und kleiner als eins sein.</Text>
+		</Text>
+		<Text TxtId="SamplesToFilter must be greater than zero.">
+			<Text LcId="1031">SamplesToFilter muss größer als Null sein.</Text>
+		</Text>
+		<Text TxtId="Samplingrate must be greater than zero.">
+			<Text LcId="1031">Samplingrate muss größer als Null sein.</Text>
+		</Text>
 		<Text TxtId="Target position exceeds Modulofactor">
 			<Text LcId="1031">Target position ist größer als der Modulofaktor</Text>
 		</Text>
 		<Text TxtId="Target position not in modulo range">
 			<Text LcId="1031">Sollposition außerhalb des Modulobereichs</Text>
 		</Text>
+		<Text TxtId="TcWeighingEventClass">
+			<Text LcId="1031">TcWeighingEventClass</Text>
+		</Text>
 		<Text TxtId="Teach-In Process ({0}) failed">
 			<Text LcId="1031">Teach-In Prozess {0} fehlgeschlagen</Text>
 		</Text>
 		<Text TxtId="Teach-In Process Timeout (DC-Link, ...)">
 			<Text LcId="1031">Teach-In Prozess Timeout (Zwischenkreis, ...)</Text>
+		</Text>
+		<Text TxtId="The tare process could not be triggered because the calibration process had not yet been completed.">
+			<Text LcId="1031">Der Tara-Vorgang konnte nicht ausgelöst werden, weil der Kalibrierungsvorgang noch nicht abgeschlossen war.</Text>
+		</Text>
+		<Text TxtId="Threshold must be equal or greater than zero.">
+			<Text LcId="1031">Threshold muss größer oder gleich Null sein.</Text>
 		</Text>
 		<Text TxtId="Torque limitation too low">
 			<Text LcId="1031">Drehmomentbegrenzung zu gering</Text>
@@ -144,6 +240,9 @@
 		</Text>
 		<Text TxtId="Undervoltage Us">
 			<Text LcId="1031">Unterspannung Us</Text>
+		</Text>
+		<Text TxtId="WindowLength must be greater than zero.">
+			<Text LcId="1031">WindowLength muss größer als Null sein.</Text>
 		</Text>
 	</Translations>
 	<Source>
@@ -349,5 +448,193 @@
 			<Name>DisplayTxtId</Name>
 			<Value>true</Value>
 		</Property>
+	</Source>
+	<Source>
+		<GUID>{7CEB73C6-40BB-48AA-AD07-10328146ACA7}</GUID>
+		<Name>TcWeighingEventClass</Name>
+		<Event>
+			<Id>#x1</Id>
+			<Message>Dbg: {0}.</Message>
+		</Event>
+		<Event>
+			<Id>#x1001</Id>
+			<Message><![CDATA[Error in Transition PREOP->SAFEOP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1002</Id>
+			<Message><![CDATA[Error in Transition SAFEOP->OP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1003</Id>
+			<Message><![CDATA[Error in Transition SAFEOP->OP: No Task assigned. Module will not be executed cyclically.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1004</Id>
+			<Message><![CDATA[Error in Transition OP->SAFEOP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1005</Id>
+			<Message><![CDATA[Error in Transition SAFEOP->PREOP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1006</Id>
+			<Message>Cyclic caller is assigned. Methods can not be called.</Message>
+		</Event>
+		<Event>
+			<Id>#x1007</Id>
+			<Message>Invalid object state.</Message>
+		</Event>
+		<Event>
+			<Id>#x1008</Id>
+			<Message>Invalid symbol size.</Message>
+		</Event>
+		<Event>
+			<Id>#x1009</Id>
+			<Message>Invalid data area number.</Message>
+		</Event>
+		<Event>
+			<Id>#x2001</Id>
+			<Message>Memory could not be allocated dynamically. Check size of rotuer memory.</Message>
+		</Event>
+		<Event>
+			<Id>#x3001</Id>
+			<Message>Null pointer was allocated.</Message>
+		</Event>
+		<Event>
+			<Id>#x3002</Id>
+			<Message>Memory could not be allocated dynamically. Check size of rotuer memory.</Message>
+		</Event>
+		<Event>
+			<Id>#x3003</Id>
+			<Message>Cutoff must be greater than zero and smaller than Samplingrate/2.</Message>
+		</Event>
+		<Event>
+			<Id>#x3004</Id>
+			<Message>Samplingrate must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3005</Id>
+			<Message>SamplesToFilter must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3008</Id>
+			<Message>Order must be greater than zero and smaller than eleven.</Message>
+		</Event>
+		<Event>
+			<Id>#x3009</Id>
+			<Message>WindowLength must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3010</Id>
+			<Message>Threshold must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3011</Id>
+			<Message>MaxStd must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3012</Id>
+			<Message>MaxWeightDeviation must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3013</Id>
+			<Message>ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x3014</Id>
+			<Message>RawHigh must be greater than RawLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x3015</Id>
+			<Message>RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x3016</Id>
+			<Message>RelativeWeightLimit must be greater or equal than zero and smaller than one.</Message>
+		</Event>
+		<Event>
+			<Id>#x3017</Id>
+			<Message>NotchFrequency must be greater than zero and smaller than fSamplingrate/2.</Message>
+		</Event>
+		<Event>
+			<Id>#x4001</Id>
+			<Message>Missing configuration.</Message>
+		</Event>
+		<Event>
+			<Id>#x4002</Id>
+			<Message>Null pointer was allocated.</Message>
+		</Event>
+		<Event>
+			<Id>#x4003</Id>
+			<Message>Invalid input size.</Message>
+		</Event>
+		<Event>
+			<Id>#x4004</Id>
+			<Message>Output size array cant be smaller than input array size.</Message>
+		</Event>
+		<Event>
+			<Id>#x4005</Id>
+			<Message>Error during runtime. Invalid data type.</Message>
+		</Event>
+		<Event>
+			<Id>#x6001</Id>
+			<Message>Calibration has not been processed successfully. RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x6002</Id>
+			<Message>The tare process could not be triggered because the calibration process had not yet been completed.</Message>
+		</Event>
+		<Event>
+			<Id>#x6003</Id>
+			<Message>Invalid state.</Message>
+		</Event>
+		<Event>
+			<Id>#x7003</Id>
+			<Message>Cutoff must be greater than zero and smaller than Samplingrate/2.</Message>
+		</Event>
+		<Event>
+			<Id>#x7004</Id>
+			<Message>Samplingrate must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7005</Id>
+			<Message>SamplesToFilter must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7008</Id>
+			<Message>Order must be greater than zero and smaller than eleven.</Message>
+		</Event>
+		<Event>
+			<Id>#x7009</Id>
+			<Message>WindowLength must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7010</Id>
+			<Message>Threshold must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7011</Id>
+			<Message>MaxStd must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7012</Id>
+			<Message>MaxWeightDeviation must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7013</Id>
+			<Message>ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x7014</Id>
+			<Message>RawHigh must be greater than RawLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x7015</Id>
+			<Message>RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x7016</Id>
+			<Message>NotchFrequency must be greater than zero and smaller than fSamplingrate/2.</Message>
+		</Event>
 	</Source>
 </TcEventSources>
