@@ -58,6 +58,9 @@
     <Compile Include="POUs\FB_Camera.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_SerCom.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FB_SerialCom.TcPOU">
       <SubType>Code</SubType>
     </Compile>

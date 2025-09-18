@@ -8,7 +8,7 @@ VAR
 	fbMagStirrer		:	FB_MagStirrer;
 // 	fbQRcode			:	FB_Camera;
 // 	fbTest 				: FB_Test;
-	fbEL6001	: FB_SerialCom;
+	fbEL6001			: FB_SerialCom;
 	
 	plcIN0 AT%I* : ARRAY [0..7] OF UINT;	//inputs w.r.t. PLC
 	plcIN1 AT%I* : ARRAY [0..7] OF UINT;
@@ -21,26 +21,33 @@ VAR
 	plcOUT0 AT%Q* : ARRAY [0..7] OF UINT;	
 	bIndex				:	USINT	:=2;
 	fSuccess: BOOL;
-	
+
+	aaaa: ComBuffer;
+	bbbb: ComBuffer;
 END_VAR
+
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// fbTest();
 fbCamera.TriggerCamera();
 // fbMotorJog.CapContainer();
 // fSuccess := fbSoftwareTrigger.DetectQRCode();
-fbEL6001(TxBuffer:=process_gvl.TxBufferEL, RxBuffer:=process_gvl.RxBufferEL);
+// fbEL6001(TxBuffer:=process_gvl.TxBufferEL, RxBuffer:=process_gvl.RxBufferEL);
 
 	plcIN1[0].0;		// DO209	
 	plcOUT1[0].0;		// DI209
 	plcOUT1[0].1;		// DI210
 	plcOUT1[0].2;		// DI211
-	
+
+fbMagStirrer(RxBufferEL:=aaaa,TxBufferEL:=bbbb);
+fbEL6001(RxBuffer:=aaaa,TxBuffer:=bbbb);
+
 
 // hr := F_VN_ReadQRCodeExp(ipImageIn, ipDecodedData, ipContours, nCodeNumber,
 // 		 eSearchStrategy, hr);
 // 		 
 // hr := F_VN_DrawContours(ipCodeContourList, 0, ipImageRes, aColorRed, 3, hr);
+
 
 ]]></ST>
     </Implementation>

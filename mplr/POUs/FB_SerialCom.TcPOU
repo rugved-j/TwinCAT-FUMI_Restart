@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="FB_SerialCom" Id="{181e7c70-138b-446a-a6f5-34e588388885}" SpecialFunc="None">
+  <POU Name="FB_SerialCom" Id="{117bb3c3-804a-456f-bfee-44ce2b20d593}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_SerialCom
 VAR_IN_OUT
 	TxBuffer	: ComBuffer;
 	RxBuffer	: ComBuffer;
 END_VAR
 VAR
-	Timer		: TON := (PT:=T#2S);
-	fbSend		: SendString;
+	Timer		: TON := (PT:=T#1S);
+	fbSend		: SendData;
 	bSendBusy	: BOOL;
 	eSendErrorID: ComError_t;
 
-	fbReceive		: ReceiveString;
-	sReceivedString	: STRING;
+	fbReceive		: ReceiveData;
+	sReceivedData	: STRING;
 	sLastReceivedString: STRING;
 	bStringReceived	: BOOL;
 	bReceiveBusy	: BOOL;
@@ -21,7 +21,20 @@ VAR
 	eReceiveErrorID	: ComError_t;
 	bReceiveTimeout	: BOOL;
 	nReceiveCounter	: UDINT;
+	
+	aCmd        : ARRAY[0..5] OF BYTE := [115,116,97,114,116]; // "start"
+	//47, 40, 95, 65, 41, 13, 10
+	
+	  pPrefix         : BYTE;
+	  LenPrefix       : BYTE;
+	  pSuffix         : BYTE;
+	  LenSuffix       : BYTE;
+	  pReceiveData    : BYTE;
+	  SizeReceiveData : DINT;
+	  Timeout         : TIME;
+	  Reset           : BOOL;
 END_VAR
+
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Call the send block every second to repeat the transmission.
@@ -29,7 +42,8 @@ END_VAR
 Timer(IN:=TRUE);
 IF Timer.Q OR fbSend.Busy THEN
 	Timer(IN:=FALSE); (* reset timer *)
-	fbSend(	SendString:= 'START/(_A)',
+	fbSend(	pSendData := ADR(aCmd),
+			Length:=SIZEOF(aCmd),
 			TXbuffer:= TxBuffer,
 			Busy=> bSendBusy,
 			Error=> );
@@ -38,25 +52,25 @@ IF Timer.Q OR fbSend.Busy THEN
 	END_IF
 END_IF
 
-//	Receive string data:
-//	The block receives any data strings beginning with a STX ($02) and ending with an ETX ($03) character.	
-fbReceive(
-	Prefix:= '',
-	Suffix:= '/(_A)',
-	Timeout:= T#1s,
-	ReceivedString:= sReceivedString,
-	RXbuffer:= RxBuffer,
-	StringReceived=> bStringReceived,
-	Busy=> bReceiveBusy,
-	Error=> ,
-	RxTimeout=> bReceiveTimeout );
+// 	Receive STRING data:
+// 	The block receives any data strings beginning with a STX ($02) and ending with an ETX ($03) character.	
+fbReceive(	pPrefix:=ADR(pPrefix),
+		  	LenPrefix:=LenPrefix,
+			pSuffix:=ADR(pSuffix),
+			LenSuffix:=LenSuffix,
+			pReceiveData:=ADR(pReceiveData),
+			SizeReceiveData:=SIZEOF(pReceiveData),		
+			Timeout:=Timeout,
+// 			Reset:=Reset
+			RXbuffer:=RxBuffer);
+	
 IF fbReceive.Error <> COMERROR_NOERROR THEN
-	eReceiveErrorID:= fbReceive.Error;
+	eReceiveErrorID := fbReceive.Error;
 END_IF
-IF bStringReceived THEN
-	nReceiveCounter := nReceiveCounter + 1;
-	sLastReceivedString := sReceivedString;
-END_IF
+// IF bStringReceived THEN
+// 	nReceiveCounter := nReceiveCounter + 1;
+// 	sLastReceivedString := sReceivedString;
+// END_IF
 ]]></ST>
     </Implementation>
   </POU>
