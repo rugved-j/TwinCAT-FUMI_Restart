@@ -7,71 +7,100 @@ VAR_IN_OUT
 	RxBuffer	: ComBuffer;
 END_VAR
 VAR
-	Timer		: TON := (PT:=T#1S);
-	fbSend		: SendData;
-	bSendBusy	: BOOL;
-	eSendErrorID: ComError_t;
+// 	Timer		: TON := (PT:=T#1S);
+// 	fbSend		: SendData;
+// 	bSendBusy	: BOOL;
+// 	eSendErrorID: ComError_t;
+// 
+// 	fbReceive		: ReceiveData;
+// 	sReceivedData	: STRING;
+// 	sLastReceivedString: STRING;
+// 	bStringReceived	: BOOL;
+// 	bReceiveBusy	: BOOL;
+// 	bReceiveError	: BOOL;
+// 	eReceiveErrorID	: ComError_t;
+// 	bReceiveTimeout	: BOOL;
+// 	nReceiveCounter	: UDINT;
+// 	
+// 	aCmd        : ARRAY[0..6] OF STRING := ['s','t','a','r','t','\r','\n']; // "start"
+// 	//47, 40, 95, 65, 41, 13, 10
+// 	
+// 	  pPrefix         : BYTE;
+// 	  LenPrefix       : BYTE;
+// 	  pSuffix         : BYTE;
+// 	  LenSuffix       : BYTE;
+// 	  pReceiveData    : BYTE;
+// 	  SizeReceiveData : DINT;
+// 	  Timeout         : TIME := T#1S;
+// 	  Reset           : BOOL;
+// 	  
+// 	  sPrefix  : STRING(1) := '';              // no prefix, or STX if required
+//       sSuffix  : STRING(1) := '';              // no suffix, or ETX if required
+//       aReceive : ARRAY[0..255] OF STRING;
 
-	fbReceive		: ReceiveData;
-	sReceivedData	: STRING;
-	sLastReceivedString: STRING;
-	bStringReceived	: BOOL;
-	bReceiveBusy	: BOOL;
-	bReceiveError	: BOOL;
-	eReceiveErrorID	: ComError_t;
-	bReceiveTimeout	: BOOL;
-	nReceiveCounter	: UDINT;
-	
-	aCmd        : ARRAY[0..5] OF BYTE := [115,116,97,114,116]; // "start"
-	//47, 40, 95, 65, 41, 13, 10
-	
-	  pPrefix         : BYTE;
-	  LenPrefix       : BYTE;
-	  pSuffix         : BYTE;
-	  LenSuffix       : BYTE;
-	  pReceiveData    : BYTE;
-	  SizeReceiveData : DINT;
-	  Timeout         : TIME;
-	  Reset           : BOOL;
+	SendString: STRING:= 'start';
+	Busy : BOOL;
+    Error: ComError_t;
+	fbSendString : SendString;
+	fbReceiveString : ReceiveString;
+	Prefix : STRING:= '';
+    Suffix : STRING := '';
+    Timeout : TIME;
+    Reset :BOOL;
+	StringReceived: BOOL;
+    RxTimeout : BOOL;
+	ReceivedString : STRING;
 END_VAR
 
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Call the send block every second to repeat the transmission.
 // Also call the block as long as it is busy to finish a transmission.
-Timer(IN:=TRUE);
-IF Timer.Q OR fbSend.Busy THEN
-	Timer(IN:=FALSE); (* reset timer *)
-	fbSend(	pSendData := ADR(aCmd),
-			Length:=SIZEOF(aCmd),
-			TXbuffer:= TxBuffer,
-			Busy=> bSendBusy,
-			Error=> );
-	IF fbSend.Error <> COMERROR_NOERROR THEN
-		eSendErrorID := fbSend.Error;
-	END_IF
-END_IF
+// Timer(IN:=TRUE);
+// IF Timer.Q OR fbSend.Busy THEN
+// 	Timer(IN:=FALSE); (* reset timer *)
+// 	fbSend(	pSendData := ADR(aCmd),
+// 			Length:=SIZEOF(aCmd),
+// 			TXbuffer:= TxBuffer,
+// 			Busy=> bSendBusy,
+// 			Error=> );
+// 	IF fbSend.Error <> COMERROR_NOERROR THEN
+// 		eSendErrorID := fbSend.Error;
+// 	END_IF
+// END_IF
 
 // 	Receive STRING data:
 // 	The block receives any data strings beginning with a STX ($02) and ending with an ETX ($03) character.	
-fbReceive(	pPrefix:=ADR(pPrefix),
-		  	LenPrefix:=LenPrefix,
-			pSuffix:=ADR(pSuffix),
-			LenSuffix:=LenSuffix,
-			pReceiveData:=ADR(pReceiveData),
-			SizeReceiveData:=SIZEOF(pReceiveData),		
-			Timeout:=Timeout,
-// 			Reset:=Reset
-			RXbuffer:=RxBuffer);
+// fbReceive(	pPrefix:=ADR(pPrefix),
+// 		  	LenPrefix:=LenPrefix,
+// 			pSuffix:=ADR(pSuffix),
+// 			LenSuffix:=LenSuffix,
+// 			pReceiveData:=ADR(pReceiveData),
+// 			SizeReceiveData:=SIZEOF(pReceiveData),		
+// 			Timeout:=Timeout,
+// // 			Reset:=Reset
+// 			RXbuffer:=RxBuffer);
+
+// 	fbReceive(	pPrefix:= 0,
+// 		  	LenPrefix:=0,
+// 			pSuffix:=0,
+// 			LenSuffix:=0,
+// 			pReceiveData:=ADR(aReceive),
+// 			SizeReceiveData:=SIZEOF(aReceive),		
+// 			Timeout:=Timeout,
+// // 			Reset:=Reset
+// 			RXbuffer:=RxBuffer);
 	
-IF fbReceive.Error <> COMERROR_NOERROR THEN
-	eReceiveErrorID := fbReceive.Error;
-END_IF
+// IF fbReceive.Error <> COMERROR_NOERROR THEN
+// 	eReceiveErrorID := fbReceive.Error;
+// END_IF
 // IF bStringReceived THEN
 // 	nReceiveCounter := nReceiveCounter + 1;
 // 	sLastReceivedString := sReceivedString;
 // END_IF
-]]></ST>
+
+fbSendString(SendString:= SendString, TXbuffer:=TXbuffer);
+fbReceiveString(Prefix := Prefix, Suffix:= Suffix, Timeout:=Timeout, Reset:=Reset, ReceivedString:= ReceivedString, RXbuffer:=RXBuffer);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

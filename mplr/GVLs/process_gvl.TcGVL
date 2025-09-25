@@ -5,7 +5,7 @@
 VAR_GLOBAL
 // 	fRobotInputs		:	ST_RobotInputs;
 // 	fRobotOutputs		:	ST_RobotOutputs;
-	fDecapperControl	:	ST_DecapperControl;
+	fDecapperControl	:	ST_StepperMotorControl;
 	fCameraControl		:	ST_CameraControl;	
 	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
 	TxBufferEL			: ComBuffer;
