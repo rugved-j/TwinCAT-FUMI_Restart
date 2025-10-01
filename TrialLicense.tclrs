@@ -2,9 +2,9 @@
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
 		<SystemId>{28D5979E-64C5-752C-88F7-5F1EC690A081}</SystemId>
-		<IssueTime>2025-09-22T07:42:00</IssueTime>
-		<ExpireTime>2025-09-30T00:00:00</ExpireTime>
-		<LicenseKey>053429d05295325d54e6bc7abaaa85d714fcb96f1b21e819babde85ee9be5844693c8c73c57d7c6c2d66a24a4c3142ede14202c3b4e3231bc1f8d5bd5d76698018859079199cd95eac09f45964b62db3356001120ebe97a22783e03f32e5082eca2ee4f42ae7cd03b42d67ceff8a71a153bb1fb4d7ae5e2ec092b79e389fcb516ab32d4f7ce51783634b559c0d68482ef275ce96ad4e9b21b136382df4cd11afaf809d008cff6fbf4f6d301b02be27bdc807fe47ed50227e89504a46be973ca06b3a93694cecb4782e0ac609ec97d9b43763427f651e80c873764be3423934c6b2d136eb68f1d04d6db2692f1fe86c1f2a3b7bba5d99ab17e30c4dcf27d7c68b</LicenseKey>
+		<IssueTime>2025-09-30T12:18:00</IssueTime>
+		<ExpireTime>2025-10-08T00:00:00</ExpireTime>
+		<LicenseKey>d0ca72fd07c0261fe3e3aa35077c38551d007ef09ad710babfb4c85c2f1a137c2d9ebd630343cfabf43e924a7ce13098613a78162c870ba090b8b52521adcb8b2db99a5d113f330c7879fc7b8e9cfd819bb07d469462c85893eeb905851979d74e4e588ec7c964b45a0278f672ff7563c09bd3ad05db3d32ea921138d18c1401817387ff04d71a06535850040fc7c56fd52f2045b9952d7cdce5a5df8b705550d220554cff6ab75ce36f3ced1be43a102ba4cc65d573ac75fcc1f7128a9ee5b759bb0100b8961dcdace9661ef70cf990d82a1dc0cc46929b56b5ed05863ef721d77b93e5e0c368597ccedc1dba8014c3a607f6bc1398e0bae48c06a5e744e717</LicenseKey>
 		<License>
 			<LicenseId>{B1065A48-8131-4608-A378-D67FA8BD826E}</LicenseId>
 			<Name>TC3 GigE Vision Connector Base</Name>
@@ -49,11 +49,6 @@
 			<LicenseId>{2FF93140-10E2-4662-A464-31B8A4673F26}</LicenseId>
 			<Name>TC3 GigE Vision Connector</Name>
 			<Instances>2</Instances>
-		</License>
-		<License>
-			<LicenseId>{FDEB49FC-E8D5-4978-96BC-06E257B23F2D}</LicenseId>
-			<Name>TC3 Virtual-Serial-COM</Name>
-			<OrderNo>TF6360</OrderNo>
 		</License>
 		<License>
 			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
