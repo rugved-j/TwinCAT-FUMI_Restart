@@ -6,110 +6,74 @@ VAR_INPUT
 END_VAR
 VAR_OUTPUT
 END_VAR
-// VAR
-// 	hr                :    HRESULT;
-//     fbCameraControl   :    FB_VN_SimpleCameraControl;
-// 	bTrigger		  :	   BOOL:=	TRUE;
-//     eCameraState            :    ETcVnCameraState;
-//     ipImageIn         :    ITcVnImage;
-// 	ipDecodedData   : ITcVnContainer;		// QR code var
-//     ipContours      : ITcVnContainer;		// QR code var
-// 	 nCodeNumber     : DINT	:= 1;							// QR code var
-//     eSearchStrategy : UDINT;							// QR code var
-//     ipAngles        :   ITcVnContainer;		// QR code var
-//     ipImageInDisp     :    ITcVnDisplayableImage; 
-//     nNewImageCounter  :    UINT;	
-// 	
-// // 	// Watchdog
-// // 	hrWD                :    HRESULT;
-// // 	tStop               :    DINT := 20000;
-// // 	tRest               :    DINT;
-// 	
-// // 	aTexts : ARRAY[0..5] OF STRING(MAX_QR_LENGTH);
-// 	sText	:	STRING;
-// END_VAR
-// VAR CONSTANT
-// 	MAX_QR_LENGTH : ULINT := 1000; 
-// END_VAR
-// VAR
-// 	ipImageRes          :    ITcVnImage;
-// 	ipImageResDisp      :    ITcVnDisplayableImage;
-// 	ipCodeDecodedList   :    ITcVnContainer; 
-// 	ipCodeContourList   :    ITcVnContainer;
-// 	stOrientation : TcVnRotatedRectangle;
-// 	aColorRed           :    TcVnVector4_LREAL := [255, 0, 0];
-// 	aColorRedDINT		:	DINT;
-// 	aColorBlue			:	 TcVnVector4_LREAL := [0, 0, 255];
-// 	aColorBlueDINT		:	DINT;
-// 	fFontScale		: LREAL := 2;          
-// 	nThickness 		: LREAL;
-// END_VAR
 VAR
-    // ---- Vision control ----
-    fbCam               : FB_VN_SimpleCameraControl;
-    eState              : ETcVnCameraState;
-    hr                  : HRESULT;
+	    // Camera control
+//     fbCam        :  FB_VN_SimpleCameraControl;
+    eState       : ETcVnCameraState;
+    hr           : HRESULT;
 
-    // ---- Images ----
-    ipImageIn           : ITcVnImage;                // provider (read-only) frame
-    ipImageRes          : ITcVnImage;                // our writable RGB canvas
-    ipDisp              : ITcVnDisplayableImage;     // what we show in ADS
+    // Software trigger (toggle TRUE → FALSE to grab one frame)
+    bSoftTrig    : BOOL := FALSE;
+    rSoftTrig    : R_TRIG;
+    bPending     : BOOL := FALSE;
 
-    // ---- QR results ----
-    ipCodeDecodedList   : ITcVnContainer;            // list of strings (one per code)
-    ipCodeContourList   : ITcVnContainer;            // list of contours (each = list of 2D points)
-    ipAngles            : ITcVnContainer;            // (optional) angles/orientation
-    nCodes              : DINT := 0;
-    nContours           : DINT := 0;
-    sDecoded            : STRING(255);
+    // Images
+    ipImageRaw   : ITcVnImage;               // raw from camera (Bayer GR8)
+    ipImageGray  : ITcVnImage;               // grayscale after conversion
+    ipImageRGB   : ITcVnImage;               // RGB canvas to draw on
+    ipImageDisp  : ITcVnDisplayableImage;    // display handle for ADS
+	ipImageDisp1 : ITcVnDisplayableImage;
+    // QR results
+    ipDecoded    : ITcVnContainer;           // decoded data list
+    ipContours   : ITcVnContainer;           // contours (for drawing)
+    sQRCode      : STRING(255);
 
-    // ---- Pose estimation (PnP) ----
-// ==== User config (set your real values) ====
-    fx : LREAL := 1120.0;  fy : LREAL := 1125.0;
-    cx : LREAL := 640.0;   cy : LREAL := 512.0;
-    k1 : LREAL := 0.0; k2 : LREAL := 0.0; p1 : LREAL := 0.0; p2 : LREAL := 0.0; k3 : LREAL := 0.0;
-    QR_SIZE_M : LREAL := 0.040;               // QR edge length (m)
-    eSrcFmt   : INT   := 0;                   // 0: Mono8; 1: Bayer GR->Gray
-    bUseStep  : BOOL  := FALSE;               // optional step gating for trigger mode
-    bStep     : BOOL  := FALSE;
-    rStep     : R_TRIG;
+    // Drawing
+    aRed         : TcVnVector4_LREAL := [0, 0, 255, 255];  // BGRA red
+    font         : ETcVnFontType := TCVN_FT_HERSHEY_PLAIN;
+	  clrRed			: TcVnVector4_LREAL := [255,0,0,255];
+    clrBlue			: TcVnVector4_LREAL := [0,0,255,255];
+	ipContour: ITcVnContainer;
+	GetElementNum: INT;
+	nPts: ULINT;
+	nBufferSize: ULINT;
 
-    // ==== Pose (PnP) ====
-    K    : TcVnMatrix3x3_LREAL;
-    Dist : TcVnArray8_LREAL;
-    Ra   : TcVnMatrix3x3_LREAL;
-    Ta    : TcVnVector3_LREAL;
+	i: INT;
+	ptTmp: TcVnPoint2_LREAL;
 
-    // image/object points for PnP (4 each: TL,TR,BR,BL)
-    ipImgPts : ITcVnContainer;
-    ipObjPts : ITcVnContainer;
-
-    // first contour iteration
-    ipFirstContour : ITcVnContainer;
-    nPts           : DINT := 0;
-    i              : DINT := 0;
-
-    // point vars & corner extraction
-    ptTmp : TcVnPoint2_LREAL;
-    ptTL  : TcVnPoint2_LREAL;  ptTR : TcVnPoint2_LREAL;
-    ptBR  : TcVnPoint2_LREAL;  ptBL : TcVnPoint2_LREAL;
-    sumVal, diffVal : LREAL;
-    minSum, maxSum  : LREAL;   minDiff, maxDiff : LREAL;
-    idxTL, idxTR, idxBR, idxBL : DINT := -1;
-    initExtrema : BOOL := FALSE;
-
-    // colors/text
-    aRed   : TcVnVector4_LREAL := [0,0,255,255];      // BGRA red
-    aWhite : TcVnVector4_LREAL := [255,255,255,255];
-    font   : ETcVnFontType := TCVN_FT_HERSHEY_PLAIN;
-    sLine  : STRING(255);
+	ptTL: TcVnPoint2_LREAL;
+	ptTR: TcVnPoint2_LREAL;
+	ptBR: TcVnPoint2_LREAL;
+	ptBL: TcVnPoint2_LREAL;
+	xTL, yTL, xTR, yTR, xBR, yBR, xBL, yBL : DINT;
+	ptTL_L, ptTR_L, ptBR_L, ptBL_L : TcVnPoint2_LREAL;
+	sMark : STRING(4) := '+';
+// 	ipExtremePoints : ITcVnContainer;
+	nContours : DINT := 0;
+	ptTop: TcVnPoint2_LREAL;
+	ptRight: TcVnPoint2_LREAL;
+	ptLeft: TcVnPoint2_LREAL;
+	ptBottom: TcVnPoint2_LREAL;
+// 	
+// 	// Camera calibration results
+	aPointImage              :   ARRAY[0..3] OF TcVnPoint2_LREAL:= [ [0,0], [50,0], [0, 50], [50, 50] ]; //TcVnPoint2_LREAL
+	aPointWorld              :   ARRAY[0..3] OF TcVnPoint3_LREAL; //TcVnPoint3_LREAL
+	fbCam				  :   FB_VN_GevCameraControl;
+	ipIterator				:	ITcVnForwardIterator;
+	aCameraMatrix             :   TcVnMatrix3x3_LREAL;
+	aDistortionCoefficients   :   TcVnArray8_LREAL;
+	aRotationMatrix           :   TcVnMatrix3x3_LREAL;
+	aTranslationVector        :   TcVnVector3_LREAL;
+	bInit: BOOL := TRUE;
+	aCoordinatesWorld		:	ARRAY[0..4] OF TcVnPoint3_LREAL;
+	aCoordinatesImage		:	ARRAY[0..4] OF TcVnPoint2_LREAL;
+	aLine: TcVnVector4_DINT;
+	aColorGreen: TcVnVector4_LREAL;
+	ipImageRes: ITcVnImage;
+// 	i					: INT;
+	counter				: INT;
 END_VAR
 
-// // Build intrinsics/dist every scan (or once, your choice)
-// K[1,1]:=fx; K[1,2]:=0.0; K[1,3]:=cx;
-// K[2,1]:=0.0; K[2,2]:=fy;  K[2,3]:=cy;
-// K[3,1]:=0.0; K[3,2]:=0.0; K[3,3]:=1.0;
-// Dist[1]:=k1; Dist[2]:=k2; Dist[3]:=p1; Dist[4]:=p2; Dist[5]:=k3; Dist[6]:=0.0; Dist[7]:=0.0; Dist[8]:=0.0;
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>
@@ -148,205 +112,152 @@ END_VAR
     <Method Name="TriggerCamera" Id="{9802e0e5-f872-4b06-8a83-9f3b0e36212d}">
       <Declaration><![CDATA[METHOD TriggerCamera : BOOL
 VAR
-// 	fbCamera		:	FB_Camera;
-// 	bTrigger					: BOOL;
-// 	i : ULINT;
-// 	numElements : ULINT;
-// 	nContours : DINT;
-// 	nCodes: ULINT;
 
- 	i : DINT;
-	// extrema for ordering (TopLeft has min(x+y), BottomRight max(x+y))
-	minSum, maxSum, minDiff, maxDiff : LREAL;
-	idxTL, idxBR, idxTR, idxBL      : DINT := -1;
-	sum, diff                       : LREAL;
-	ptTL, ptTR, ptBR, ptBL          : TcVnPoint2_LREAL;
-	ptTmp                           : TcVnPoint2_LREAL;
-	initExtrema                     : BOOL := FALSE;
-	p3 : TcVnPoint3_LREAL;
+
 END_VAR
+
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[// ==== Camera state machine ====
+        <ST><![CDATA[// Read the Calibration Params from the Image Provider
+IF bInit THEN
+	bInit := FALSE;
+	hr := fbCam.GetCameraMatrix(aCameraMatrix);
+	hr := fbCam.GetDistortionCoefficients(aDistortionCoefficients);
+	hr := fbCam.GetRotationMatrix(aRotationMatrix);
+	hr := fbCam.GetTranslationVector(aTranslationVector);
+END_IF
+
+
 eState := fbCam.GetState();
 
 CASE eState OF
-    TCVN_CS_ERROR:  hr := fbCam.Reset();
+    TCVN_CS_ERROR:
+        hr := fbCam.Reset();
 
     TCVN_CS_INITIAL, TCVN_CS_INITIALIZING, TCVN_CS_INITIALIZED,
     TCVN_CS_OPENING, TCVN_CS_OPENED, TCVN_CS_STARTACQUISITION:
         hr := fbCam.StartAcquisition();
+END_CASE
+// When acquiring, do software trigger → grab → process
+IF eState = TCVN_CS_ACQUIRING THEN
+    // rising edge on software trigger
+    rSoftTrig(CLK := bSoftTrig);
+    IF rSoftTrig.Q THEN
+        hr := fbCam.TriggerImage();
+        bPending := TRUE;
+    END_IF
 
-    TCVN_CS_TRIGGERING:
-        rStep(CLK := bStep);
-        IF rStep.Q THEN hr := fbCam.TriggerImage(); END_IF;
+    IF bPending THEN
+        // get the newly triggered frame (Bayer GR8 from camera)
+        hr := fbCam.GetCurrentImage(ipImageRaw);
+        IF SUCCEEDED(hr) AND (ipImageRaw <> 0) THEN
 
-    TCVN_CS_ACQUIRING:
+            // 1) Bayer GR8 -> GRAY
+            hr := F_VN_ConvertColorSpace(
+                    ipSrcImage := ipImageRaw,
+                    ipDestImage := ipImageGray,
+                    eTransform := TCVN_CST_BAYER_GR_TO_GRAY,
+                    hrPrev := hr);
 
-        // Optional manual step gating (for trigger/source throttling)
-        IF bUseStep THEN
-            rStep(CLK := bStep);
-            IF NOT rStep.Q THEN RETURN; END_IF
-        END_IF
-
-        // 1) Frame in
-        hr := fbCam.GetCurrentImage(ipImageIn);
-        IF SUCCEEDED(hr) AND (ipImageIn <> 0) THEN
-
-            // 2) Normalize to Gray if needed
-            IF eSrcFmt = 1 THEN
-                hr := F_VN_ConvertColorSpace(ipImageIn, ipImageIn, TCVN_CST_BAYER_GR_TO_GRAY, hr);
-            END_IF
-
-            // 3) Detect QR (decoded strings + contours)
+            // 2) Detect QR on the GRAY image (also ask for contours)
             hr := F_VN_ReadQRCodeExp(
-                    ipSrcImage      := ipImageIn,
-                    ipDecodedData   := ipCodeDecodedList,
-                    ipContours      := ipCodeContourList,
-                    nCodeNumber     := 10,
+                    ipSrcImage      := ipImageGray,
+                    ipDecodedData   := ipDecoded,
+                    ipContours      := ipContours,
+                    nCodeNumber     := 1,    // read just one (simplest)
                     eSearchStrategy := TCVN_CSS_ONLY_NOT_INVERTED + TCVN_CSS_ONLY_NOT_FLIPPED,
+//  					eSearchStrategy := TCVN_CSS_DEFAULT,
+// 					ipAngles		:= 0,
                     hrPrev          := hr);
+			IF ipDecoded<>0 AND ipContours<>0 THEN
+            // 3) Make an RGB canvas from GRAY for colored drawing/text
+            hr := F_VN_ConvertColorSpace(
+                    ipSrcImage := ipImageGray,
+                    ipDestImage := ipImageRGB,
+                    eTransform := TCVN_CST_GRAY_TO_RGB,
+                    hrPrev := hr);
+			ELSE
+				counter:=counter+1;
+			END_IF
+            // 4) If we got a QR, export text, draw border, overlay text
+            IF (hr = S_OK) AND (ipDecoded <> 0) THEN
+                // decoded string
+                hr := F_VN_ExportSubContainer_String(
+                        ipContainer := ipDecoded,
+                        nIndex := 0,
+                        sText := sQRCode,
+                        nMaxLength := SIZEOF(sQRCode)-1,
+                        hrPrev := hr);
 
-            nCodes := 0; nContours := 0;
-            IF ipCodeDecodedList <> 0 THEN ipCodeDecodedList.GetElementNum(nCodes); END_IF
-            IF ipCodeContourList <> 0 THEN ipCodeContourList.GetElementNum(nContours); END_IF
-
-            // 4) Prepare RGB canvas & draw borders
-            hr := F_VN_ConvertColorSpace(ipImageIn, ipImageRes, TCVN_CST_GRAY_TO_RGB, hr);
-            IF nContours > 0 THEN
-                hr := F_VN_DrawContours(ipCodeContourList, -1, ipImageRes, aRed, 3, hr);
-            END_IF
-
-            // 5) Decoded string (first)
-            IF nCodes > 0 THEN
-                hr := F_VN_ExportSubContainer_String(ipCodeDecodedList, 0, sDecoded, SIZEOF(sDecoded)-1, hr);
-                hr := F_VN_PutTextExp(sDecoded, ipImageRes, 30, 60, font, 2.5, aRed, 2, TCVN_LT_4_CONNECTED, FALSE, hr);
-            END_IF
-
-            // 6) Pose of FIRST QR using an iterator-style loop over points
-            IF nContours > 0 THEN
-
-                // --- get first contour container (index 0) ---
-                ipFirstContour := 0;
-                // PLACEHOLDER: replace with your "get sub-container at index" function
-				hr := F_VN_ExportContainer(ipCodeContourList, 0, ipFirstContour, hr);
-                // Example signatures differ; search for: "Container GetAt" returning ITcVnContainer
-                // hr := <PLACEHOLDER_Container_GetAt>(hr, ipCodeContourList, ipFirstContour, 0);
-
-                // If your lib has no function for sub-container fetch, you may already have ipCodeContourList
-                // as a "vector of vectors" you can iterate directly. Otherwise, keep ipFirstContour as returned above.
-
-                // Number of points in that contour
-                nPts := 0;
-                IF ipFirstContour <> 0 THEN ipFirstContour.GetElementNum(nPts); END_IF
-
-                // Reset extrema trackers
-                initExtrema := FALSE;
-                idxTL := -1; idxTR := -1; idxBR := -1; idxBL := -1;
-
-                // --- iterate all points in the first contour ---
-                FOR i := 0 TO nPts - 1 DO
-                    // PLACEHOLDER: get point2 at index i from ipFirstContour into ptTmp
-                    // Search for a typed getter like "GetAt_TcVnPoint2_LREAL" (or _REAL/_DINT in your build)
-                    // hr := <PLACEHOLDER_GetAt_Point2>(hr, ipFirstContour, ptTmp, ULINT(i));
-					hr := F_VN_ExportSubContainer(ipContainer:=ipCodeContourList, pBuffer:=ipFirstContour, nIndex :=i, nBufferSize :=nPts, hrPrev:=hr);
-                    sumVal  := ptTmp.x + ptTmp.y;
-                    diffVal := ptTmp.x - ptTmp.y;
-
-                    IF NOT initExtrema THEN
-                        minSum := sumVal; maxSum := sumVal; minDiff := diffVal; maxDiff := diffVal;
-                        idxTL := i; idxBR := i; idxTR := i; idxBL := i;
-                        initExtrema := TRUE;
-                    ELSE
-                        IF sumVal < minSum THEN minSum := sumVal; idxTL := i; END_IF
-                        IF sumVal > maxSum THEN maxSum := sumVal; idxBR := i; END_IF
-                        IF diffVal > maxDiff THEN maxDiff := diffVal; idxTR := i; END_IF
-                        IF diffVal < minDiff THEN minDiff := diffVal; idxBL := i; END_IF
-                    END_IF
-                END_FOR
-
-                // Safeguard: valid indices?
-                IF (idxTL >= 0) AND (idxTR >= 0) AND (idxBR >= 0) AND (idxBL >= 0) THEN
-                    // Export the four corner points by index
-					hr := F_VN_GetAt_TcVnPoint2_DINT(ipFirstContour, ptTL,idxTL, hr);
-					hr := F_VN_GetAt_TcVnPoint2_DINT(ipFirstContour, ptTR,idxTR, hr); 
-					hr := F_VN_GetAt_TcVnPoint2_DINT(ipFirstContour, ptBL,idxBL, hr); 
-					hr := F_VN_GetAt_TcVnPoint2_DINT(ipFirstContour, ptBR,idxBR, hr);
-
-                    // Build containers for SolvePnP (4 image points)
-                    ipImgPts := 0;
-                    // PLACEHOLDER: create a Vector<TcVnPoint2_LREAL> of size 4
-					hr := F_VN_CreateContainer(hr,  ipImgPts, ContainerType_Vector_TcVnPoint3_LREAL, 4);
-;
-                    // PLACEHOLDER: set elements 0..3
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(ptTL, ipImgPts,0, hr);
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(ptTR, ipImgPts,1, hr);
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(ptBR, ipImgPts,2, hr);
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(ptBL, ipImgPts,3, hr);
-
-                    // Build containers for SolvePnP (4 object points on Z=0)
-                    ipObjPts := 0;
-                    // PLACEHOLDER: create a Vector<TcVnPoint3_LREAL> of size 4
-					hr := F_VN_CreateContainer(hr,  ipObjPts, ContainerType_Vector_TcVnPoint3_LREAL, 4);
-					
-//                  p3 := (-QR_SIZE_M*0.5,  QR_SIZE_M*0.5, 0.0);  // TL
-					p3.x := -QR_SIZE_M * 0.5;
-					p3.y :=  QR_SIZE_M * 0.5;
-					p3.z :=  0.0;
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(p3, ipObjPts,0, hr);
-     
-//                     p3 := ( QR_SIZE_M*0.5,  QR_SIZE_M*0.5, 0.0);  // TR
-					p3.x :=  QR_SIZE_M * 0.5;
-					p3.y :=  QR_SIZE_M * 0.5;
-					p3.z :=  0.0;
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(p3, ipObjPts,1, hr);
-
-//                     p3 := ( QR_SIZE_M*0.5, -QR_SIZE_M*0.5, 0.0);  // BR
-					p3.x :=  QR_SIZE_M * 0.5;
-					p3.y := -QR_SIZE_M * 0.5;
-					p3.z :=  0.0;
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(p3, ipObjPts,2, hr);
-                    // hr := <PLACEHOLDER_SetAt_Point3>(hr, p3, ipObjPts, 2);
-//                     p3 := (-QR_SIZE_M*0.5, -QR_SIZE_M*0.5, 0.0);  // BL
-					p3.x := -QR_SIZE_M * 0.5;
-					p3.y := -QR_SIZE_M * 0.5;
-					p3.z :=  0.0;
-					hr := F_VN_SetAt_TcVnPoint2_LREAL(p3, ipObjPts,3, hr);
-                    // hr := <PLACEHOLDER_SetAt_Point3>(hr, p3, ipObjPts, 3);
-
-                    // Pose
-                    hr := F_VN_SolvePnP(
-                            hrPrev                   := hr,
-							ipImagePoints            := ipImgPts,
-							aCameraMatrix            := K,
-                            aDistortionCoefficients  := Dist,
-                            ipReferencePoints        := ipObjPts,
-                            ETcVnSolvePnPMethod      := ETcVnSolvePnPMethod.TCVN_SPM_IPPE_SQUARE,
-                            aRotationMatrix          := Ra,
-                            aTranslationVector       := Ta,
-                            );
-
-                    // Overlay pose
-                    sLine := CONCAT('XYZ [m]: ', REAL_TO_STRING(LREAL_TO_REAL(T.x)));
-                    sLine := CONCAT(sLine, CONCAT(', ', REAL_TO_STRING(LREAL_TO_REAL(T.y))));
-                    sLine := CONCAT(sLine, CONCAT(', ', REAL_TO_STRING(LREAL_TO_REAL(T.z))));
-                    hr := F_VN_PutTextExp(sLine, ipImageRes, 30, 100, font, 2.0, aWhite, 2, TCVN_LT_4_CONNECTED, FALSE, hr);
+                // draw contour(s) in red (line thickness = 3)
+                IF (hr = S_OK) AND (ipContours <> 0)THEN
+                    hr := F_VN_DrawContours(ipContours, -1, ipImageRGB, clrRed, 3, hr);
                 END_IF
             END_IF
+			
+		
+			// 5) Get first contour of ipContours, find its' extreme points, and draw them
+			IF (ipContours <> 0) THEN
+                ipContour := 0;
+                hr := F_VN_GetAt_ITcVnContainer(ipContours, ipContour,0,hr);
+                IF ipContour <> 0 THEN
+                    // Count points & find TL/TR/BR/BL by extrema => INFO: Changed to top-most, left-most, bottom-most, and right-most points 
+                    // The reason can be found in the description of each eDirection enum value (e.g. TCVN_EPD_TOP_LEFT => Search top-most point and if multiple exist search for the left-most of those)
+					ipContour.GetElementNum(nPts);
+					IF nPts > 0 THEN
+						hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_TOP_LEFT,		aExtremePoint:=ptTop, hrPrev:=S_OK);
+						hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_RIGHT_TOP,	aExtremePoint:=ptRight, hrPrev:=hr);
+						hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_BOTTOM_RIGHT,	aExtremePoint:=ptBottom, hrPrev:=hr);						
+						hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_LEFT_BOTTOM,	aExtremePoint:=ptLeft, hrPrev:=hr);
+													
 
-            // 7) Display annotated image & release per-frame refs
-            hr := F_VN_TransformIntoDisplayableImage(ipImageRes, ipDisp, hr);
+						IF hr = S_OK THEN
+							hr := F_VN_DrawPointExp(TO_UDINT(ptTop[0]), TO_UDINT(ptTop[1]), ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+							hr := F_VN_DrawPointExp(TO_UDINT(ptRight[0]), TO_UDINT(ptRight[1]), ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+							hr := F_VN_DrawPointExp(TO_UDINT(ptBottom[0]), TO_UDINT(ptBottom[1]), ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+							hr := F_VN_DrawPointExp(TO_UDINT(ptLeft[0]), TO_UDINT(ptLeft[1]), ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+						END_IF
+					END_IF
+				END_IF
+			END_IF
+// 			hr := F_VN_GetForwardIterator(ipContour, ipIterator, hr);
+			
+// 			WHILE SUCCEEDED(hr) AND_THEN ipIterator.CheckIfEnd() <> S_OK DO
+// 				hr := F_VN_GetContainer(ipIterator, ipContour, hr);
+// 				hr := F_VN_IncrementIterator(ipIterator, hr);
 
-            ipCodeDecodedList := 0;
-            ipCodeContourList := 0;
-            ipFirstContour    := 0;
-            ipImgPts          := 0;
-            ipObjPts          := 0;
-            ipImageIn         := 0;
+// 				// Calculate the image position
+// 				hr := F_VN_ContourCenterOfMass(ipContour, aPointImage, hr);	
+				FOR i:=0 TO 3 DO
+				// Coordinate Transformation to retrieve the real world position
+				hr := F_VN_TransformCoordinatesImageToWorld_Point(
+					aSrcPoint				:= aPointImage[i], 
+					aDestPoint				:= aPointWorld[i], 
+					aCameraMatrix			:= aCameraMatrix, 
+					aDistortionCoefficients	:= aDistortionCoefficients, 
+					aRotationMatrix			:= aRotationMatrix, 
+					aTranslationVector		:= aTranslationVector, 
+					fZ						:= 0, 
+					hrPrev					:= hr);																							
+				END_FOR
+// 			END_WHILE
+
+			// 6) Show in ADS Image Watch (display the annotated RGB)
+			hr := F_VN_CopyIntoDisplayableImage(ipSrcImage  := ipImageGray, ipDestImage:=ipImageDisp1, hr );
+            hr := F_VN_TransformIntoDisplayableImage(ipImageRGB, ipImageDisp, hr);
+
+            // cleanup for next trigger
+            ipDecoded := 0;
+            ipContours := 0;
+            ipImageRaw := 0;
+            ipImageGray := 0;
+            ipImageRGB := 0;
+            bPending := FALSE;
         END_IF
-END_CASE				
+    END_IF
+END_IF
 
-                      ]]></ST>
+]]></ST>
       </Implementation>
     </Method>
   </POU>
