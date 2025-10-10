@@ -23,6 +23,7 @@ VAR
     ipImageRGB   : ITcVnImage;               // RGB canvas to draw on
     ipImageDisp  : ITcVnDisplayableImage;    // display handle for ADS
 	ipImageDisp1 : ITcVnDisplayableImage;
+// 	ipImageDispUndis : ITcVnDisplayableImage;
     // QR results
     ipDecoded    : ITcVnContainer;           // decoded data list
     ipContours   : ITcVnContainer;           // contours (for drawing)
@@ -150,15 +151,16 @@ IF eState = TCVN_CS_ACQUIRING THEN
     IF bPending THEN
         // get the newly triggered frame (Bayer GR8 from camera)
         hr := fbCam.GetCurrentImage(ipImageRaw);
+		
         IF SUCCEEDED(hr) AND (ipImageRaw <> 0) THEN
-
+				
             // 1) Bayer GR8 -> GRAY
             hr := F_VN_ConvertColorSpace(
                     ipSrcImage := ipImageRaw,
                     ipDestImage := ipImageGray,
                     eTransform := TCVN_CST_BAYER_GR_TO_GRAY,
                     hrPrev := hr);
-
+			
             // 2) Detect QR on the GRAY image (also ask for contours)
             hr := F_VN_ReadQRCodeExp(
                     ipSrcImage      := ipImageGray,
@@ -241,9 +243,10 @@ IF eState = TCVN_CS_ACQUIRING THEN
 					hrPrev					:= hr);																							
 				END_FOR
 // 			END_WHILE
-
+		
 			// 6) Show in ADS Image Watch (display the annotated RGB)
-			hr := F_VN_CopyIntoDisplayableImage(ipSrcImage  := ipImageGray, ipDestImage:=ipImageDisp1, hr );
+// 			hr := F_VN_CopyIntoDisplayableImage(ipSrcImage:= ipImageRaw, ipDestImage:=ipImageDispUndis, hr );
+			hr := F_VN_CopyIntoDisplayableImage(ipSrcImage:= ipImageRGB, ipDestImage:=ipImageDisp1, hr );
             hr := F_VN_TransformIntoDisplayableImage(ipImageRGB, ipImageDisp, hr);
 
             // cleanup for next trigger

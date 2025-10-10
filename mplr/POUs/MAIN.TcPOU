@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM MAIN 
 VAR 
 	fbMotorJog			:	FB_MotorJog;
-	fbCamera			:	FB_Camera;
+// 	fbCamera			:	FB_Camera;
 	fbMagStirrer		:	FB_MagStirrer;
 // 	fbQRcode			:	FB_Camera;
 // 	fbTest 				: FB_Test;
@@ -57,12 +57,44 @@ VAR
 // 	tonHome   : TON;
 //     tonLoad   : TON;
 //     tonUnload : TON;
+
+// 
+// 	Axis1:AXIS_REF;
+// 	MC_Power: MC_Power;
+// 	MC_MoveAbsolute: MC_MoveAbsolute;
+// 	bMove: BOOL;
+// 	bInput AT%I*:BOOL;
+// 	bEnable: BOOL;
+// 	
+// 	bCappingPosition		:LREAL	:=30;
+// 	bCappingVelocity		:LREAL	:=150;
+// 	bCappingAcceleration	:LREAL	:=100;
+// 	bCappingDeceleration	:LREAL	:=100;
+// 	
+// 	bDecappingPosition		:LREAL	:=-4000;
+// 	bDecappingVelocity		:LREAL	:=150;
+// 	bDecappingAcceleration	:LREAL	:=100;
+// 	bDecappingDeceleration	:LREAL	:=100;
+    axis           : AXIS_REF;
+    fbPower        : MC_Power;
+    fbStop         : MC_Stop;
+    fbReset        : MC_Reset;
+    fbMoveAbsolute : MC_MoveAbsolute;
+    enableAxis     : BOOL;
+    executeStop    : BOOL;
+    executeReset   : BOOL;
+    executeMove    : BOOL;
+    override       : LREAL := 100;
+    position       : LREAL := 360; // ToDo: set to a reachable position 
+    velocity       : LREAL := 100; // ToDo: set velocity for move absolutec
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// fbTest();
-fbCamera.TriggerCamera();
+// fbCamera.TriggerCamera();
+// fbMotorJog.EnablePower();
 // fbMotorJog.CapContainer();
+// fbMotorJog.DecapContainer();
 // fSuccess := fbSoftwareTrigger.DetectQRCode();	
 	
 	plcIN0[4].0;			// DO145
@@ -106,7 +138,73 @@ fbCamera.TriggerCamera();
 // // oREQ_UNLOAD := tonUnload.Q;	
 // plcIN0[1].2 := tonUnload.Q;	
 
-]]></ST>
+// Axis1.ReadStatus();
+// Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
+// Axis1.Parameter.MaxVelocity	:= 6000;
+// Axis1.ReadStatus();
+// 
+// MC_Power(
+// 	Axis:=Axis1, 
+// 	Enable:=bEnable,
+// 	Status=> , 
+// 	Busy=> , 
+// 	Active=> , 
+// 	Error=> , 
+// 	ErrorID=> );
+// 
+// IF bEnable = TRUE THEN
+// 	MC_MoveAbsolute(
+// 		Axis:=Axis1, 
+// 		Execute:=bMove, 
+// 		Position:=bCappingPosition , 
+// 		Velocity:=bCappingVelocity , 
+// 		Acceleration:=bCappingAcceleration , 
+// 		Deceleration:=bCappingDeceleration , 
+// 		Options:= , 
+// 		Done=> , 
+// 		Busy=> , 
+// 		Active=> , 
+// 		CommandAborted=> , 
+// 		Error=> , 
+// 		ErrorID=> 
+// 	);
+// END_IF
+
+fbPower(
+        Axis           := axis,
+        Enable          := enableAxis,
+        Enable_Positive := enableAxis,
+        Enable_Negative := enableAxis,
+        Override        := override,
+        BufferMode      := ,
+        Options         := ,
+        Status          => ,
+        Busy            => ,
+        Active          => ,
+        Error           => ,
+        ErrorID         => 
+);
+
+fbMoveAbsolute(
+        Axis            := axis, 
+        Execute         := executeMove, // The command is executed with a positive edge.
+        Position        := position,
+        Velocity        := velocity, 
+        Acceleration    := , // If the value is 0, the standard acceleration from
+                             // the axis configuration in the System Manager is used.
+        Deceleration    := , // If the value is 0, the standard deceleration from 
+                             // the axis configuration in the System Manager is used.
+        Jerk            := , // If the value is 0, the standard jerk from the axis 
+                             // configuration in the System Manager is applied.
+        BufferMode      := MC_BufferMode.MC_Buffered,
+        Options         := ,
+        Done            => ,
+        Busy            => ,
+        Active          => ,
+        CommandAborted  => ,
+        Error           => ,
+        ErrorId         => 
+);]]></ST>
     </Implementation>
     <Action Name="GripFingersAB" Id="{54710d87-64ea-43a9-bfa1-ed109fbc33f7}">
       <Implementation>

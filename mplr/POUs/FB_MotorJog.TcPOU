@@ -19,24 +19,24 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[process_gvl.fDecapperControl.Axis1.ReadStatus();
-process_gvl.fDecapperControl.Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
-process_gvl.fDecapperControl.Axis1.Parameter.MaxVelocity	:= 6000;
-
-fbMC_MoveAbsolute(
-	Axis:=process_gvl.fDecapperControl.Axis1, 
-	Execute:=process_gvl.fDecapperControl.bMove, 
-	Position:=process_gvl.fDecapperControl.bCappingPosition , 
-	Velocity:=process_gvl.fDecapperControl.bCappingVelocity , 
-	Acceleration:=process_gvl.fDecapperControl.bCappingAcceleration , 
-	Deceleration:=process_gvl.fDecapperControl.bCappingDeceleration , 
-	Options:= , 
-	Done=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );]]></ST>
+        <ST><![CDATA[// process_gvl.fDecapperControl.Axis1.ReadStatus();
+// process_gvl.fDecapperControl.Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
+// process_gvl.fDecapperControl.Axis1.Parameter.MaxVelocity	:= 6000;
+// 
+// fbMC_MoveAbsolute(
+// 	Axis:=process_gvl.fDecapperControl.Axis1, 
+// 	Execute:=process_gvl.fDecapperControl.bMove, 
+// 	Position:=process_gvl.fDecapperControl.bCappingPosition , 
+// 	Velocity:=process_gvl.fDecapperControl.bCappingVelocity , 
+// 	Acceleration:=process_gvl.fDecapperControl.bCappingAcceleration , 
+// 	Deceleration:=process_gvl.fDecapperControl.bCappingDeceleration , 
+// 	Options:= , 
+// 	Done=> , 
+// 	Busy=> , 
+// 	Active=> , 
+// 	CommandAborted=> , 
+// 	Error=> , 
+// 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
     <Method Name="DecapContainer" Id="{eb2e6be0-5f96-46b7-97df-e6516b908059}">
@@ -46,24 +46,24 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[process_gvl.fDecapperControl.Axis1.ReadStatus();
-process_gvl.fDecapperControl.Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
-process_gvl.fDecapperControl.Axis1.Parameter.MaxVelocity	:= 6000;
-
-fbMC_MoveAbsolute(
-	Axis:=process_gvl.fDecapperControl.Axis1, 
-	Execute:=process_gvl.fDecapperControl.bMove, 
-	Position:=process_gvl.fDecapperControl.bDecappingPosition , 
-	Velocity:=process_gvl.fDecapperControl.bDecappingVelocity , 
-	Acceleration:=process_gvl.fDecapperControl.bDecappingAcceleration , 
-	Deceleration:=process_gvl.fDecapperControl.bDecappingDeceleration , 
-	Options:= , 
-	Done=> , 
-	Busy=> , 
-	Active=> , 
-	CommandAborted=> , 
-	Error=> , 
-	ErrorID=> );]]></ST>
+        <ST><![CDATA[// process_gvl.fDecapperControl.Axis1.ReadStatus();
+// process_gvl.fDecapperControl.Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
+// process_gvl.fDecapperControl.Axis1.Parameter.MaxVelocity	:= 6000;
+// 
+// fbMC_MoveAbsolute(
+// 	Axis:=process_gvl.fDecapperControl.Axis1, 
+// 	Execute:=process_gvl.fDecapperControl.bMove, 
+// 	Position:=process_gvl.fDecapperControl.bDecappingPosition , 
+// 	Velocity:=process_gvl.fDecapperControl.bDecappingVelocity , 
+// 	Acceleration:=process_gvl.fDecapperControl.bDecappingAcceleration , 
+// 	Deceleration:=process_gvl.fDecapperControl.bDecappingDeceleration , 
+// 	Options:= , 
+// 	Done=> , 
+// 	Busy=> , 
+// 	Active=> , 
+// 	CommandAborted=> , 
+// 	Error=> , 
+// 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
     <Method Name="EnablePower" Id="{bbd8026d-cdfa-44b8-9db6-db11045b5e31}">
@@ -73,17 +73,17 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[
-process_gvl.fDecapperControl.Axis1.ReadStatus();
-
-fbMC_Power(
-	Axis:=process_gvl.fDecapperControl.Axis1, 
-	Enable:=process_gvl.fDecapperControl.bEnable, 
-	Status=> , 
-	Busy=> , 
-	Active=> , 
-	Error=> , 
-	ErrorID=> );]]></ST>
+        <ST><![CDATA[// 
+// process_gvl.fDecapperControl.Axis1.ReadStatus();
+// 
+// fbMC_Power(
+// 	Axis:=process_gvl.fDecapperControl.Axis1, 
+// 	Enable:=process_gvl.fDecapperControl.bEnable, 
+// 	Status=> , 
+// 	Busy=> , 
+// 	Active=> , 
+// 	Error=> , 
+// 	ErrorID=> );]]></ST>
       </Implementation>
     </Method>
   </POU>

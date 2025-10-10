@@ -3,22 +3,22 @@
   <DUT Name="ST_StepperMotorControl" Id="{a020b09a-7936-44fb-9ed4-19e01c0000ba}">
     <Declaration><![CDATA[TYPE ST_StepperMotorControl :
 STRUCT
-	Axis1:AXIS_REF;
-	MC_Power: MC_Power;
-	MC_MoveAbsolute: MC_MoveAbsolute;
-	bMove: BOOL;
-	bInput AT%I*:BOOL;
-	bEnable: BOOL;
-	
-	bCappingPosition		:LREAL	:=2000;
-	bCappingVelocity		:LREAL	:=150;
-	bCappingAcceleration	:LREAL	:=100;
-	bCappingDeceleration	:LREAL	:=100;
-	
-	bDecappingPosition		:LREAL	:=-2000;
-	bDecappingVelocity		:LREAL	:=150;
-	bDecappingAcceleration	:LREAL	:=100;
-	bDecappingDeceleration	:LREAL	:=100;
+// 	Axis1:AXIS_REF;
+// 	MC_Power: MC_Power;
+// 	MC_MoveAbsolute: MC_MoveAbsolute;
+// 	bMove: BOOL;
+// 	bInput AT%I*:BOOL;
+// 	bEnable: BOOL;
+// 	
+// 	bCappingPosition		:LREAL	:=4000;
+// 	bCappingVelocity		:LREAL	:=150;
+// 	bCappingAcceleration	:LREAL	:=100;
+// 	bCappingDeceleration	:LREAL	:=100;
+// 	
+// 	bDecappingPosition		:LREAL	:=-4000;
+// 	bDecappingVelocity		:LREAL	:=150;
+// 	bDecappingAcceleration	:LREAL	:=100;
+// 	bDecappingDeceleration	:LREAL	:=100;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
