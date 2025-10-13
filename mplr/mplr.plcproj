@@ -18,6 +18,9 @@
     <LibraryReferences>{d81a6600-1865-413b-b9e6-a73e0e3eb77d}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\MoveState_t.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\ST_BitNumber.TcDUT">
       <SubType>Code</SubType>
     </Compile>
