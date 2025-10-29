@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_9_O2T_Registers1" Id="{ef607139-ceb0-4c4d-9aca-ae1154ffa733}">
+    <Declaration><![CDATA[TYPE UR_9_O2T_Registers1 :
+STRUCT
+      Bits : UR_9_O2T_Bits1;
+      Ints : UR_9_O2T_Ints;
+      Floats : UR_9_O2T_Floats;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

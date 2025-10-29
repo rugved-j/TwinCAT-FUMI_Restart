@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_8_O2T_Robot_IO" Id="{f9c8af09-3beb-41f5-98c3-3bcc0ed3f541}">
+    <Declaration><![CDATA[TYPE UR_8_O2T_Robot_IO :
+STRUCT
+      Robot : UR_8_O2T_Robot;
+      IOs : UR_8_O2T_IOs;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

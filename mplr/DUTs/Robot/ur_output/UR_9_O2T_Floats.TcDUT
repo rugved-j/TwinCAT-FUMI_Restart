@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_9_O2T_Floats" Id="{111c1b68-8ab6-4ce3-bc64-407809560d44}">
+    <Declaration><![CDATA[TYPE UR_9_O2T_Floats :
+STRUCT
+	Floats : ARRAY[0..11] OF REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

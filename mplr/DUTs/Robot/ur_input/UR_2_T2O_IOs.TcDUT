@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_2_T2O_IOs" Id="{a52afa33-1924-477f-a497-6cb576187ce4}">
+    <Declaration><![CDATA[TYPE UR_2_T2O_IOs :
+STRUCT
+	Standard_digital_inputs : USINT;
+	Configurable_digital_inputs:USINT;
+	Standard_digital_outputs:USINT;
+	Configurable_digital_outputs:USINT;
+	Analog_IO_types:USINT;
+	Reserved_8_15:USINT;
+	Reserved_16_31:UINT;
+	Standard_analog_input_A_or_V:ARRAY[0..1] OF REAL;
+	Standard_analog_output_A_or_V:ARRAY[0..1] OF REAL;
+	IO_current_A:REAL;
+	Euromap67_input_bits:ARRAY[0..3] OF BYTE;
+	Euromap67_output_bits:ARRAY[0..3] OF BYTE;
+	Euromap67_24V_voltage:REAL;
+	Euromap67_24V_current:REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

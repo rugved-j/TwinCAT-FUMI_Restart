@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_8_O2T_IOs" Id="{83f71c20-21b6-438e-b1bc-827eac5177c7}">
+    <Declaration><![CDATA[TYPE UR_8_O2T_IOs :
+STRUCT
+	Standard_digital_output_mask:USINT;
+	Configurable_digital_output_mask:USINT;
+	Standard_digital_outputs:USINT;
+	Configurable_digital_outputs:USINT;
+	Analog_output_mask:USINT;
+	Analog_output_types:USINT;
+	Tool_digital_output_mask:USINT;
+	Tool_digital_output:USINT;
+	Standard_analog_output:ARRAY[0..1] OF REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

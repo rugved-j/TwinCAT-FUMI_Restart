@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_9_O2T_Bits2" Id="{207b26b3-3da3-430f-9cc1-becdeb1b5d7c}">
+    <Declaration><![CDATA[TYPE UR_9_O2T_Bits2 :
+STRUCT
+	GPBitIN_32 : BIT;
+	GPBitIN_33 : BIT;
+	GPBitIN_34 : BIT;
+	GPBitIN_35 : BIT;
+	GPBitIN_36 : BIT;
+	GPBitIN_37 : BIT;
+	GPBitIN_38 : BIT;
+	GPBitIN_39 : BIT;
+	GPBitIN_40 : BIT;
+	GPBitIN_41 : BIT;
+	GPBitIN_42 : BIT;
+	GPBitIN_43 : BIT;
+	GPBitIN_44 : BIT;
+	GPBitIN_45 : BIT;
+	GPBitIN_46 : BIT;
+	GPBitIN_47 : BIT;
+	GPBitIN_48 : BIT;
+	GPBitIN_49 : BIT;
+	GPBitIN_50 : BIT;
+	GPBitIN_51 : BIT;
+	GPBitIN_52 : BIT;
+	GPBitIN_53 : BIT;
+	GPBitIN_54 : BIT;
+	GPBitIN_55 : BIT;
+	GPBitIN_56 : BIT;
+	GPBitIN_57 : BIT;
+	GPBitIN_58 : BIT;
+	GPBitIN_59 : BIT;
+	GPBitIN_60 : BIT;
+	GPBitIN_61 : BIT;
+	GPBitIN_62 : BIT;
+	GPBitIN_63 : BIT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -12,22 +12,299 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Method Name="RSR1" Id="{48966531-33d7-40db-9302-bba9452c9bd2}">
-      <Declaration><![CDATA[METHOD RSR1 : BOOL
+    <Method Name="DeGripFingerA" Id="{207f5581-9cc9-4167-80d9-a15f65e98083}">
+      <Declaration><![CDATA[METHOD DeGripFingerA : BOOL
 VAR_INPUT
 END_VAR
-]]></Declaration>
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[SendTaskId(30);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	DeGripFingerA := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
       </Implementation>
     </Method>
-    <Method Name="RSR2" Id="{ac5a31e9-fda5-4a1f-a31a-def60ce2e6e5}">
-      <Declaration><![CDATA[METHOD RSR2 : BOOL
+    <Method Name="DeGripFingerB" Id="{e469402f-b7ae-4041-826f-42ad67850c66}">
+      <Declaration><![CDATA[METHOD DeGripFingerB : BOOL
 VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(40);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	DeGripFingerB := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DeGripFingerC" Id="{1d631567-25e5-4cd1-8e32-b07a318346ec}">
+      <Declaration><![CDATA[METHOD DeGripFingerC : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	DeGripFingerC := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DeGripFingerD" Id="{66db3348-6fad-4456-8c51-fb1f5e2c0309}">
+      <Declaration><![CDATA[METHOD DeGripFingerD : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	DeGripFingerD := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DeGripFingerE" Id="{8fc92031-21a7-4bc5-92b9-a7ee02d9bcbe}">
+      <Declaration><![CDATA[METHOD DeGripFingerE : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	DeGripFingerE := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DeGripFingerF" Id="{262f1309-d09f-4325-b0e7-0a44b61f78ae}">
+      <Declaration><![CDATA[METHOD DeGripFingerF : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	DeGripFingerF := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GripFingerA" Id="{05f27375-c5c7-4ec3-b3ab-79e6ca8d39d5}">
+      <Declaration><![CDATA[METHOD GripFingerA : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(10);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	GripFingerA := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GripFingerB" Id="{52381546-0c7c-4907-ae83-3045af222900}">
+      <Declaration><![CDATA[METHOD GripFingerB : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(1);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	GripFingerB := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GripFingerC" Id="{68ec9722-e013-4067-9ac4-cc0182d0767c}">
+      <Declaration><![CDATA[METHOD GripFingerC : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	GripFingerC := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GripFingerD" Id="{80415eaf-b255-4f16-9784-c150cc8a1dce}">
+      <Declaration><![CDATA[METHOD GripFingerD : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	GripFingerD := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GripFingerE" Id="{8197f4d4-1c65-4c88-9a44-8ff963560938}">
+      <Declaration><![CDATA[METHOD GripFingerE : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	GripFingerE := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GripFingerF" Id="{6bc951d3-869b-4695-8f42-37b9f7a0b6d3}">
+      <Declaration><![CDATA[METHOD GripFingerF : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	GripFingerF := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Move_Home" Id="{d3b952f2-8880-4235-9f74-8243b9bdf68f}">
+      <Declaration><![CDATA[METHOD Move_Home : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(1);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;		//WHat is this for?
+
+IF bTaskStatus THEN
+	Move_Home := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PickFlask" Id="{a3162e19-8c74-4dac-9d9c-f11aef4ba845}">
+      <Declaration><![CDATA[METHOD PickFlask : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus : BOOL := FALSE; //
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+
+IF bTaskStatus THEN
+	PickFlask := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="PlaceFlask" Id="{38439686-0a7a-41d8-be4e-c03663da69e0}">
+      <Declaration><![CDATA[METHOD PlaceFlask : BOOL
+VAR_INPUT
+END_VAR
+
+VAR
+	bTaskStatus: BOOL := FALSE;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(7);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;		// Define the GPBitIN_xx number for respective task number on TP 
+
+IF bTaskStatus THEN
+	PlaceFlask := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SendTaskId" Id="{5f0c7446-b3a9-4ffc-98dd-e66f918a0a09}">
+      <Declaration><![CDATA[METHOD SendTaskId
+VAR_INPUT
+	nTaskId : INT;
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[process_gvl.fRobotOutput.General_Register1.Ints.Ints[0] := nTaskId;]]></ST>
       </Implementation>
     </Method>
   </POU>

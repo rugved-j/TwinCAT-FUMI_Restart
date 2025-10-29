@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_T2O" Id="{388aa6d6-7ddc-4ed3-82ff-0c13f91f08d8}">
+    <Declaration><![CDATA[TYPE UR_T2O :
+STRUCT
+	State:UR_1_T2O_State;
+	IO:UR_2_T2O_IO;
+	Joints:UR_3_T2O_Joints;
+	TCP:UR_4_T2O_TCP;
+	General_Bits:UR_5_T2O_BitRegisters;
+	General_Int:UR_6_T2O_IntRegisters;
+	General_Float:UR_7_T2O_FloatRegisters;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

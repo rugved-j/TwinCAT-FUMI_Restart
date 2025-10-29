@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_9_O2T_Ints" Id="{3f9fd3a2-c8a1-4ba8-8832-fc66f7b37eb6}">
+    <Declaration><![CDATA[TYPE UR_9_O2T_Ints :
+STRUCT
+      Ints : ARRAY[0..11] OF DINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

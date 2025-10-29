@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_1_T2O_Robot" Id="{c3eb6b49-6fe3-4e33-9b95-6523039313d1}">
+    <Declaration><![CDATA[TYPE UR_1_T2O_Robot :
+STRUCT
+	Controller_major_version:USINT;
+	Controller_minor_version:USINT;
+	Reserved:UInt;
+	Robot_mode:USInt;
+	Real_time_machine_seconds:USInt;
+	Real_time_machine_milliseconds:UInt;
+	Real_time_machine_minutes:USInt;
+	Real_time_machine_hours:USInt;
+	Real_time_machine_days:UINT;
+	Robot_current_A:REAL;
+	Is_power_on:BIT;
+	Is_program_running:BIT;
+	Is_teach_button_pressed:BIT;
+	Is_power_button_pressed:BIT;
+	Reserved_4:BIT;
+	Reserved_5:BIT;
+	Reserved_6:BIT;
+	Reserved_7:BIT;
+	Reserved_8_15:USInt;
+	Reserved_16_31:UINT;
+	Speed_slider_fraction:REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

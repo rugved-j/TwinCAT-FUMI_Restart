@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_2_T2O_IO" Id="{268027a0-419f-4085-ad77-385b7e69d36b}">
+    <Declaration><![CDATA[TYPE UR_2_T2O_IO :
+STRUCT
+	  IOs : UR_2_T2O_IOs;
+	  Tool : UR_2_T2O_Tool;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

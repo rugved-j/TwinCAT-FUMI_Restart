@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_1_T2O_State" Id="{35108c4b-53d8-431b-8192-2db55b0ec90e}">
+    <Declaration><![CDATA[TYPE UR_1_T2O_State :
+STRUCT
+      Robot : UR_1_T2O_Robot;
+      Safety : UR_1_T2O_Safety;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

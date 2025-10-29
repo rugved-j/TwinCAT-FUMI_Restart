@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_1_T2O_Safety" Id="{ac202371-6300-4691-afab-575ce3b03ea3}">
+    <Declaration><![CDATA[TYPE UR_1_T2O_Safety :
+STRUCT
+	Safety_mode:USINT;
+	Reserved_1:USINT;
+	Reserved_2:UInt;
+	Is_normal_mode:BIT;
+	Is_reduced_mode:BIT;
+	Is_protective_stopped:BIT;
+	Is_recovery_mode:BIT;
+	Is_safeguard_stopped:BIT;
+	Is_system_emergency_stopped:BIT;
+	Is_robot_emergency_stopped:BIT;
+	Is_emergency_stopped:BIT;
+	Is_violation:BIT;
+	Is_fault:BIT;
+	Is_stopped_due_to_safety:BIT;
+	Reserved_11:BIT;
+	Reserved_12:BIT;
+	Reserved_13:BIT;
+	Reserved_14:BIT;
+	Reserved_15:BIT;
+	Reserved_16_31:UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

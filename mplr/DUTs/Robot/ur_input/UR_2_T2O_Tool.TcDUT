@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_2_T2O_Tool" Id="{9d3478f1-59e2-4927-a2ba-48ed0c99f4f7}">
+    <Declaration><![CDATA[TYPE UR_2_T2O_Tool :
+STRUCT
+	Tool_mode:USINT;
+	Reserved_7_15:USINT;
+	Reserved_16_31:UINT;
+	Tool_Digital_Inputs:USINT;
+	Tool_Digital_Outputs:USINT;
+	Tool_Analog_Input_Types:USINT;
+	Reserved_24_31:USINT;
+	Tool_analog_input_A_OR_V:ARRAY[0..1] OF REAL;
+	Tool_output_voltage_V:REAL;
+	Tool_current_A:REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

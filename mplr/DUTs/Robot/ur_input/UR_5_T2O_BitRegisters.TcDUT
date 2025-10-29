@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_5_T2O_BitRegisters" Id="{c982df35-f9d9-4428-8999-ee9592d80ebc}">
+    <Declaration><![CDATA[TYPE UR_5_T2O_BitRegisters :
+STRUCT
+	GPBitIN_0 : BIT;
+	GPBitIN_1 : BIT;
+	GPBitIN_2 : BIT;
+	GPBitIN_3 : BIT;
+	GPBitIN_4 : BIT;
+	GPBitIN_5 : BIT;
+	GPBitIN_6 : BIT;
+	GPBitIN_7 : BIT;
+	GPBitIN_8 : BIT;
+	GPBitIN_9 : BIT;
+	GPBitIN_10 : BIT;
+	GPBitIN_11 : BIT;
+	GPBitIN_12 : BIT;
+	GPBitIN_13 : BIT;
+	GPBitIN_14 : BIT;
+	GPBitIN_15 : BIT;
+	GPBitIN_16 : BIT;
+	GPBitIN_17 : BIT;
+	GPBitIN_18 : BIT;
+	GPBitIN_19 : BIT;
+	GPBitIN_20 : BIT;
+	GPBitIN_21 : BIT;
+	GPBitIN_22 : BIT;
+	GPBitIN_23 : BIT;
+	GPBitIN_24 : BIT;
+	GPBitIN_25 : BIT;
+	GPBitIN_26 : BIT;
+	GPBitIN_27 : BIT;
+	GPBitIN_28 : BIT;
+	GPBitIN_29 : BIT;
+	GPBitIN_30 : BIT;
+	GPBitIN_31 : BIT;
+	GPBitIN_32 : BIT;
+	GPBitIN_33 : BIT;
+	GPBitIN_34 : BIT;
+	GPBitIN_35 : BIT;
+	GPBitIN_36 : BIT;
+	GPBitIN_37 : BIT;
+	GPBitIN_38 : BIT;
+	GPBitIN_39 : BIT;
+	GPBitIN_40 : BIT;
+	GPBitIN_41 : BIT;
+	GPBitIN_42 : BIT;
+	GPBitIN_43 : BIT;
+	GPBitIN_44 : BIT;
+	GPBitIN_45 : BIT;
+	GPBitIN_46 : BIT;
+	GPBitIN_47 : BIT;
+	GPBitIN_48 : BIT;
+	GPBitIN_49 : BIT;
+	GPBitIN_50 : BIT;
+	GPBitIN_51 : BIT;
+	GPBitIN_52 : BIT;
+	GPBitIN_53 : BIT;
+	GPBitIN_54 : BIT;
+	GPBitIN_55 : BIT;
+	GPBitIN_56 : BIT;
+	GPBitIN_57 : BIT;
+	GPBitIN_58 : BIT;
+	GPBitIN_59 : BIT;
+	GPBitIN_60 : BIT;
+	GPBitIN_61 : BIT;
+	GPBitIN_62 : BIT;
+	GPBitIN_63 : BIT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

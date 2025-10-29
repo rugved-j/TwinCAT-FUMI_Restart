@@ -10,19 +10,7 @@ VAR
 // 	fbTest 				: FB_Test;
 	fbEL6001			: FB_SerialCom;
 	
-	plcIN0 AT%I* : ARRAY [0..7] OF UINT;	//inputs w.r.t. PLC
-	plcIN1 AT%I* : ARRAY [0..7] OF UINT;	
-	plcIN2 AT%I* : ARRAY [0..7] OF UINT;
-	plcIN3 AT%I* : ARRAY [0..7] OF UINT;
-
-	plcOUT1 AT%Q* : ARRAY [0..7] OF UINT;	//outputs w.r.t. PLC
-	plcOUT2 AT%Q* : ARRAY [0..7] OF UINT;
-	plcOUT3 AT%Q* : ARRAY [0..7] OF UINT;	
-	plcOUT0 AT%Q* : ARRAY [0..7] OF UINT;	
-	bIndex				:	USINT	:=2;
-	fSuccess: BOOL;
-
-	/// axis reference data structure 
+// 	/// axis reference data structure 
 	Axis1: AXIS_REF;
 	/// state machine state 
 	state: MoveState_t;
@@ -41,174 +29,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// fbTest();
-// fbCamera.TriggerCamera();
-// fbMotorJog.EnablePower();
-// fbMotorJog.CapContainer();
-// fbMotorJog.DecapContainer();
-// fSuccess := fbSoftwareTrigger.DetectQRCode();	
-	
-	plcIN0[4].0;			// DO145
-	plcIN1[0].0;		// DO209	
-	plcOUT1[0].0;		// DI209 
-	plcOUT1[0].1;		// DI210
-	plcOUT1[0].2;		// DI211
-	
-	plcIN0[1].1;		//UOP Busy flag
-	
-// hr := F_VN_ReadQRCodeExp(ipImageIn, ipDecodedData, ipContours, nCodeNumber,
-// 		 eSearchStrategy, hr);
-// 		 
-// hr := F_VN_DrawContours(ipCodeContourList, 0, ipImageRes, aColorRed, 3, hr);
-
-
-// 
-// // ---- Allow new trigger only when robot is not busy and no pulse is active ----
-// bGate := NOT plcIN0[1].1=TRUE AND NOT (tonHome.Q OR tonLoad.Q OR tonUnload.Q);
-// 
-// // ---- Rising edges on operator commands (gated) ----
-// rHome(CLK := bHomeRequest AND bGate);
-// rLoad(CLK := bLoadRequest AND bGate);
-// rUnload(CLK := bUnloadRequest AND bGate);
-// 
-// // ---- Priority resolution: Home > Load > Unload ----
-// bTrigHome   := rHome.Q;
-// bTrigLoad   := rLoad.Q   AND NOT bTrigHome;
-// bTrigUnload := rUnload.Q AND NOT (bTrigHome OR bTrigLoad);
-// 
-// // ---- Generate ~100 ms pulses to robot DIs ----
-// tonHome(IN := bTrigHome OR (tonHome.Q AND plcOUT1[0].0), PT := T#100MS);
-// // oREQ_HOME := tonHome.Q;
-// plcOUT1[0].0 := tonHome.Q;
-// 
-// tonLoad(IN := bTrigLoad OR (tonLoad.Q AND plcIN0[1].1), PT := T#100MS);
-// // oREQ_LOAD := tonLoad.Q;
-// plcIN0[1].1 := tonLoad.Q;
-// 
-// tonUnload(IN := bTrigUnload OR (tonUnload.Q AND plcIN0[1].2), PT := T#100MS);
-// // oREQ_UNLOAD := tonUnload.Q;	
-// plcIN0[1].2 := tonUnload.Q;	
-
-// Axis1.ReadStatus();
-// Axis1.Parameter.EncoderScalingFactor := 0.000000083819031715393066;;
-// Axis1.Parameter.MaxVelocity	:= 6000;
-// Axis1.ReadStatus();
-// 
-// MC_Power(
-// 	Axis:=Axis1, 
-// 	Enable:=bEnable,
-// 	Status=> , 
-// 	Busy=> , 
-// 	Active=> , 
-// 	Error=> , 
-// 	ErrorID=> );
-// 
-// IF bEnable = TRUE THEN
-// 	MC_MoveAbsolute(
-// 		Axis:=Axis1, 
-// 		Execute:=bMove, 
-// 		Position:=bCappingPosition , 
-// 		Velocity:=bCappingVelocity , 
-// 		Acceleration:=bCappingAcceleration , 
-// 		Deceleration:=bCappingDeceleration , 
-// 		Options:= , 
-// 		Done=> , 
-// 		Busy=> , 
-// 		Active=> , 
-// 		CommandAborted=> , 
-// 		Error=> , 
-// 		ErrorID=> 
-// 	);
-// END_IF
-
-	
-// 	fbPower(
-// 			Axis           := axis,
-// 			Enable          := enableAxis,
-// 			Enable_Positive := enableAxis,
-// 			Enable_Negative := enableAxis,
-// 			Override        := override,
-// 			BufferMode      := ,
-// 			Options         := ,
-// 			Status          => ,
-// 			Busy            => ,
-// 			Active          => ,
-// 			Error           => ,
-// 			ErrorID         => 
-// 	);
-// 	enableAxis:=TRUE;
-// // 	Axis.ReadStatus;
-// 
-// CASE nState OF
-// 	0:	// Idle State
-// 		IF fbPower.Status AND bSMFlag THEN
-// 			IF bMoveTrig THEN
-// 				nState := 10;
-// 			ELSE
-// 				nState := 20;
-// 			END_IF
-// 		END_IF
-// 	10:	// Loading Position of Stepper motor
-// 			bTargetReached := FALSE;
-// 			fbMoveAbsolute(
-// 				Axis            := axis, 
-// 				Execute         := executeMove, // The command is executed with a positive edge.
-// 				Position        := 360,
-// 				Velocity        := 100, 
-// 				Acceleration    := , // If the value is 0, the standard acceleration from
-// 									 // the axis configuration in the System Manager is used.
-// 				Deceleration    := , // If the value is 0, the standard deceleration from 
-// 									 // the axis configuration in the System Manager is used.
-// 				Jerk            := , // If the value is 0, the standard jerk from the axis 
-// 									 // configuration in the System Manager is applied.
-// 				BufferMode      := MC_BufferMode.MC_Buffered,
-// 				Options         := ,
-// 				Done            => ,
-// 				Busy            => ,
-// 				Active          => ,
-// 				CommandAborted  => ,
-// 				Error           => ,
-// 				ErrorId         => 
-// 			);
-// 		
-// 			IF NOT fbMoveAbsolute.Busy AND NOT fbMoveAbsolute.Error THEN
-// 				fbMoveAbsolute(Axis:=axis, Execute:=FALSE);
-// 				bTargetReached := TRUE;
-// 				nState			:= 0;
-// 			END_IF
-// 	20:
-// 		// Dosing Position of Stepper motor
-// 			bTargetReached := FALSE;
-// 			
-// 			fbMoveAbsolute(
-// 				Axis            := axis, 
-// 				Execute         := executeMove, // The command is executed with a positive edge.
-// 				Position        := 220,
-// 				Velocity        := 50, 
-// 				Acceleration    := , // If the value is 0, the standard acceleration from
-// 									 // the axis configuration in the System Manager is used.
-// 				Deceleration    := , // If the value is 0, the standard deceleration from 
-// 									 // the axis configuration in the System Manager is used.
-// 				Jerk            := , // If the value is 0, the standard jerk from the axis 
-// 									 // configuration in the System Manager is applied.
-// 				BufferMode      := MC_BufferMode.MC_Buffered,
-// 				Options         := ,
-// 				Done            => ,
-// 				Busy            => ,
-// 				Active          => ,
-// 				CommandAborted  => ,
-// 				Error           => ,
-// 					ErrorId         => 
-// 			);
-// 			IF NOT fbMoveAbsolute.Busy AND NOT fbMoveAbsolute.Error THEN
-// 					fbMoveAbsolute(Axis:=axis, Execute:=FALSE);
-// 					bTargetReached := TRUE;
-// 					nState			:= 0;
-// 			END_IF
-// 	
-// 	
-// END_CASE
-
+      <ST><![CDATA[
 (* update the axis status at the beginning of each cycle *)
 	Axis1();
 
@@ -247,46 +68,6 @@ END_VAR
 				state := MOVESTATE_ERROR;
 			END_IF
 
-// 		MOVESTATE_NEWTARGETPOSITION :		(* change target position while moving *)
-// 			(* start a buffered motion command while axis is moving *)
-// 			MoveAxis2.Position := 90;		(* start to final target *)
-// 			MoveAxis2.Velocity := 50;		(* increase velocity *)
-// 			MoveAxis2.BufferMode := MC_BlendingPrevious; 	(* use velocity of previous command till intermediate target position position *)
-// 			MoveAxis2.Execute := TRUE;
-// 			IF MoveAxis2.Done THEN
-// 				MoveAxis2.Execute := FALSE;
-// 				state := MOVESTATE_BACKWARDS;
-// 			ELSIF MoveAxis2.CommandAborted OR MoveAxis2.Error THEN
-// 				state := MOVESTATE_ERROR;
-// 			END_IF
-// 
-// 		MOVESTATE_BACKWARDS :	(* move back to initial position *)
-// 			MoveAxis1.Position := 30;		(* position close to initial position *)
-// 			MoveAxis1.Velocity := 50;		(* high velocity *)
-// 			MoveAxis1.BufferMode := MC_Buffered;
-// 			MoveAxis1.Execute := TRUE;
-// 			IF MoveAxis1.Active THEN
-// 				(* axis is executing job but is not yet finished *)
-// 				MoveAxis1.Execute := FALSE;
-// 				(* leave this state and buffer a second command *)
-// 				state := MOVESTATE_BACKWARDSSLOW;
-// 			ELSIF MoveAxis1.CommandAborted OR MoveAxis1.Error THEN
-// 				state := MOVESTATE_ERROR;
-// 			END_IF
-// 
-// 		MOVESTATE_BACKWARDSSLOW :	(* move back to initial position *)
-// 			(* start a buffered motion command while axis is moving *)
-// 			MoveAxis2.Position := 0;	(* back to initial position *)
-// 			MoveAxis2.Velocity := 100; 	(* slow velocity *)
-// 			MoveAxis2.BufferMode := MC_BlendingNext; 	(* use velocity from first target position *)
-// 			MoveAxis2.Execute := TRUE;
-// 			IF MoveAxis2.Done THEN
-// 				MoveAxis2.Execute := FALSE;
-// 				state := MOVESTATE_FORWARD;
-// 			ELSIF MoveAxis2.CommandAborted OR MoveAxis2.Error THEN
-// 				state := MOVESTATE_ERROR;
-// 			END_IF
-
 		MOVESTATE_ERROR :
 			IF Axis1.Status.Error THEN
 				state := MOVESTATE_RESET;	(* axis error requires reset *)
@@ -307,6 +88,7 @@ END_VAR
 	ActPower();	(* call the power function block *)
 	ActMove();	(* call the move function block *)
 	ActReset();	(* call the reset function block *)
+
 
 ]]></ST>
     </Implementation>
@@ -468,7 +250,7 @@ END_VAR
                             <o>
                               <o n="Operand" t="Operand">
                                 <v n="Operand">"Axis1"</v>
-                                <v n="Type">"AXIS_REF"</v>
+                                <v n="Type">"AXIS_REF[REF]"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
                                 <v n="Address">""</v>
@@ -842,7 +624,7 @@ END_VAR
                             <o>
                               <o n="Operand" t="Operand">
                                 <v n="Operand">"Axis1"</v>
-                                <v n="Type">"AXIS_REF"</v>
+                                <v n="Type">"AXIS_REF[REF]"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
                                 <v n="Address">""</v>
@@ -1669,41 +1451,7 @@ END_VAR
       <Implementation>
         <ST><![CDATA[(*-- program to trigger gripping of fingers on Schunk Deposit Station A and B --*)
 
-(*Initialize Inputs to OFF for every PLC cycle*)
-plcOUT0[4].0:=FALSE;	// DI145 
-plcOUT0[4].1:=FALSE;	// DI146
-
-
-// IF bTrigGrip THEN				// If DO209=ON state trigger state 'grip fingers AB' is true
-	plcOUT1[0].1:=TRUE;					// Then DI210=ON && Triggers the program in the TP for gripper change
-// 		
-// 	IF plcIN1[0].8:=TRUE THEN			// DO217=ON && get input whether Gripper change TP program is Successfully completed
-// 		plcOUT1[0].1:=FALSE;			// Turn off TPprogram trigger when successfully completed
-// 	ELSE
-// 		plcOUT0[4].1:=TRUE;				// Error state DI146 is turned to ON
-// 	END_IF
-// 	bTrigGrip := FALSE;
-// END_IF]]></ST>
-      </Implementation>
-    </Action>
-    <Action Name="MoveToHome" Id="{85e6d515-854e-4ccf-aadd-b310af254146}">
-      <Implementation>
-        <ST><![CDATA[(*-- program to move Robot to Home Pose --*)
-
-(*Initialize Inputs to OFF for every PLC cycle*)
-plcOUT0[4].0:=FALSE;	// DI145 
-plcOUT0[4].1:=FALSE;	// DI146
-
-// IF bTrigHome THEN				// If DO209=ON state trigger state 'move to home' is true
-	plcOUT1[0].0:=TRUE;					// Then DI209=ON && Triggers the program in the TP for moving to home pose
-// 		
-// 	IF plcIN1[0].8:=TRUE THEN			// DO217=ON && get input whether Gripper change TP program is Successfully completed
-// 		plcOUT1[0].1:=FALSE;			// Turn off TPprogram trigger when successfully completed
-// 	ELSE
-// 		plcOUT0[4].1:=TRUE;				// Error state DI146 is turned to ON
-// 	END_IF
-// 	bTrigHome := FALSE;
-// END_IF]]></ST>
+]]></ST>
       </Implementation>
     </Action>
   </POU>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_4_T2O_TCP" Id="{8ae6bfe4-7e5a-4a24-9672-52100ca73f8b}">
+    <Declaration><![CDATA[TYPE UR_4_T2O_TCP :
+STRUCT
+	TCP_Position_XYZ_m:ARRAY[0..2] OF REAL;
+	TCP_Position_RXRYRZ_rad:ARRAY[0..2] OF REAL;
+	TCP_velocity_XYZ_m_S:ARRAY[0..2] OF REAL;
+	TCP_velocity_RXRYRZ_rad_S:ARRAY[0..2] OF REAL;
+	TCP_force_XYZ_N:ARRAY[0..2] OF REAL;
+	TCP_torque_XYZ_Nm:ARRAY[0..2] OF REAL;
+	TCP_force_scalar_N:REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

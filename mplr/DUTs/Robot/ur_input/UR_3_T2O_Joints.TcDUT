@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_3_T2O_Joints" Id="{b9b9b5d8-08c4-421b-a7dd-d236f567993d}">
+    <Declaration><![CDATA[TYPE UR_3_T2O_Joints :
+STRUCT
+	Joint_position_rad:ARRAY[0..5] OF REAL;
+	Joint_velocity_radS:ARRAY[0..5] OF REAL;
+	Joint_current_A:ARRAY[0..5] OF REAL;
+	Joint_temperature_C:ARRAY[0..5] OF REAL;
+	Joint_mode:ARRAY[0..5] OF USINT;
+	Reserved_9:UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="UR_8_O2T_Robot" Id="{55b39ca5-fce7-4601-919e-b1d0987b9d48}">
+    <Declaration><![CDATA[TYPE UR_8_O2T_Robot :
+STRUCT
+	  Speed_slider_fraction_mask : BIT;
+	  Reserved_1 : BIT;
+	  Reserved_2 : BIT;
+	  Reserved_3 : BIT;
+	  Reserved_4 : BIT;
+	  Reserved_5 : BIT;
+	  Reserved_6 : BIT;
+	  Reserved_7 : BIT;
+	  Reserved_8_15 : USINT;
+	  Reserved_16_31 : UINT;
+	  Speed_slider_fraction : REAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

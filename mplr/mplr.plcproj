@@ -9,7 +9,7 @@
     <WriteProductVersion>false</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
     <Name>MPLR</Name>
-    <ProgramVersion>3.1.4026.17</ProgramVersion>
+    <ProgramVersion>3.1.4026.19</ProgramVersion>
     <Application>{a34eefbc-2b11-44c1-bd1c-a3eeef0bf2a1}</Application>
     <TypeSystem>{f5b1d50f-7f75-4b1a-b6b6-a008ee7c85c6}</TypeSystem>
     <Implicit_Task_Info>{1d1f03fe-ec10-43b6-a026-86dee4149e2f}</Implicit_Task_Info>
@@ -21,19 +21,76 @@
     <Compile Include="DUTs\MoveState_t.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DUTs\ST_BitNumber.TcDUT">
+    <Compile Include="DUTs\Robot\ur_input\UR_1_T2O_Robot.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_1_T2O_Safety.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_1_T2O_State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_2_T2O_IO.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_2_T2O_IOs.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_2_T2O_Tool.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_3_T2O_Joints.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_4_T2O_TCP.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_5_T2O_BitRegisters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_6_T2O_IntRegisters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_7_T2O_FloatRegisters.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_input\UR_T2O.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_8_O2T_IOs.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_8_O2T_Robot.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_8_O2T_Robot_IO.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_9_O2T_Bits1.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_9_O2T_Bits2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_9_O2T_Floats.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_9_O2T_Ints.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_9_O2T_Registers1.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_9_O2T_Registers2.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Robot\ur_output\UR_O2T.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_CameraControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DUTs\ST_StepperMotorControl.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_RobotInputs.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DUTs\ST_RobotOutputs.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GVLs\process_gvl.TcGVL">
@@ -59,9 +116,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_Camera.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_SerCom.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FB_SerialCom.TcPOU">
@@ -91,6 +145,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DUTs" />
+    <Folder Include="DUTs\Robot" />
+    <Folder Include="DUTs\Robot\ur_input" />
+    <Folder Include="DUTs\Robot\ur_output" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\Modules" />
     <Folder Include="POUs\Tools" />
@@ -141,8 +198,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-        <Data>
-          <o xml:space="preserve" t="OptionKey">
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -218,14 +275,14 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-        </Data>
-        <TypeList>
-          <Type n="Boolean">System.Boolean</Type>
-          <Type n="Hashtable">System.Collections.Hashtable</Type>
-          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-          <Type n="String">System.String</Type>
-        </TypeList>
-      </XmlArchive>
+  </Data>
+  <TypeList>
+    <Type n="Boolean">System.Boolean</Type>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

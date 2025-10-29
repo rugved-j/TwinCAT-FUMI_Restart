@@ -3,8 +3,8 @@
   <GVL Name="process_gvl" Id="{530e8144-e12b-4fe7-a842-b320890f51db}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-// 	fRobotInputs		:	ST_RobotInputs;
-// 	fRobotOutputs		:	ST_RobotOutputs;
+	fRobotInput		AT%I*:	UR_T2O;		(* Outputs from Robot to PLC *)
+	fRobotOutput	AT%Q*:	UR_O2T;		(* Inputs from PLC to Robot *)
 	fDecapperControl	:	ST_StepperMotorControl;
 	fCameraControl		:	ST_CameraControl;	
 	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
