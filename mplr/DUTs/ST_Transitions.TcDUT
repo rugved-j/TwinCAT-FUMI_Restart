@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_Transitions" Id="{dd911454-a1bb-4391-8618-eff90c727d4e}">
+    <Declaration><![CDATA[TYPE ST_Transitions :
+STRUCT
+	ModulesDetected				: BOOL;
+	FlaskPicked					: BOOL;
+	FingerAGripped				: BOOL;
+	FingerBGripped				: BOOL;
+	FingerCGripped				: BOOL;
+	FingerDGripped				: BOOL;
+	FingerADeGripped			: BOOL;
+	FingerBDeGripped			: BOOL;
+	FingerCDeGripped			: BOOL;
+	FingerDDeGripped			: BOOL;
+	MotorPositionReached		: BOOL;		// Motor target position flag
+	MotorHalted					: BOOL;		// Motor active status flag
+	DosedTargetWeight			: BOOL;
+	InputBottleDecapped			: BOOL;
+	TabletsPoured				: BOOL;
+	VibrationDone				: BOOL;
+	TabletsDetected				: BOOL;
+	InputBottlePlaced			: BOOL;
+	TabletPicked				: BOOL;
+	TabletRebottled				: BOOL;
+	InputBottleCapped			: BOOL;
+	InputBottleRemoved			: BOOL;
+	OutputBottleTransferred 	: BOOL;
+	OutputBottleDecapped		: BOOL;
+	CameraParamsChanged			: BOOL;
+	ImprintDetectionPoseReached	: BOOL;
+	ImprintCheckDone			: BOOL;
+	ImprintRecheckDone			: BOOL;
+	TabletFlipped				: BOOL;
+	TabletLoaded				: BOOL;
+	MatrixLoaded				: BOOL;
+	MeasurementDone				: BOOL;
+	MatrixUnloaded				: BOOL;
+	TabletUnloaded				: BOOL;
+	OutputBottleCapped 			: BOOL;
+	OutputBottleRemoved			: BOOL;
+	SampleRemoved				: BOOL;
+	SystemReset					: BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -93,6 +93,9 @@
     <Compile Include="DUTs\ST_StepperMotorControl.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\ST_Transitions.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GVLs\process_gvl.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -183,6 +186,12 @@
     <PlaceholderReference Include="Tc3_Weighing">
       <DefaultResolution>Tc3_Weighing, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Weighing</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="UML State Chart Types">
+      <DefaultResolution>UML Statechart Types, 4.2.2.0 (3S - Smart Software Solutions GmbH)</DefaultResolution>
+      <Namespace>UML_SC</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>d9a6b70a-92f0-4827-8ca3-8ce8a61652d9</ResolverGuid>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>

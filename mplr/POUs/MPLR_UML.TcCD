@@ -23,26 +23,201 @@
               <v n="PropertyID">-1</v>
               <v n="MethodsLoaded">false</v>
               <d n="MethodList" t="Hashtable" ckt="Guid" cvt="UMLElementMethod">
-                <v>48966531-33d7-40db-9302-bba9452c9bd2</v>
+                <v>05f27375-c5c7-4ec3-b3ab-79e6ca8d39d5</v>
                 <o>
-                  <v n="MethodName">"RSR1"</v>
+                  <v n="MethodName">"GripFingerA"</v>
                   <v n="MethodBreakPointActive">false</v>
                   <v n="MethodReturnType">"BOOL"</v>
                   <l n="MethodParameter" t="ArrayList" />
                   <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
-                  <v n="MethodObjectGuid">{48966531-33d7-40db-9302-bba9452c9bd2}</v>
+                  <v n="MethodObjectGuid">{05f27375-c5c7-4ec3-b3ab-79e6ca8d39d5}</v>
                   <v n="MethodStereotype">""</v>
                   <v n="MethodParameterLength">20</v>
                   <v n="MethodParameterTooLong">false</v>
                 </o>
-                <v>ac5a31e9-fda5-4a1f-a31a-def60ce2e6e5</v>
+                <v>1d631567-25e5-4cd1-8e32-b07a318346ec</v>
                 <o>
-                  <v n="MethodName">"RSR2"</v>
+                  <v n="MethodName">"DeGripFingerC"</v>
                   <v n="MethodBreakPointActive">false</v>
                   <v n="MethodReturnType">"BOOL"</v>
                   <l n="MethodParameter" t="ArrayList" />
                   <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
-                  <v n="MethodObjectGuid">{ac5a31e9-fda5-4a1f-a31a-def60ce2e6e5}</v>
+                  <v n="MethodObjectGuid">{1d631567-25e5-4cd1-8e32-b07a318346ec}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>207f5581-9cc9-4167-80d9-a15f65e98083</v>
+                <o>
+                  <v n="MethodName">"DeGripFingerA"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{207f5581-9cc9-4167-80d9-a15f65e98083}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>262f1309-d09f-4325-b0e7-0a44b61f78ae</v>
+                <o>
+                  <v n="MethodName">"DeGripFingerF"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{262f1309-d09f-4325-b0e7-0a44b61f78ae}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>38439686-0a7a-41d8-be4e-c03663da69e0</v>
+                <o>
+                  <v n="MethodName">"PlaceFlask"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{38439686-0a7a-41d8-be4e-c03663da69e0}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>52381546-0c7c-4907-ae83-3045af222900</v>
+                <o>
+                  <v n="MethodName">"GripFingerB"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{52381546-0c7c-4907-ae83-3045af222900}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>5f0c7446-b3a9-4ffc-98dd-e66f918a0a09</v>
+                <o>
+                  <v n="MethodName">"SendTaskId"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">""</v>
+                  <l n="MethodParameter" t="ArrayList" cet="UMLMethodParameter">
+                    <o>
+                      <v n="ParameterName">"nTaskId"</v>
+                      <v n="ParameterType">"INT"</v>
+                      <v n="ParameterParent">{5f0c7446-b3a9-4ffc-98dd-e66f918a0a09}</v>
+                      <v n="ParameterTransfer">"in"</v>
+                    </o>
+                  </l>
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{5f0c7446-b3a9-4ffc-98dd-e66f918a0a09}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>66db3348-6fad-4456-8c51-fb1f5e2c0309</v>
+                <o>
+                  <v n="MethodName">"DeGripFingerD"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{66db3348-6fad-4456-8c51-fb1f5e2c0309}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>68ec9722-e013-4067-9ac4-cc0182d0767c</v>
+                <o>
+                  <v n="MethodName">"GripFingerC"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{68ec9722-e013-4067-9ac4-cc0182d0767c}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>6bc951d3-869b-4695-8f42-37b9f7a0b6d3</v>
+                <o>
+                  <v n="MethodName">"GripFingerF"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{6bc951d3-869b-4695-8f42-37b9f7a0b6d3}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>80415eaf-b255-4f16-9784-c150cc8a1dce</v>
+                <o>
+                  <v n="MethodName">"GripFingerD"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{80415eaf-b255-4f16-9784-c150cc8a1dce}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>8197f4d4-1c65-4c88-9a44-8ff963560938</v>
+                <o>
+                  <v n="MethodName">"GripFingerE"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{8197f4d4-1c65-4c88-9a44-8ff963560938}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>8fc92031-21a7-4bc5-92b9-a7ee02d9bcbe</v>
+                <o>
+                  <v n="MethodName">"DeGripFingerE"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{8fc92031-21a7-4bc5-92b9-a7ee02d9bcbe}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>a3162e19-8c74-4dac-9d9c-f11aef4ba845</v>
+                <o>
+                  <v n="MethodName">"PickFlask"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{a3162e19-8c74-4dac-9d9c-f11aef4ba845}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>d3b952f2-8880-4235-9f74-8243b9bdf68f</v>
+                <o>
+                  <v n="MethodName">"Move_Home"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{d3b952f2-8880-4235-9f74-8243b9bdf68f}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
+                <v>e469402f-b7ae-4041-826f-42ad67850c66</v>
+                <o>
+                  <v n="MethodName">"DeGripFingerB"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{0554418f-bec8-43af-97bb-406df361b39b}</v>
+                  <v n="MethodObjectGuid">{e469402f-b7ae-4041-826f-42ad67850c66}</v>
                   <v n="MethodStereotype">""</v>
                   <v n="MethodParameterLength">20</v>
                   <v n="MethodParameterTooLong">false</v>
@@ -62,9 +237,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">232</v>
                 <v n="LeftPosition">760</v>
-                <v n="WidthValue">115</v>
+                <v n="WidthValue">218</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">71</v>
+                <v n="Height">316</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -112,11 +287,39 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"fRobotInput"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"UR_T2O"</v>
+                  <v n="AttributeParent">{530e8144-e12b-4fe7-a842-b320890f51db}</v>
+                  <v n="AttributeObjectGuid">{03f9d554-b3f0-4d0f-bf94-4f29356f93be}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"fRobotOutput"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"UR_O2T"</v>
+                  <v n="AttributeParent">{530e8144-e12b-4fe7-a842-b320890f51db}</v>
+                  <v n="AttributeObjectGuid">{f7a5726b-2f1c-47f9-9591-4edc6b0b0775}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
                   <v n="AttribtueName">"fDecapperControl"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ST_StepperMotorControl"</v>
                   <v n="AttributeParent">{530e8144-e12b-4fe7-a842-b320890f51db}</v>
-                  <v n="AttributeObjectGuid">{e1f2529a-1bac-4fd9-8bff-a850fcc50136}</v>
+                  <v n="AttributeObjectGuid">{8e9fddbd-10c7-4b0a-b6cd-094b3870198f}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -130,7 +333,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ST_CameraControl"</v>
                   <v n="AttributeParent">{530e8144-e12b-4fe7-a842-b320890f51db}</v>
-                  <v n="AttributeObjectGuid">{b19b2bfb-1f4f-4a9e-8af9-7761fe56150e}</v>
+                  <v n="AttributeObjectGuid">{c15ffe44-abba-498b-94b1-a80c81633f53}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -144,7 +347,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ComBuffer"</v>
                   <v n="AttributeParent">{530e8144-e12b-4fe7-a842-b320890f51db}</v>
-                  <v n="AttributeObjectGuid">{6db20d34-fd1e-449a-ba64-dae792c7861f}</v>
+                  <v n="AttributeObjectGuid">{25f20544-7cca-4958-b276-d8b1585bd19f}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -158,7 +361,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ComBuffer"</v>
                   <v n="AttributeParent">{530e8144-e12b-4fe7-a842-b320890f51db}</v>
-                  <v n="AttributeObjectGuid">{8b36217d-4155-4b9c-a089-75cd0ae33485}</v>
+                  <v n="AttributeObjectGuid">{ae8361f5-7c50-4004-b928-7aaeb9ca5ac4}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -179,9 +382,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">1208</v>
                 <v n="LeftPosition">456</v>
-                <v n="WidthValue">257</v>
+                <v n="WidthValue">266</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">111</v>
+                <v n="Height">153</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -225,6 +428,18 @@
               <v n="PropertyID">-1</v>
               <v n="MethodsLoaded">false</v>
               <d n="MethodList" t="Hashtable" ckt="Guid" cvt="UMLElementMethod">
+                <v>000e46a7-d768-4af3-a8d9-7f99c3aface3</v>
+                <o>
+                  <v n="MethodName">"MotorDosingPosition"</v>
+                  <v n="MethodBreakPointActive">false</v>
+                  <v n="MethodReturnType">"BOOL"</v>
+                  <l n="MethodParameter" t="ArrayList" />
+                  <v n="MethodParent">{572e2650-5346-4e2a-bd24-17aaf2aabb29}</v>
+                  <v n="MethodObjectGuid">{000e46a7-d768-4af3-a8d9-7f99c3aface3}</v>
+                  <v n="MethodStereotype">""</v>
+                  <v n="MethodParameterLength">20</v>
+                  <v n="MethodParameterTooLong">false</v>
+                </o>
                 <v>bbd8026d-cdfa-44b8-9db6-db11045b5e31</v>
                 <o>
                   <v n="MethodName">"EnablePower"</v>
@@ -237,26 +452,14 @@
                   <v n="MethodParameterLength">20</v>
                   <v n="MethodParameterTooLong">false</v>
                 </o>
-                <v>e3cd6ade-eb2a-4b3d-983e-1db523e62881</v>
+                <v>e29b9f65-c08f-4666-b282-98670f3f7956</v>
                 <o>
-                  <v n="MethodName">"CapContainer"</v>
+                  <v n="MethodName">"MotorLoadingPosition"</v>
                   <v n="MethodBreakPointActive">false</v>
                   <v n="MethodReturnType">"BOOL"</v>
                   <l n="MethodParameter" t="ArrayList" />
                   <v n="MethodParent">{572e2650-5346-4e2a-bd24-17aaf2aabb29}</v>
-                  <v n="MethodObjectGuid">{e3cd6ade-eb2a-4b3d-983e-1db523e62881}</v>
-                  <v n="MethodStereotype">""</v>
-                  <v n="MethodParameterLength">20</v>
-                  <v n="MethodParameterTooLong">false</v>
-                </o>
-                <v>eb2e6be0-5f96-46b7-97df-e6516b908059</v>
-                <o>
-                  <v n="MethodName">"DecapContainer"</v>
-                  <v n="MethodBreakPointActive">false</v>
-                  <v n="MethodReturnType">"BOOL"</v>
-                  <l n="MethodParameter" t="ArrayList" />
-                  <v n="MethodParent">{572e2650-5346-4e2a-bd24-17aaf2aabb29}</v>
-                  <v n="MethodObjectGuid">{eb2e6be0-5f96-46b7-97df-e6516b908059}</v>
+                  <v n="MethodObjectGuid">{e29b9f65-c08f-4666-b282-98670f3f7956}</v>
                   <v n="MethodStereotype">""</v>
                   <v n="MethodParameterLength">20</v>
                   <v n="MethodParameterTooLong">false</v>
@@ -276,9 +479,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">224</v>
                 <v n="LeftPosition">176</v>
-                <v n="WidthValue">165</v>
+                <v n="WidthValue">203</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">87</v>
+                <v n="Height">95</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -326,11 +529,25 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"eState"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ETcVnCameraState"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{39a77924-1df1-4636-8bc1-b342b7ddaf15}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
                   <v n="AttribtueName">"hr"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"HRESULT"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{e3c88dd0-b0e5-445b-abbf-94d360bd2c74}</v>
+                  <v n="AttributeObjectGuid">{0ff61fd9-10af-48ab-8127-8579543f6ecd}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -340,25 +557,11 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"fbCameraControl"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"FB_VN_SimpleCameraControl"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{93d188c1-e97f-41f5-85a2-1ce4adbb3524}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bTrigger"</v>
+                  <v n="AttribtueName">"bSoftTrig"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{7e862791-012b-492a-9a7f-7147ef6bef70}</v>
+                  <v n="AttributeObjectGuid">{018cdf73-ed5b-45bf-8783-2b279e858998}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -368,11 +571,11 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"eCameraState"</v>
+                  <v n="AttribtueName">"rSoftTrig"</v>
                   <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"ETcVnCameraState"</v>
+                  <v n="AttributeReturnType">"R_TRIG"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{8cac6f8d-e845-412a-a5a3-5c2a032adc84}</v>
+                  <v n="AttributeObjectGuid">{14c6b719-f320-4168-a11a-d779bb9bbedc}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -382,11 +585,25 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipImageIn"</v>
+                  <v n="AttribtueName">"bPending"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"BOOL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{676c4c5f-0a82-46b6-bd9e-1c5b9314f4fe}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipImageRaw"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ITcVnImage"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{f6d2f8a7-0d61-48d0-8444-e5e98990d10e}</v>
+                  <v n="AttributeObjectGuid">{ededd00a-782d-43ed-a65a-a01f02f99b1a}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -396,11 +613,67 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipDecodedData"</v>
+                  <v n="AttribtueName">"ipImageGray"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ITcVnImage"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{5e3b3f18-fc07-475b-af4a-0b8b80f7ab19}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipImageRGB"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ITcVnImage"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{9d905e1e-0856-4ad8-be8a-8e5a7c352f23}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipImageDisp"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ITcVnDisplayableImage"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{6df69fdc-b8eb-46a8-b02d-8e7d5564861a}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipImageDisp1"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ITcVnDisplayableImage"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{0ec26b57-8210-41c4-8520-5d79b62b05e2}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipDecoded"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ITcVnContainer"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{222c7a97-27c2-4fcc-a550-408f63b559fd}</v>
+                  <v n="AttributeObjectGuid">{351e58b9-6956-46cb-b2b1-c03037fe1a51}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -414,7 +687,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ITcVnContainer"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{acf8ead4-aef0-413a-8a0a-fd459bcc70d6}</v>
+                  <v n="AttributeObjectGuid">{5f110c47-e226-4178-9375-78fadbfd0e6c}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -424,11 +697,11 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"nCodeNumber"</v>
+                  <v n="AttribtueName">"sQRCode"</v>
                   <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeReturnType">"STRING(255)"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{f7a9fffc-8501-4285-9559-533a13105a31}</v>
+                  <v n="AttributeObjectGuid">{5395775d-a122-4db0-8cb4-bef7c0d6860b}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -438,11 +711,11 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"eSearchStrategy"</v>
+                  <v n="AttribtueName">"aRed"</v>
                   <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"UDINT"</v>
+                  <v n="AttributeReturnType">"TcVnVector4_LREAL"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{2aa4c5d1-b9a5-4003-bcfa-2a6db9b31b4f}</v>
+                  <v n="AttributeObjectGuid">{18899d97-bb00-43eb-aea9-b63460a72be6}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -452,11 +725,53 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipAngles"</v>
+                  <v n="AttribtueName">"font"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ETcVnFontType"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{4a53b126-4fa5-4d0c-8e90-1e0508242382}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"clrRed"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnVector4_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{40f0beca-af7b-475b-bbd0-89ae2714e461}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"clrBlue"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnVector4_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{c130b4f1-94a2-429e-89d3-b6c5ebd9c065}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipContour"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ITcVnContainer"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{4b6e9a51-047f-4605-a624-bb0a200cb6d5}</v>
+                  <v n="AttributeObjectGuid">{1e430161-1185-4246-a6af-6b4475fb7a81}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -466,11 +781,11 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipImageInDisp"</v>
+                  <v n="AttribtueName">"GetElementNum"</v>
                   <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"ITcVnDisplayableImage"</v>
+                  <v n="AttributeReturnType">"INT"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{5a5e3b5e-88d2-4764-a30e-c2e2277a1a72}</v>
+                  <v n="AttributeObjectGuid">{93e4836f-d026-4d18-9d12-af23477f36f2}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -480,39 +795,543 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"nNewImageCounter"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"UINT"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{7e0e26ed-7054-4a7d-a3d2-29ded5a22e56}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"sText"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"STRING"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{6e995a21-2b9f-4055-9df7-cd663a4e5fcb}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"MAX_QR_LENGTH"</v>
+                  <v n="AttribtueName">"nPts"</v>
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ULINT"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{8021eab8-0f74-491f-8528-96a78c690fcf}</v>
+                  <v n="AttributeObjectGuid">{c0d9f034-6891-4b41-a48b-5ac18949ab53}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"nBufferSize"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ULINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{4f3deb90-0ac2-4116-ac14-9d4f5ffe3c46}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"i"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"INT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{e9fe7da8-2515-4ba8-8165-e0de518d0483}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptTmp"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{f2379472-9887-4b49-b17e-392b04f357f3}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptTL"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{185d4f75-9a83-404b-bcb7-8ad3ca207ea6}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptTR"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{303d9989-4694-4fba-b77b-734660aa7023}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptBR"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{3103c3ed-b0ad-4a04-b650-f90bf908fd15}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptBL"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{0b5d229e-f428-4d9f-8b88-1f2c6293b0da}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"xTL"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{97b0f93f-f65f-4db0-934a-266802d2d454}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"yTL"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{38b7d47b-06e1-461b-ba88-b45858a017f2}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"xTR"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{7f52daeb-2e8a-4946-a065-2ab620a7ec33}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"yTR"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{1bdd1840-8f85-40ae-b9fe-294cf4bb2066}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"xBR"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{8b64d1df-3e69-4612-8d7e-3e384aa413ec}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"yBR"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{0cfb6c30-e419-4715-ad75-94625cb5e777}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"xBL"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{ccfac5a2-076e-4c33-887a-ae6ad2fe8b79}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"yBL"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{add0772b-8093-45d8-a580-cefec8f5938b}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptTL_L"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{73725fbf-319b-499f-95a9-94e273d9cceb}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptTR_L"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{f2dbad3f-0cce-4aff-8717-2344bf71bd39}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptBR_L"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{807984b1-4b86-49c0-b475-30ec72645956}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptBL_L"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{8b27debc-2859-40de-aa08-1dbaaab786e8}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"sMark"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"STRING(4)"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{879b2b20-e328-477a-a527-81e307f4c2b0}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"nContours"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{7f6d7e5f-726e-4a0b-a523-3727c097fb98}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptTop"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{e6ed9206-40de-417a-b441-26aa2bd324e4}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptRight"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{8f52f63d-65f6-45f0-97aa-59e75a8cee20}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptLeft"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{3a247e59-63a9-4ccf-aa74-a8b01e57f6b7}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ptBottom"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{23fa1d98-c476-489f-899a-2a9573ea7419}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aPointImage"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ARRAY [0..3] OF TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{d17d26b6-70ee-48ad-8f9b-84168baf2d38}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aPointWorld"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ARRAY [0..3] OF TcVnPoint3_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{d00c0310-d21b-46e6-b77d-644247359c1c}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"fbCam"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"FB_VN_GevCameraControl"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{0f8caf42-4113-446e-8879-c2488573baad}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"ipIterator"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ITcVnForwardIterator"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{170b37a7-d638-4b08-8c60-bcb544e42a27}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aCameraMatrix"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnMatrix3x3_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{331b66ec-799c-498c-8437-5cefbe47d4da}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aDistortionCoefficients"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnArray8_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{b80f412e-2d8a-45e4-828c-e82d40eba2e8}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aRotationMatrix"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnMatrix3x3_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{3bf3afd4-5a96-492e-a9eb-3e1090a21e48}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aTranslationVector"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnVector3_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{95a0023c-dd44-446d-a1e3-d48001c0b389}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"bInit"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"BOOL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{2188db88-8f38-4456-b50b-dded830267cf}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aCoordinatesWorld"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ARRAY [0..4] OF TcVnPoint3_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{ffbf300c-0c49-48fe-b4ed-7542261c126c}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aCoordinatesImage"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"ARRAY [0..4] OF TcVnPoint2_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{acf6d7bc-62d4-4f6a-aa5d-c25f28f4ee93}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aLine"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnVector4_DINT"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{49713938-0e7d-4157-bdc1-38164955eaac}</v>
+                  <v n="AttributeStereotype">""</v>
+                </o>
+                <o>
+                  <v n="bIsAttribute">true</v>
+                  <v n="isInputVar">false</v>
+                  <v n="isOutputVar">false</v>
+                  <v n="isInoutVar">false</v>
+                  <v n="isLocalVar">true</v>
+                  <v n="bIsMethod">false</v>
+                  <v n="AttribtueName">"aColorGreen"</v>
+                  <v n="AttributeConstraint">""</v>
+                  <v n="AttributeReturnType">"TcVnVector4_LREAL"</v>
+                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
+                  <v n="AttributeObjectGuid">{1a46cb1b-a7fa-4212-a9fa-4134c966c9f1}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -526,7 +1345,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ITcVnImage"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{d2ee2bc9-ab2e-467f-a0af-4430551f9304}</v>
+                  <v n="AttributeObjectGuid">{18d5ac88-a727-4b74-8715-fa5fc7903c35}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -536,137 +1355,11 @@
                   <v n="isInoutVar">false</v>
                   <v n="isLocalVar">true</v>
                   <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipImageResDisp"</v>
+                  <v n="AttribtueName">"counter"</v>
                   <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"ITcVnDisplayableImage"</v>
+                  <v n="AttributeReturnType">"INT"</v>
                   <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{86efcab5-69ce-4b62-83e8-226e60113e07}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipCodeDecodedList"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"ITcVnContainer"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{16b87e6d-dff3-4baa-a105-285e462e4baf}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"ipCodeContourList"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"ITcVnContainer"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{818d6198-7dbf-4b13-a6dd-d3a1ea802ca8}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"stOrientation"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"TcVnRotatedRectangle"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{c783b90c-f8c4-4641-a7f0-3fdf26ae667a}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"aColorRed"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"TcVnVector4_LREAL"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{70d6db62-8e58-4ac7-8b05-e3997d4cae5f}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"aColorRedDINT"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"DINT"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{17a273ef-2e70-4205-8f18-90ac954ad82b}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"aColorBlue"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"TcVnVector4_LREAL"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{fa1bdc82-7b5d-4174-bd7c-e7cf7d3c1fde}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"aColorBlueDINT"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"DINT"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{a58abf47-f5c2-445c-82d6-9bbf06a36bb0}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"fFontScale"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{b7184c40-ae12-4774-92a5-82201fc6d75d}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"nThickness"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{5dd9008b-c7f4-4e76-8185-09c16c8b52f8}</v>
-                  <v n="AttributeObjectGuid">{f3fc1cce-9644-4f36-afd7-592b42e5f696}</v>
+                  <v n="AttributeObjectGuid">{ff4f760f-fc54-4b96-a169-44f36f787cc7}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -724,9 +1417,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">352</v>
                 <v n="LeftPosition">760</v>
-                <v n="WidthValue">295</v>
+                <v n="WidthValue">350</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">482</v>
+                <v n="Height">1108</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -809,9 +1502,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">544</v>
                 <v n="LeftPosition">176</v>
-                <v n="WidthValue">163</v>
+                <v n="WidthValue">174</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">71</v>
+                <v n="Height">78</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -851,204 +1544,7 @@
               <v n="ExcludedFromBuild">false</v>
               <v n="PropertiesLoaded">false</v>
               <d n="Properties" t="Hashtable" />
-              <l n="AttributesArray" t="ArrayList" cet="UMLElementAttribute">
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"Axis1"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"AXIS_REF"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{e9353bf4-4a11-4299-a200-0b122c60d048}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"MC_Power"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"MC_Power"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{cb2bb52e-58a0-471e-a74f-03ac63755f75}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"MC_MoveAbsolute"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"MC_MoveAbsolute"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{0726e339-fc48-4954-ba20-66c94a793f54}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bMove"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"BOOL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{593dfeff-b60b-4fba-b241-3bf5920db2e1}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bInput"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"BOOL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{a356a0e0-65c7-4b19-9417-da2d17de069a}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bEnable"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"BOOL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{ed462a4d-adac-4601-b1b1-92bee89ea845}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bCappingPosition"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{0b1f619a-9341-4359-8d53-02f031cd18eb}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bCappingVelocity"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{d2f08248-264e-4a44-8c13-c3940d711fc5}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bCappingAcceleration"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{f9708e48-037a-42d2-9ab1-c1ac66b12b85}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bCappingDeceleration"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{deda9674-4258-4737-90a1-39fb2e4267da}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bDecappingPosition"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{0a62e0f3-6ce7-44c4-a0e9-533a9f47e51e}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bDecappingVelocity"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{7ce49e88-8adc-421e-97d2-025a7da7e19c}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bDecappingAcceleration"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{d003a756-abbb-44fd-811a-7481895742a8}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-                <o>
-                  <v n="bIsAttribute">true</v>
-                  <v n="isInputVar">false</v>
-                  <v n="isOutputVar">false</v>
-                  <v n="isInoutVar">false</v>
-                  <v n="isLocalVar">true</v>
-                  <v n="bIsMethod">false</v>
-                  <v n="AttribtueName">"bDecappingDeceleration"</v>
-                  <v n="AttributeConstraint">""</v>
-                  <v n="AttributeReturnType">"LREAL"</v>
-                  <v n="AttributeParent">{a020b09a-7936-44fb-9ed4-19e01c0000ba}</v>
-                  <v n="AttributeObjectGuid">{aaa77848-4b38-4b42-9ab9-b99a7d6d611f}</v>
-                  <v n="AttributeStereotype">""</v>
-                </o>
-              </l>
+              <l n="AttributesArray" t="ArrayList" />
               <v n="PropertyID">-1</v>
               <v n="MethodsLoaded">false</v>
               <d n="MethodList" t="Hashtable" />
@@ -1066,9 +1562,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">832</v>
                 <v n="LeftPosition">720</v>
-                <v n="WidthValue">261</v>
+                <v n="WidthValue">182</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">271</v>
+                <v n="Height">58</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -1120,7 +1616,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ComBuffer"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{6de10251-07a5-4a47-a885-279cbde684e4}</v>
+                  <v n="AttributeObjectGuid">{d1ce1f68-cff1-47fb-8b7d-fd366b2cae98}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -1134,7 +1630,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ComBuffer"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{26b49869-91a9-437c-bb17-14a6726eba71}</v>
+                  <v n="AttributeObjectGuid">{7878120b-3fdb-4882-8a07-3b1f1d700b9a}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -1148,7 +1644,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"EL6inData22B"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{1908a235-cc16-4fe9-8189-2e9b31f709ff}</v>
+                  <v n="AttributeObjectGuid">{24e7a8f7-1fdd-463c-a86b-22fea78ecb0d}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -1162,7 +1658,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"EL6outData22B"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{74c22d52-ec2e-441a-8344-d4f6690db661}</v>
+                  <v n="AttributeObjectGuid">{ec292b69-1e1f-485e-9caa-a3ed5e2a0595}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -1176,7 +1672,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"SerialLineControl"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{e2cfd469-a43d-452a-914b-456ef60532ff}</v>
+                  <v n="AttributeObjectGuid">{62e0e8a4-17c5-46ce-9658-253279a77d52}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -1190,7 +1686,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"BOOL"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{c7ba44ca-2cb7-4245-b3c4-169416bf1ddf}</v>
+                  <v n="AttributeObjectGuid">{4da3088b-fbf4-4dd1-8d80-f32fb3ce3208}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
                 <o>
@@ -1204,7 +1700,7 @@
                   <v n="AttributeConstraint">""</v>
                   <v n="AttributeReturnType">"ComError_t"</v>
                   <v n="AttributeParent">{a2e6843a-a36d-4b5b-a4d3-5e66bf5758f6}</v>
-                  <v n="AttributeObjectGuid">{ff9cfe25-38e1-4e16-84d8-d6e84b982250}</v>
+                  <v n="AttributeObjectGuid">{5bfc80eb-0840-49ae-ae76-f61877a0f3e7}</v>
                   <v n="AttributeStereotype">""</v>
                 </o>
               </l>
@@ -1250,9 +1746,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">424</v>
                 <v n="LeftPosition">184</v>
-                <v n="WidthValue">231</v>
+                <v n="WidthValue">242</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">178</v>
+                <v n="Height">190</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -1310,9 +1806,9 @@
                 <v n="IsElementVisible">true</v>
                 <v n="TopPosition">696</v>
                 <v n="LeftPosition">224</v>
-                <v n="WidthValue">141</v>
+                <v n="WidthValue">151</v>
                 <v n="MinWidthValue">0</v>
-                <v n="Height">53</v>
+                <v n="Height">58</v>
                 <v n="MinHeight">0</v>
                 <v n="AutomaticLayout">true</v>
                 <d n="DockingPoints" t="Hashtable" />
@@ -1371,33 +1867,49 @@
               <o n="UMLRelationVisualisation" t="UMLRelationVisualisation">
                 <v n="RelationID">{795f109d-9da1-4e8f-93dc-6c3be1ad3617}</v>
                 <v n="FlagPosition" t="Double">0.5</v>
-                <d n="flagsX" t="Hashtable" />
-                <d n="flagsY" t="Hashtable" />
+                <d n="flagsX" t="Hashtable" ckt="String" cvt="Int32">
+                  <v>EndElement</v>
+                  <v>0</v>
+                </d>
+                <d n="flagsY" t="Hashtable" ckt="String" cvt="Int32">
+                  <v>EndElement</v>
+                  <v>0</v>
+                </d>
                 <o n="StartAnchor" t="UMLAnchorPoint">
                   <v n="AnchorID">0</v>
-                  <v n="AnchorLeftPosition">708</v>
-                  <v n="AnchorTopPosition">1212</v>
+                  <v n="AnchorLeftPosition">461</v>
+                  <v n="AnchorTopPosition">1203</v>
                   <v n="AnchorRelationID">{795f109d-9da1-4e8f-93dc-6c3be1ad3617}</v>
                   <v n="StartAnchor">true</v>
                   <v n="EndAnchor">false</v>
-                  <v n="AnchorDockedState" t="Docked">Right</v>
+                  <v n="AnchorDockedState" t="Docked">Top</v>
                 </o>
                 <o n="EndAnchor" t="UMLAnchorPoint">
-                  <v n="AnchorID">2</v>
-                  <v n="AnchorLeftPosition">946</v>
-                  <v n="AnchorTopPosition">1098</v>
+                  <v n="AnchorID">3</v>
+                  <v n="AnchorLeftPosition">725</v>
+                  <v n="AnchorTopPosition">885</v>
                   <v n="AnchorRelationID">{795f109d-9da1-4e8f-93dc-6c3be1ad3617}</v>
                   <v n="StartAnchor">false</v>
                   <v n="EndAnchor">true</v>
                   <v n="AnchorDockedState" t="Docked">Bottom</v>
                 </o>
-                <v n="NextAnchorID">2</v>
+                <v n="NextAnchorID">3</v>
                 <d n="AnchorPoints" t="Hashtable" ckt="Int32" cvt="UMLAnchorPoint">
                   <v>1</v>
                   <o>
                     <v n="AnchorID">1</v>
-                    <v n="AnchorLeftPosition">946</v>
-                    <v n="AnchorTopPosition">1212</v>
+                    <v n="AnchorLeftPosition">461</v>
+                    <v n="AnchorTopPosition">1044</v>
+                    <v n="AnchorRelationID">{795f109d-9da1-4e8f-93dc-6c3be1ad3617}</v>
+                    <v n="StartAnchor">false</v>
+                    <v n="EndAnchor">false</v>
+                    <v n="AnchorDockedState" t="Docked">NotDocked</v>
+                  </o>
+                  <v>2</v>
+                  <o>
+                    <v n="AnchorID">2</v>
+                    <v n="AnchorLeftPosition">725</v>
+                    <v n="AnchorTopPosition">1044</v>
                     <v n="AnchorRelationID">{795f109d-9da1-4e8f-93dc-6c3be1ad3617}</v>
                     <v n="StartAnchor">false</v>
                     <v n="EndAnchor">false</v>
@@ -1474,7 +1986,7 @@
                 <o n="EndAnchor" t="UMLAnchorPoint">
                   <v n="AnchorID">3</v>
                   <v n="AnchorLeftPosition">228</v>
-                  <v n="AnchorTopPosition">744</v>
+                  <v n="AnchorTopPosition">749</v>
                   <v n="AnchorRelationID">{d0d0954c-c1da-4110-b824-4e465ed7eb3b}</v>
                   <v n="StartAnchor">false</v>
                   <v n="EndAnchor">true</v>
@@ -1552,7 +2064,7 @@
           </o>
           <v n="IsFastStateDiagram">false</v>
           <l n="StereoTypeProfile" t="ArrayList" />
-          <v n="RelationRoleID">54</v>
+          <v n="RelationRoleID">58</v>
           <d n="PositionSerialization" t="Hashtable" />
         </o>
       </Data>
@@ -1577,6 +2089,7 @@
         <Type n="UMLDiagramProperties">{71bc64fb-98e8-4f9a-b2ec-0da66cfaa0a0}</Type>
         <Type n="UMLElementAttribute">{c3a7e8fe-23f0-4537-9727-98242d9e6a53}</Type>
         <Type n="UMLElementMethod">{75919824-d3c5-4f27-b307-1f6e74481699}</Type>
+        <Type n="UMLMethodParameter">{63b3a515-b008-4c28-9006-0c43e3460883}</Type>
         <Type n="UMLRelation">{66eb2f12-934d-4c0a-8710-d6fec8d1ff48}</Type>
         <Type n="UMLRelationVisualisation">{79af0d10-00d2-4abe-9c91-6b4e07d4aa1d}</Type>
         <Type n="UMLType">{0197b136-405a-42ee-bb27-fd08b621d0cf}</Type>

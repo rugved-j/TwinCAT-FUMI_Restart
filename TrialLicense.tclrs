@@ -2,9 +2,9 @@
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
 		<SystemId>{28D5979E-64C5-752C-88F7-5F1EC690A081}</SystemId>
-		<IssueTime>2025-10-29T09:40:00</IssueTime>
-		<ExpireTime>2025-11-06T00:00:00</ExpireTime>
-		<LicenseKey>f83ff5736010da235a0f57ef29ab725e8c7ca9b95cc1454906ae84d529c9c1ce29dc712d45fed49758a88519fb901eb0608e8e5b37e11a45ae81eea807209bacd1aca135031e23a715c81dd501a81c2dfcd25d8210cd8f482606c1ee348048e1a4031649e6a96b80d1d75a1c39994215749dd31ac5c05447526742500f51efa3717537795c02586add87a1013c5cb134a3f248d00f5cb0d22b3b67140b1d7f43f4c78ee01f86e39a4542222c231cfa8efdc1539983c5d9dd2791d487f77fb0a3194524d51ad054b8fb5ed4cd6570df1fd2e28686e692814ab6ab8ee21774f8bc7b8160b77a9b1c654a7662b6ec4ba424c6a85dc9ccd9c74a651f02f4d32247d3</LicenseKey>
+		<IssueTime>2025-11-03T09:59:00</IssueTime>
+		<ExpireTime>2025-11-11T00:00:00</ExpireTime>
+		<LicenseKey>c33480b5bfdb463f16c4eeb834892e5589d983a225c45b906564a9dd109e8ab35cdc19e9b2ca3ff10c3f970cb8c243c2fd50b7734f908ff15367bbb4ae941ec2195516f9b8852b9df372c0bbc361d3257f790fc6325c42e644eade0917eaf6a5f29cb99dbae3424d79476f4e3e42453907bbbaba1ef47cbe50b8d488724ae9026c05a6d1db4880087068497e4e5666fcc305d13a613c2f715b8eea214e2235b5397e49e3018f5e0952728eab8f8e45eb1794b78654bf9a7ff5f2ed6d076a2f167f3918bc42c708aea24b2ff38a6fe41ca1dd96c966259009ddf32bc29ef39badc040783b5f783f6db0f7a442b00f4d46194f74eee6f8e9f215423f1671d4865d</LicenseKey>
 		<License>
 			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
 			<Name>TC3 ADS</Name>
@@ -42,9 +42,9 @@
 			<OrderNo>TF5000</OrderNo>
 		</License>
 		<License>
-			<LicenseId>{BCA6EE0A-9CE1-4D3F-98CA-413ABC0D94FD}</LicenseId>
-			<Name>TC3 Serial-Communication</Name>
-			<OrderNo>TF6340</OrderNo>
+			<LicenseId>{B27B051A-CA6A-42EA-833E-82CC92903D83}</LicenseId>
+			<Name>TC3 UML</Name>
+			<OrderNo>TF1910</OrderNo>
 		</License>
 		<License>
 			<LicenseId>{3EBB9639-5FF3-42B6-8847-35C70DC013C8}</LicenseId>

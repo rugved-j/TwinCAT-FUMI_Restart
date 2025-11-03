@@ -154,7 +154,7 @@ VAR
 	bTaskStatus : BOOL := FALSE; //
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[SendTaskId(1);
+        <ST><![CDATA[SendTaskId(20);
 
 bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
 
