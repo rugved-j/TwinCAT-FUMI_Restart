@@ -10,15 +10,15 @@ STRUCT
 // 	bInput AT%I*:BOOL;
 // 	bEnable: BOOL;
 // 	
-// 	bCappingPosition		:LREAL	:=4000;
-// 	bCappingVelocity		:LREAL	:=150;
-// 	bCappingAcceleration	:LREAL	:=100;
-// 	bCappingDeceleration	:LREAL	:=100;
+// 	bLoadingPosition		:LREAL	:=68;
+// 	bLoadingVelocity		:LREAL	:=0.5;
+// 	bLoadingAcceleration	:LREAL	:=1;
+// 	bLoadingDeceleration	:LREAL	:=1;
 // 	
-// 	bDecappingPosition		:LREAL	:=-4000;
-// 	bDecappingVelocity		:LREAL	:=150;
-// 	bDecappingAcceleration	:LREAL	:=100;
-// 	bDecappingDeceleration	:LREAL	:=100;
+// 	bDosingPosition		:LREAL	:=64;
+// 	bDosingVelocity		:LREAL	:=0.5;
+// 	bDosingAcceleration	:LREAL	:=1;
+// 	bDosingDeceleration	:LREAL	:=1;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
