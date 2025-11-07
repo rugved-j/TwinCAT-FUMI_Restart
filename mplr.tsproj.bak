@@ -7130,7 +7130,7 @@ External Setpoint Generation:
 				<Task Id="7" Priority="8" CycleTime="100000" AmsPort="354" AdtTasks="true">
 					<Name>VnTask ADS (Daheng)</Name>
 				</Task>
-				<Task Id="10" Priority="1" CycleTime="10000" AmsPort="301">
+				<Task Id="10" Priority="1" CycleTime="10000" AmsPort="301" AmsNetId="192.168.56.1.1.1">
 					<Name>RTTask</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -7312,31 +7312,31 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{B90C8679-85E6-4432-9BB2-0CA5A5166EF3}" Name="mplr" PrjFilePath="mplr\mplr.plcproj" TmcFilePath="mplr\MPLR.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{A26079BD-56E8-E89C-790C-D362E81CEE21}" TmcPath="mplr\MPLR.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{AA670CB6-E064-6C05-6113-C0C40D59113C}" TmcPath="mplr\MPLR.tmc">
 					<Name>mplr Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
+							<Name>MAIN.fbMotorJog.Axis1.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
 							<Name>process_gvl.fRobotOutput</Name>
 							<Comment><![CDATA[ Inputs from PLC to Robot ]]></Comment>
 							<Type GUID="{6FC17ACE-9025-37E8-205E-F55CF8CE2F19}">UR_O2T</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbMotorJog.Axis1.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 					</Vars>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
 						<Var>
+							<Name>MAIN.fbMotorJog.Axis1.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
 							<Name>process_gvl.fRobotInput</Name>
 							<Comment><![CDATA[ Outputs from Robot to PLC ]]></Comment>
 							<Type GUID="{74EC6318-51AD-3AFA-9ED5-62BF0BA3672B}">UR_T2O</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.fbMotorJog.Axis1.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 						</Var>
 					</Vars>
 					<UnrestoredVarLinks ImportTime="2025-08-26T13:51:35">
@@ -7638,6 +7638,21 @@ External Setpoint Generation:
 							<CycleTime>10000000</CycleTime>
 						</Context>
 					</Contexts>
+					<InitSymbols>
+						<InitSymbol>
+							<Name>MAIN.fbCamera.fbCam.oidITcVnGevImageProvider</Name>
+							<Type GUID="{18071995-0000-0000-0000-00000000000F}">OTCID</Type>
+							<Comment><![CDATA[ Internal reference to the corresponding TcVnGevImageProvider TcCOM module ID, which needs to be set via TC init symbol. ]]></Comment>
+							<AreaNo>#x00000003</AreaNo>
+							<Data>80000101</Data>
+							<Properties>
+								<Property>
+									<Name>TcCategoryOID</Name>
+									<Value>TcVnGevImageProvider</Value>
+								</Property>
+							</Properties>
+						</InitSymbol>
+					</InitSymbols>
 					<TaskPouOids>
 						<TaskPouOid Prio="20" OTCID="#x08502001"/>
 					</TaskPouOids>
@@ -16143,10 +16158,10 @@ External Setpoint Generation:
 											<RegisterValue>07-73-59-40</RegisterValue>
 										</Register>
 										<Register Address="0x00000948">
-											<RegisterValue>00-00-02-FC</RegisterValue>
+											<RegisterValue>00-00-00-30</RegisterValue>
 										</Register>
 										<Register Address="0x0000094C">
-											<RegisterValue>22-A0-F6-54</RegisterValue>
+											<RegisterValue>F4-FE-24-CE</RegisterValue>
 										</Register>
 										<Register Address="0x0000B1C4">
 											<RegisterValue>00-00-00-00</RegisterValue>
@@ -16167,22 +16182,22 @@ External Setpoint Generation:
 											<RegisterValue>00-00-0A-20</RegisterValue>
 										</Register>
 										<Register Address="0x0000A000">
+											<RegisterValue>00-00-04-88</RegisterValue>
+										</Register>
+										<Register Address="0x0000B384">
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A008">
-											<RegisterValue>00-00-0A-20</RegisterValue>
+											<RegisterValue>00-00-02-60</RegisterValue>
 										</Register>
 										<Register Address="0x0000BC04">
 											<RegisterValue>00-00-07-98</RegisterValue>
 										</Register>
 										<Register Address="0x0000A004">
-											<RegisterValue>00-00-00-00</RegisterValue>
+											<RegisterValue>00-00-02-34</RegisterValue>
 										</Register>
 										<Register Address="0x0000A00C">
-											<RegisterValue>00-00-07-98</RegisterValue>
-										</Register>
-										<Register Address="0x0000B384">
-											<RegisterValue>00-00-00-00</RegisterValue>
+											<RegisterValue>00-00-01-CC</RegisterValue>
 										</Register>
 										<Register Address="0x0000A878">
 											<RegisterValue>00-00-00-04</RegisterValue>
@@ -16204,6 +16219,12 @@ External Setpoint Generation:
 										</Register>
 										<Register Address="0x0000A010">
 											<RegisterValue>01-08-00-08</RegisterValue>
+										</Register>
+										<Register Address="0x0000A420">
+											<RegisterValue>00-00-00-00</RegisterValue>
+										</Register>
+										<Register Address="0x0000B534">
+											<RegisterValue>00-00-00-02</RegisterValue>
 										</Register>
 										<Register Address="0x0000B010">
 											<RegisterValue>00-02-02-01</RegisterValue>
@@ -16232,6 +16253,9 @@ External Setpoint Generation:
 										<Register Address="0x0000B304">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
+										<Register Address="0x0000B114">
+											<RegisterValue>00-00-00-01</RegisterValue>
+										</Register>
 										<Register Address="0x0000B204">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16256,6 +16280,9 @@ External Setpoint Generation:
 										<Register Address="0x0000B308">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
+										<Register Address="0x0000B118">
+											<RegisterValue>00-00-00-01</RegisterValue>
+										</Register>
 										<Register Address="0x0000B210">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16265,9 +16292,6 @@ External Setpoint Generation:
 										<Register Address="0x0000B218">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
-										<Register Address="0x0000B114">
-											<RegisterValue>00-00-00-01</RegisterValue>
-										</Register>
 										<Register Address="0x0000B224">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16275,9 +16299,6 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-02</RegisterValue>
 										</Register>
 										<Register Address="0x0000B22C">
-											<RegisterValue>00-00-00-01</RegisterValue>
-										</Register>
-										<Register Address="0x0000B118">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
 										<Register Address="0x0000B230">
@@ -16398,7 +16419,7 @@ External Setpoint Generation:
 											<RegisterValue>00-0F-42-40</RegisterValue>
 										</Register>
 										<Register Address="0x0000A808">
-											<RegisterValue>00-00-0A-20</RegisterValue>
+											<RegisterValue>00-00-02-60</RegisterValue>
 										</Register>
 										<Register Address="0x0000A880">
 											<RegisterValue>00-00-00-04</RegisterValue>
@@ -16410,7 +16431,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-04</RegisterValue>
 										</Register>
 										<Register Address="0x0000A80C">
-											<RegisterValue>00-00-07-98</RegisterValue>
+											<RegisterValue>00-00-01-CC</RegisterValue>
 										</Register>
 										<Register Address="0x0000A884">
 											<RegisterValue>00-00-00-02</RegisterValue>
@@ -16449,10 +16470,10 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-08</RegisterValue>
 										</Register>
 										<Register Address="0x0000B400">
-											<RegisterValue>00-4C-E3-00</RegisterValue>
+											<RegisterValue>00-04-44-80</RegisterValue>
 										</Register>
 										<Register Address="0x0000C000">
-											<RegisterValue>00-B8-03-FB</RegisterValue>
+											<RegisterValue>00-2B-11-C1</RegisterValue>
 										</Register>
 										<Register Address="0x0000BC30">
 											<RegisterValue>00-00-00-0A</RegisterValue>
@@ -16716,9 +16737,6 @@ External Setpoint Generation:
 										<Register Address="0x0000B12C">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
-										<Register Address="0x0000B534">
-											<RegisterValue>00-00-00-02</RegisterValue>
-										</Register>
 										<Register Address="0x0000B32C">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16746,9 +16764,6 @@ External Setpoint Generation:
 										<Register Address="0x0000B484">
 											<RegisterValue>00-00-00-3F</RegisterValue>
 										</Register>
-										<Register Address="0x0000A420">
-											<RegisterValue>00-00-00-00</RegisterValue>
-										</Register>
 										<Register Address="0x0000A430">
 											<RegisterValue>00-00-02-00</RegisterValue>
 										</Register>
@@ -16766,7 +16781,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A818">
-											<RegisterValue>00-00-0A-20</RegisterValue>
+											<RegisterValue>00-00-02-60</RegisterValue>
 										</Register>
 										<Register Address="0x0000A888">
 											<RegisterValue>00-00-00-04</RegisterValue>
@@ -16778,7 +16793,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-04</RegisterValue>
 										</Register>
 										<Register Address="0x0000A81C">
-											<RegisterValue>00-00-07-98</RegisterValue>
+											<RegisterValue>00-00-01-CC</RegisterValue>
 										</Register>
 										<Register Address="0x0000A88C">
 											<RegisterValue>00-00-00-02</RegisterValue>
@@ -17644,17 +17659,17 @@ External Setpoint Generation:
 										<Register Address="0x0000B054">
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
+										<Register Address="0x0000B058">
+											<RegisterValue>00-00-00-01</RegisterValue>
+										</Register>
 										<Register Address="0x00000D08">
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000B04C">
 											<RegisterValue>00-00-A4-20</RegisterValue>
 										</Register>
-										<Register Address="0x0000B058">
-											<RegisterValue>00-00-00-01</RegisterValue>
-										</Register>
 										<Register Address="0x0000B100">
-											<RegisterValue>00-00-00-44</RegisterValue>
+											<RegisterValue>00-00-00-60</RegisterValue>
 										</Register>
 										<Register Address="0x00000600">
 											<RegisterValue>00-00-00-01</RegisterValue>
@@ -17817,7 +17832,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-02-FC</RegisterValue>
 										</Register>
 										<Register Address="0x0000B394">
-											<RegisterValue>00-00-02-28</RegisterValue>
+											<RegisterValue>00-00-09-60</RegisterValue>
 										</Register>
 										<Register Address="0x0000B908">
 											<RegisterValue>41-C7-00-00</RegisterValue>
@@ -17947,16 +17962,16 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A008">
-											<RegisterValue>00-00-0A-20</RegisterValue>
+											<RegisterValue>00-00-02-60</RegisterValue>
 										</Register>
 										<Register Address="0x0000A00C">
-											<RegisterValue>00-00-07-98</RegisterValue>
+											<RegisterValue>00-00-01-CC</RegisterValue>
 										</Register>
 										<Register Address="0x0000A000">
-											<RegisterValue>00-00-00-00</RegisterValue>
+											<RegisterValue>00-00-04-88</RegisterValue>
 										</Register>
 										<Register Address="0x0000A004">
-											<RegisterValue>00-00-00-00</RegisterValue>
+											<RegisterValue>00-00-02-34</RegisterValue>
 										</Register>
 										<Register Address="0x0000A010">
 											<RegisterValue>01-08-00-08</RegisterValue>

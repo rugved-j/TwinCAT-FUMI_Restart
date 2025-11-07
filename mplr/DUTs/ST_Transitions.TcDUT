@@ -17,6 +17,8 @@ STRUCT
 	MotorHalted					: BOOL;		// Motor active status flag
 	DosedTargetWeight			: BOOL;
 	InputBottleDecapped			: BOOL;
+	DetectedPlates				: BOOL;		// QR code triggered and Plates detected
+	
 	TabletsPoured				: BOOL;
 	VibrationDone				: BOOL;
 	TabletsDetected				: BOOL;

@@ -113,7 +113,7 @@ END_VAR
     <Method Name="TriggerCamera" Id="{9802e0e5-f872-4b06-8a83-9f3b0e36212d}">
       <Declaration><![CDATA[METHOD TriggerCamera : BOOL
 VAR
-
+	
 
 END_VAR
 

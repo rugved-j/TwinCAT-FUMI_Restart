@@ -26,7 +26,9 @@ VAR
 	ResetOut: ST_McOutputs;
 	
 	HaltAxis1: MC_Halt;
-	
+	fbRobot		: FB_Robot;
+	fbRise		: R_TRIG;
+	bPulse		: BOOL;
 	bEnable	:	BOOL := FALSE;
 END_VAR
 
@@ -57,11 +59,22 @@ PowerAxis1(
 VAR_INPUT
 	bMove : BOOL;
 	nIdlePosition : INT; // 1: 63, 2: 70
+	
+
+
+END_VAR
+
+VAR
+		bLoadingPosition	: BOOL := process_gvl.fRobotInput.General_Bits.GPBitIN_15;
+	bDosingPosition	: BOOL := process_gvl.fRobotInput.General_Bits.GPBitIN_16;
+	trLoad      : R_TRIG;   // edge on bit 15
+	trDose   	: R_TRIG;	// edge on bit 16
+    bExecIssued : BOOL;     // latched once Busy=TRUE
 END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[IF nIdlePosition < 1 OR nIdlePosition > 2 THEN		// Rejects other Position values
-	nIdlePosition := 2;
+	nIdlePosition := 1;
 END_IF
 
 Axis1();
@@ -77,50 +90,104 @@ CASE state OF
 		PowerAxis1.Enable_Positive := TRUE;
 		PowerAxis1.Enable_Negative := TRUE;
 		IF PowerAxis1.Status THEN
-			state := MOVESTATE_FORWARD;
+// 			state := MOVESTATE_FORWARD;
+			state := MOVESTATE_IDLE;
 		ELSIF PowerAxis1.Error THEN
 			state := MOVESTATE_ERROR;
 		END_IF
 		
-	MOVESTATE_IDLE:
-		IF bMove THEN
-// 			state := MOVESTATE_NEWTARGETPOSITION;
-			HaltAxis1(axis := Axis1);
-		END_IF
+	MOVESTATE_IDLE:		
+// 		state := SEL(process_gvl.fRobotInput.General_Bits.GPBitIN_15=1, 
+// 					MOVESTATE_FORWARD,
+// 					MOVESTATE_NEWTARGETPOSITION);
+		
+// 		fbRise(CLK:=bLoadingPosition);
+// 		bPulse := fbRise.CLK;
+// 		IF bPulse THEN
+// 			bPulse := FALSE;
+// 			state:=MOVESTATE_FORWARD;
+// // 		ELSIF fbRise.Q THEN
+// // 			state:=MOVESTATE_NEWTARGETPOSITION;
+// 			
+// 		ELSE
+// 			state:=MOVESTATE_IDLE;
+// 		END_IF
 
-	MOVESTATE_FORWARD :		(* start to first position *)
+// Edge-detect GPBitIN_15 → one-shot start
+trLoad(CLK := process_gvl.fRobotInput.General_Bits.GPBitIN_15<>0);
+trDose(CLK := process_gvl.fRobotInput.General_Bits.GPBitIN_16<>0);
+
+IF trLoad.Q THEN
+    state := MOVESTATE_FORWARD;
+    bExecIssued := FALSE;   // prepare new command
+ELSIF trDose.Q THEN
+    state := MOVESTATE_NEWTARGETPOSITION;
+    bExecIssued := FALSE;
+ELSE
+    state := MOVESTATE_IDLE;
+END_IF
+			
+// 	MOVESTATE_HALT:
+// 		
+// 		HaltAxis1(Axis:= Axis1, Execute:=TRUE); 
+// 		fbRise(CLK := process_gvl.fRobotInput.General_Bits.GPBitIN_15); 
+// 		bPulse := fbRise.Q; // TRUE for one scan on rising edge 
+// 		IF bPulse THEN // Do something once: e.g., start a state machine 
+// 			HaltAxis1(Axis:= Axis1, Execute:=FALSE); 
+// 			
+// 			state := MOVESTATE_IDLE; 
+// 		END_IF
+
+	MOVESTATE_FORWARD :		(* start to first position *)        
 		MoveAxis1(
 			axis := Axis1,
-			Position := 63,	
+			Position := 58,	
 			Velocity := 2,	
 			Execute := TRUE
 		);
-		
-		IF NOT MoveAxis1.Busy THEN
-			MoveAxis1(axis := Axis1, Execute := FALSE);		// If axis is not busy, then execute move
-			IF MoveAxis1.Error THEN
-				state := MOVESTATE_ERROR;
-			ELSE
-				state := SEL(NOT bMove AND nIdlePosition = 1, MOVESTATE_NEWTARGETPOSITION, MOVESTATE_IDLE);
-			END_IF
+		IF NOT bExecIssued THEN
+    	// Present Execute until the FB acknowledges (Busy=TRUE once)
+		MoveAxis1(axis := Axis1, Execute := FALSE); // If axis is not busy, then execute move 
+			IF NOT MoveAxis1.Busy THEN 
+				bExecIssued := TRUE;     // command has started
+			END_IF 
+		ELSE
+			 // After start, keep calling with Execute FALSE
+   			 MoveAxis1(Axis := Axis1, Execute := FALSE);
 		END_IF
-
+		IF MoveAxis1.Error THEN 
+			state := MOVESTATE_ERROR; 
+		ELSIF bExecIssued AND NOT MoveAxis1.Busy THEN
+			// Finished successfully → choose next
+			bExecIssued := FALSE;
+			state := SEL(bMove, MOVESTATE_NEWTARGETPOSITION, MOVESTATE_IDLE);
+		END_IF
+		
 	MOVESTATE_NEWTARGETPOSITION : // IDLE POS 2
-		MoveAxis1(
-			axis := Axis1,
-			Position := 70,	
-			Velocity := 2,	
-			Execute := TRUE
-		);
-		
-		IF NOT MoveAxis1.Busy THEN
-			MoveAxis1(axis := Axis1, Execute := FALSE);
-			IF MoveAxis1.Error THEN
-				state := MOVESTATE_ERROR;
-			ELSE
-				state := SEL(NOT bMove AND nIdlePosition = 2, MOVESTATE_FORWARD, MOVESTATE_IDLE);
-				(*If bMove=FALSE && nIdlePosition=2 then MOVESTATE_IDLE; else MOVESTATE_FORWARD*)
+// 		MoveAxis1(
+// 			axis := Axis1,
+// 			Position := 58,	
+// 			Velocity := 2,	
+// 			Execute := TRUE
+// 		);
+			IF NOT bExecIssued THEN 
+			MoveAxis1(
+				axis := Axis1,
+				Position := 65,	
+				Velocity := 2,	
+				Execute := TRUE
+			);
+			IF MoveAxis1.Busy THEN 
+				bExecIssued := TRUE;
 			END_IF
+		ELSE
+   			MoveAxis1(Axis := Axis1, Execute := FALSE);	
+			IF MoveAxis1.Error THEN 
+				state := MOVESTATE_ERROR; 
+			ELSIF  bExecIssued AND NOT MoveAxis1.Busy THEN
+				bExecIssued := FALSE;
+				state := SEL(bMove, MOVESTATE_FORWARD, MOVESTATE_IDLE);
+			END_IF 
 		END_IF
 
 	MOVESTATE_ERROR :
@@ -164,6 +231,10 @@ END_VAR
         <ST><![CDATA[METH(bMove, nIdlePosition);
 RETURN;
 
+IF nIdlePosition < 1 OR nIdlePosition > 2 THEN		// Rejects other Position values
+	nIdlePosition := 1;
+END_IF
+
 	(* update the axis status at the beginning of each cycle *)
 	Axis1();
 
@@ -171,14 +242,11 @@ RETURN;
 	CASE state OF
 
 		MOVESTATE_INIT :	(* initialisation *)
-			(* initialize all function blocks *)
 			MoveAxis1.Execute := FALSE;
-// 			MoveAxis2.Execute := FALSE;
 			Reset.Execute := FALSE;
 			state := MOVESTATE_ENABLE;
 
 		MOVESTATE_ENABLE :
-// 			PowerAxis1.Status := TRUE;
 			PowerAxis1.Enable := TRUE;
 			PowerAxis1.Enable_Positive := TRUE;
 			PowerAxis1.Enable_Negative := TRUE;
@@ -189,79 +257,65 @@ RETURN;
 			END_IF
 
 		MOVESTATE_FORWARD :		(* start to first position *)
-			MoveAxis1.Position := 63;		(* 1500 start to intermediate tartet position *)
-			MoveAxis1.Velocity := 2;		(* 500 medium velocity level *)
-			MoveAxis1.BufferMode := MC_Buffered;
-			MoveAxis1.Execute := TRUE;
-			
-			IF MoveAxis1.Active  THEN
-				(* axis is executing job but is not yet finished *)
-				MoveAxis1.Execute := FALSE;
-				(* leave this state and buffer a second command *)
-				state := MOVESTATE_NEWTARGETPOSITION;
-			ELSIF MoveAxis1.CommandAborted OR MoveAxis1.Error THEN
+		MoveAxis1(
+			axis := Axis1,
+			Position := 63,	
+			Velocity := 2,	
+			Execute := TRUE
+		);
+		
+		IF NOT MoveAxis1.Busy THEN
+			MoveAxis1(axis := Axis1, Execute := FALSE);		// If axis is not busy, then execute move
+			IF MoveAxis1.Error THEN
 				state := MOVESTATE_ERROR;
+			ELSE
+				state := SEL(NOT bMove AND nIdlePosition = 1, MOVESTATE_NEWTARGETPOSITION, MOVESTATE_IDLE);
+			(*If bMove=false and nIdlePosition=1, Movestate Idle, else NEWTARGETPOSITION*)
 			END_IF
+		END_IF
 
 		MOVESTATE_NEWTARGETPOSITION :		(* change target position while moving *)
-			(* start a buffered motion command while axis is moving *)
-			MoveAxis1.Position := 70;		(* 5000 start to final target *)
-			MoveAxis1.Velocity := 2;		(* 1500 increase velocity *)
-			MoveAxis1.BufferMode := MC_BlendingPrevious; 	(* use velocity of previous command till intermediate target position position *)
-			MoveAxis1.Execute := TRUE;
-			IF MoveAxis1.Done THEN
-				MoveAxis1.Execute := FALSE;
-				state := MOVESTATE_FORWARD;
-			ELSIF MoveAxis1.CommandAborted OR MoveAxis1.Error THEN
+			MoveAxis1(
+			axis := Axis1,
+			Position := 70,	
+			Velocity := 2,	
+			Execute := TRUE
+		);
+		
+		IF NOT MoveAxis1.Busy THEN
+			MoveAxis1(axis := Axis1, Execute := FALSE);
+			IF MoveAxis1.Error THEN
 				state := MOVESTATE_ERROR;
-			END_IF
-
-// 		MOVESTATE_BACKWARDS :	(* move back to initial position *)
-// 			MoveAxis1.Position := 63;		(* position close to initial position *)
-// 			MoveAxis1.Velocity := 2;		(* high velocity *)
-// 			MoveAxis1.BufferMode := MC_Buffered;
-// 			MoveAxis1.Execute := TRUE;
-// 			IF MoveAxis1.Active THEN
-// 				(* axis is executing job but is not yet finished *)
-// 				MoveAxis1.Execute := FALSE;
-// 				(* leave this state and buffer a second command *)
-// 				state := MOVESTATE_BACKWARDSSLOW;
-// 			ELSIF MoveAxis1.CommandAborted OR MoveAxis1.Error THEN
-// 				state := MOVESTATE_ERROR;
-// 			END_IF
-// 
-// 		MOVESTATE_BACKWARDSSLOW :	(* move back to initial position *)
-// 			(* start a buffered motion command while axis is moving *)
-// 			MoveAxis2.Position := 70;	(* back to initial position *)
-// 			MoveAxis2.Velocity := 2; 	(* slow velocity *)
-// 			MoveAxis2.BufferMode := MC_BlendingNext; 	(* use velocity from first target position *)
-// 			MoveAxis2.Execute := TRUE;
-// 			IF MoveAxis2.Done THEN
-// 				MoveAxis2.Execute := FALSE;
-// 				state := MOVESTATE_FORWARD;
-// 			ELSIF MoveAxis2.CommandAborted OR MoveAxis2.Error THEN
-// 				state := MOVESTATE_ERROR;
-// 			END_IF
-
-		MOVESTATE_ERROR :
-			IF Axis1.Status.Error THEN
-				state := MOVESTATE_RESET;	(* axis error requires reset *)
 			ELSE
-				state := MOVESTATE_INIT;		(* function block errors don't need a reset *)
+				state := SEL(NOT bMove AND nIdlePosition = 2, MOVESTATE_FORWARD, MOVESTATE_IDLE);
+				(*If bMove=FALSE && nIdlePosition=2 then MOVESTATE_IDLE; else MOVESTATE_FORWARD*)
 			END_IF
+		END_IF
+
+		MOVESTATE_IDLE:
+			HaltAxis1(axis := Axis1);
+			
+// 				IF bMove THEN
+// 					state := MOVESTATE_NEWTARGETPOSITION;
+// 		// 			HaltAxis1(axis := Axis1);	
+// 				END_IF
+				
+		MOVESTATE_ERROR :
+			state := SEL(Axis1.Status.Error, MOVESTATE_INIT, MOVESTATE_RESET);
 
 		MOVESTATE_RESET :
+// 			Reset.Execute := TRUE;
+// 			IF Reset.Done THEN
+// 				state := MOVESTATE_INIT;
+// 			ELSIF Reset.Error THEN
+// 				state := MOVESTATE_INIT; (* can't do anything here *)
+// 			END_IF
 			Reset.Execute := TRUE;
-			IF Reset.Done THEN
-				state := MOVESTATE_INIT;
-			ELSIF Reset.Error THEN
-				state := MOVESTATE_INIT; (* can't do anything here *)
-			END_IF
+			state := MOVESTATE_INIT;
 
 	END_CASE
 	
 PowerAxis1(axis := Axis1);
-MoveAxis1(axis := Axis1);
 Reset(axis := Axis1);
 // 
 // 	fbMotor.EnablePower();	(* call the power function block *)
