@@ -7130,7 +7130,7 @@ External Setpoint Generation:
 				<Task Id="7" Priority="8" CycleTime="100000" AmsPort="354" AdtTasks="true">
 					<Name>VnTask ADS (Daheng)</Name>
 				</Task>
-				<Task Id="10" Priority="1" CycleTime="10000" AmsPort="301" AmsNetId="192.168.56.1.1.1">
+				<Task Id="10" Priority="1" CycleTime="10000" AmsPort="301">
 					<Name>RTTask</Name>
 					<Vars VarGrpType="1" InsertType="1">
 						<Name>Inputs</Name>
@@ -7312,7 +7312,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{B90C8679-85E6-4432-9BB2-0CA5A5166EF3}" Name="mplr" PrjFilePath="mplr\mplr.plcproj" TmcFilePath="mplr\MPLR.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{AA670CB6-E064-6C05-6113-C0C40D59113C}" TmcPath="mplr\MPLR.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{08672D5A-D8C9-513D-92BC-8033A4C0FEAA}" TmcPath="mplr\MPLR.tmc">
 					<Name>mplr Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -7763,36 +7763,36 @@ External Setpoint Generation:
 										<bExcludeBorderBlobs Type="System.Boolean">False</bExcludeBorderBlobs>
 										<Encoding Type="System.String">BayerGR</Encoding>
 										<Algorithm Type="System.String">PIXEL_CONTOURS</Algorithm>
-										<ReprojectionError Type="System.Double">1.06935261616876</ReprojectionError>
-										<CameraMatrix0 Type="System.Double">2818.702107074</CameraMatrix0>
+										<ReprojectionError Type="System.Double">0.654714931572084</ReprojectionError>
+										<CameraMatrix0 Type="System.Double">2807.94128124963</CameraMatrix0>
 										<CameraMatrix1 Type="System.Double">0</CameraMatrix1>
 										<CameraMatrix2 Type="System.Double">1295.5</CameraMatrix2>
 										<CameraMatrix3 Type="System.Double">0</CameraMatrix3>
-										<CameraMatrix4 Type="System.Double">2818.702107074</CameraMatrix4>
+										<CameraMatrix4 Type="System.Double">2807.94128124963</CameraMatrix4>
 										<CameraMatrix5 Type="System.Double">971.5</CameraMatrix5>
 										<CameraMatrix6 Type="System.Double">0</CameraMatrix6>
 										<CameraMatrix7 Type="System.Double">0</CameraMatrix7>
 										<CameraMatrix8 Type="System.Double">1</CameraMatrix8>
-										<DistortionCoefficients0 Type="System.Double">-12.9655610725026</DistortionCoefficients0>
-										<DistortionCoefficients1 Type="System.Double">2.54464008184839</DistortionCoefficients1>
-										<DistortionCoefficients2 Type="System.Double">0.00544280537887912</DistortionCoefficients2>
-										<DistortionCoefficients3 Type="System.Double">-0.000697186486355098</DistortionCoefficients3>
-										<DistortionCoefficients4 Type="System.Double">2.02941880309672</DistortionCoefficients4>
-										<DistortionCoefficients5 Type="System.Double">-12.7534972882953</DistortionCoefficients5>
+										<DistortionCoefficients0 Type="System.Double">354.540913435567</DistortionCoefficients0>
+										<DistortionCoefficients1 Type="System.Double">-54.8172003382356</DistortionCoefficients1>
+										<DistortionCoefficients2 Type="System.Double">-0.00334084754110765</DistortionCoefficients2>
+										<DistortionCoefficients3 Type="System.Double">-3.3474226073955E-05</DistortionCoefficients3>
+										<DistortionCoefficients4 Type="System.Double">-137.345836193557</DistortionCoefficients4>
+										<DistortionCoefficients5 Type="System.Double">355.073652657538</DistortionCoefficients5>
 										<DistortionCoefficients6 Type="System.Double">0</DistortionCoefficients6>
 										<DistortionCoefficients7 Type="System.Double">0</DistortionCoefficients7>
-										<RotationMatrix0 Type="System.Double">0.999942749156704</RotationMatrix0>
-										<RotationMatrix1 Type="System.Double">-0.00197701198981952</RotationMatrix1>
-										<RotationMatrix2 Type="System.Double">-0.0105161700502173</RotationMatrix2>
-										<RotationMatrix3 Type="System.Double">0.00197541766261482</RotationMatrix3>
-										<RotationMatrix4 Type="System.Double">0.999998035739854</RotationMatrix4>
-										<RotationMatrix5 Type="System.Double">-0.000161992261227616</RotationMatrix5>
-										<RotationMatrix6 Type="System.Double">0.0105164696543663</RotationMatrix6>
-										<RotationMatrix7 Type="System.Double">0.000141209158973794</RotationMatrix7>
-										<RotationMatrix8 Type="System.Double">0.999944690433417</RotationMatrix8>
-										<TranslationVector0 Type="System.Double">-4.71255368704072</TranslationVector0>
-										<TranslationVector1 Type="System.Double">-40.7775069262611</TranslationVector1>
-										<TranslationVector2 Type="System.Double">400.9524890272</TranslationVector2>
+										<RotationMatrix0 Type="System.Double">0.921552038608328</RotationMatrix0>
+										<RotationMatrix1 Type="System.Double">-0.388195383391885</RotationMatrix1>
+										<RotationMatrix2 Type="System.Double">-0.00679591421833777</RotationMatrix2>
+										<RotationMatrix3 Type="System.Double">0.388231101059273</RotationMatrix3>
+										<RotationMatrix4 Type="System.Double">0.921548117830089</RotationMatrix4>
+										<RotationMatrix5 Type="System.Double">0.00506741493508038</RotationMatrix5>
+										<RotationMatrix6 Type="System.Double">0.00429561487331462</RotationMatrix6>
+										<RotationMatrix7 Type="System.Double">-0.00730827182358725</RotationMatrix7>
+										<RotationMatrix8 Type="System.Double">0.999964067782344</RotationMatrix8>
+										<TranslationVector0 Type="System.Double">33.5199580124552</TranslationVector0>
+										<TranslationVector1 Type="System.Double">-6.95797891372347</TranslationVector1>
+										<TranslationVector2 Type="System.Double">347.221991340739</TranslationVector2>
 										<PatternReferencePoints Type="System.String">AAA0wgAANMIAAAAAAADYwQAANMIAAAAAAAAQwQAANMIAAAAAAAAQQQAANMIAAAAAAADYQQAANMIAAAAAAAA0QgAANMIAAAAAAAA0wgAA2MEAAAAAAADYwQAA2MEAAAAAAAAQwQAA2MEAAAAAAAAQQQAA2MEAAAAAAADYQQAA2MEAAAAAAAA0QgAA2MEAAAAAAAA0wgAAEMEAAAAAAADYwQAAEMEAAAAAAAAQwQAAEMEAAAAAAAAQQQAAEMEAAAAAAADYQQAAEMEAAAAAAAA0QgAAEMEAAAAAAAA0wgAAEEEAAAAAAADYwQAAEEEAAAAAAAAQwQAAEEEAAAAAAAAQQQAAEEEAAAAAAADYQQAAEEEAAAAAAAA0QgAAEEEAAAAAAAA0wgAA2EEAAAAAAADYwQAA2EEAAAAAAAAQwQAA2EEAAAAAAAAQQQAA2EEAAAAAAADYQQAA2EEAAAAAAAA0QgAA2EEAAAAAAAA0wgAANEIAAAAAAADYwQAANEIAAAAAAAAQwQAANEIAAAAAAAAQQQAANEIAAAAAAADYQQAANEIAAAAAAAA0QgAANEIAAAAA</PatternReferencePoints>
 										<IntrinsicCalibrationDone Type="System.Boolean">True</IntrinsicCalibrationDone>
 									</CameraCalibration>
@@ -7817,6 +7817,9 @@ External Setpoint Generation:
 										<useSelector Type="System.Boolean">True</useSelector>
 										<UsePacketDelayInConfigMode Type="System.Boolean">True</UsePacketDelayInConfigMode>
 									</CameraConfig>
+									<StreamingTab>
+										<StreamNameRec Type="System.String"/>
+									</StreamingTab>
 								</Settings>
 								<GenApiFileName>MER2_GIGE_V2.4.12.zip</GenApiFileName>
 								<GenApiFileCache>
@@ -16182,22 +16185,22 @@ External Setpoint Generation:
 											<RegisterValue>00-00-0A-20</RegisterValue>
 										</Register>
 										<Register Address="0x0000A000">
-											<RegisterValue>00-00-04-88</RegisterValue>
-										</Register>
-										<Register Address="0x0000B384">
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A008">
-											<RegisterValue>00-00-02-60</RegisterValue>
+											<RegisterValue>00-00-0A-20</RegisterValue>
 										</Register>
 										<Register Address="0x0000BC04">
 											<RegisterValue>00-00-07-98</RegisterValue>
 										</Register>
 										<Register Address="0x0000A004">
-											<RegisterValue>00-00-02-34</RegisterValue>
+											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A00C">
-											<RegisterValue>00-00-01-CC</RegisterValue>
+											<RegisterValue>00-00-07-98</RegisterValue>
+										</Register>
+										<Register Address="0x0000B384">
+											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A878">
 											<RegisterValue>00-00-00-04</RegisterValue>
@@ -16219,12 +16222,6 @@ External Setpoint Generation:
 										</Register>
 										<Register Address="0x0000A010">
 											<RegisterValue>01-08-00-08</RegisterValue>
-										</Register>
-										<Register Address="0x0000A420">
-											<RegisterValue>00-00-00-00</RegisterValue>
-										</Register>
-										<Register Address="0x0000B534">
-											<RegisterValue>00-00-00-02</RegisterValue>
 										</Register>
 										<Register Address="0x0000B010">
 											<RegisterValue>00-02-02-01</RegisterValue>
@@ -16253,9 +16250,6 @@ External Setpoint Generation:
 										<Register Address="0x0000B304">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
-										<Register Address="0x0000B114">
-											<RegisterValue>00-00-00-01</RegisterValue>
-										</Register>
 										<Register Address="0x0000B204">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16280,9 +16274,6 @@ External Setpoint Generation:
 										<Register Address="0x0000B308">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
-										<Register Address="0x0000B118">
-											<RegisterValue>00-00-00-01</RegisterValue>
-										</Register>
 										<Register Address="0x0000B210">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16292,6 +16283,9 @@ External Setpoint Generation:
 										<Register Address="0x0000B218">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
+										<Register Address="0x0000B114">
+											<RegisterValue>00-00-00-01</RegisterValue>
+										</Register>
 										<Register Address="0x0000B224">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16299,6 +16293,9 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-02</RegisterValue>
 										</Register>
 										<Register Address="0x0000B22C">
+											<RegisterValue>00-00-00-01</RegisterValue>
+										</Register>
+										<Register Address="0x0000B118">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
 										<Register Address="0x0000B230">
@@ -16419,7 +16416,7 @@ External Setpoint Generation:
 											<RegisterValue>00-0F-42-40</RegisterValue>
 										</Register>
 										<Register Address="0x0000A808">
-											<RegisterValue>00-00-02-60</RegisterValue>
+											<RegisterValue>00-00-0A-20</RegisterValue>
 										</Register>
 										<Register Address="0x0000A880">
 											<RegisterValue>00-00-00-04</RegisterValue>
@@ -16431,7 +16428,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-04</RegisterValue>
 										</Register>
 										<Register Address="0x0000A80C">
-											<RegisterValue>00-00-01-CC</RegisterValue>
+											<RegisterValue>00-00-07-98</RegisterValue>
 										</Register>
 										<Register Address="0x0000A884">
 											<RegisterValue>00-00-00-02</RegisterValue>
@@ -16470,10 +16467,10 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-08</RegisterValue>
 										</Register>
 										<Register Address="0x0000B400">
-											<RegisterValue>00-04-44-80</RegisterValue>
+											<RegisterValue>00-4C-E3-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000C000">
-											<RegisterValue>00-2B-11-C1</RegisterValue>
+											<RegisterValue>03-07-F5-30</RegisterValue>
 										</Register>
 										<Register Address="0x0000BC30">
 											<RegisterValue>00-00-00-0A</RegisterValue>
@@ -16737,6 +16734,9 @@ External Setpoint Generation:
 										<Register Address="0x0000B12C">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
+										<Register Address="0x0000B534">
+											<RegisterValue>00-00-00-02</RegisterValue>
+										</Register>
 										<Register Address="0x0000B32C">
 											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
@@ -16764,6 +16764,9 @@ External Setpoint Generation:
 										<Register Address="0x0000B484">
 											<RegisterValue>00-00-00-3F</RegisterValue>
 										</Register>
+										<Register Address="0x0000A420">
+											<RegisterValue>00-00-00-00</RegisterValue>
+										</Register>
 										<Register Address="0x0000A430">
 											<RegisterValue>00-00-02-00</RegisterValue>
 										</Register>
@@ -16781,7 +16784,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A818">
-											<RegisterValue>00-00-02-60</RegisterValue>
+											<RegisterValue>00-00-0A-20</RegisterValue>
 										</Register>
 										<Register Address="0x0000A888">
 											<RegisterValue>00-00-00-04</RegisterValue>
@@ -16793,7 +16796,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-04</RegisterValue>
 										</Register>
 										<Register Address="0x0000A81C">
-											<RegisterValue>00-00-01-CC</RegisterValue>
+											<RegisterValue>00-00-07-98</RegisterValue>
 										</Register>
 										<Register Address="0x0000A88C">
 											<RegisterValue>00-00-00-02</RegisterValue>
@@ -17659,14 +17662,14 @@ External Setpoint Generation:
 										<Register Address="0x0000B054">
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
-										<Register Address="0x0000B058">
-											<RegisterValue>00-00-00-01</RegisterValue>
-										</Register>
 										<Register Address="0x00000D08">
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000B04C">
 											<RegisterValue>00-00-A4-20</RegisterValue>
+										</Register>
+										<Register Address="0x0000B058">
+											<RegisterValue>00-00-00-01</RegisterValue>
 										</Register>
 										<Register Address="0x0000B100">
 											<RegisterValue>00-00-00-60</RegisterValue>
@@ -17832,7 +17835,7 @@ External Setpoint Generation:
 											<RegisterValue>00-00-02-FC</RegisterValue>
 										</Register>
 										<Register Address="0x0000B394">
-											<RegisterValue>00-00-09-60</RegisterValue>
+											<RegisterValue>00-00-03-30</RegisterValue>
 										</Register>
 										<Register Address="0x0000B908">
 											<RegisterValue>41-C7-00-00</RegisterValue>
@@ -17962,16 +17965,16 @@ External Setpoint Generation:
 											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A008">
-											<RegisterValue>00-00-02-60</RegisterValue>
+											<RegisterValue>00-00-0A-20</RegisterValue>
 										</Register>
 										<Register Address="0x0000A00C">
-											<RegisterValue>00-00-01-CC</RegisterValue>
+											<RegisterValue>00-00-07-98</RegisterValue>
 										</Register>
 										<Register Address="0x0000A000">
-											<RegisterValue>00-00-04-88</RegisterValue>
+											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A004">
-											<RegisterValue>00-00-02-34</RegisterValue>
+											<RegisterValue>00-00-00-00</RegisterValue>
 										</Register>
 										<Register Address="0x0000A010">
 											<RegisterValue>01-08-00-08</RegisterValue>
@@ -19531,7 +19534,7 @@ External Setpoint Generation:
 							<ParameterValues>
 								<Value>
 									<Name>CameraMatrix[0,0]</Name>
-									<Value>2818.702107074</Value>
+									<Value>2807.94128124963</Value>
 								</Value>
 								<Value>
 									<Name>CameraMatrix[0,1]</Name>
@@ -19547,7 +19550,7 @@ External Setpoint Generation:
 								</Value>
 								<Value>
 									<Name>CameraMatrix[1,1]</Name>
-									<Value>2818.702107074</Value>
+									<Value>2807.94128124963</Value>
 								</Value>
 								<Value>
 									<Name>CameraMatrix[1,2]</Name>
@@ -19567,27 +19570,27 @@ External Setpoint Generation:
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[0]</Name>
-									<Value>-12.9655610725026</Value>
+									<Value>354.540913435567</Value>
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[1]</Name>
-									<Value>2.54464008184839</Value>
+									<Value>-54.8172003382356</Value>
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[2]</Name>
-									<Value>0.00544280537887912</Value>
+									<Value>-0.00334084754110765</Value>
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[3]</Name>
-									<Value>-0.000697186486355098</Value>
+									<Value>-3.3474226073955e-05</Value>
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[4]</Name>
-									<Value>2.02941880309672</Value>
+									<Value>-137.345836193557</Value>
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[5]</Name>
-									<Value>-12.7534972882953</Value>
+									<Value>355.073652657538</Value>
 								</Value>
 								<Value>
 									<Name>DistortionCoefficients[6]</Name>
@@ -19599,51 +19602,51 @@ External Setpoint Generation:
 								</Value>
 								<Value>
 									<Name>RotationMatrix[0,0]</Name>
-									<Value>0.999942749156704</Value>
+									<Value>0.921552038608328</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[0,1]</Name>
-									<Value>-0.00197701198981952</Value>
+									<Value>-0.388195383391885</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[0,2]</Name>
-									<Value>-0.0105161700502173</Value>
+									<Value>-0.00679591421833777</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[1,0]</Name>
-									<Value>0.00197541766261482</Value>
+									<Value>0.388231101059273</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[1,1]</Name>
-									<Value>0.999998035739854</Value>
+									<Value>0.921548117830089</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[1,2]</Name>
-									<Value>-0.000161992261227616</Value>
+									<Value>0.00506741493508038</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[2,0]</Name>
-									<Value>0.0105164696543663</Value>
+									<Value>0.00429561487331462</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[2,1]</Name>
-									<Value>0.000141209158973794</Value>
+									<Value>-0.00730827182358725</Value>
 								</Value>
 								<Value>
 									<Name>RotationMatrix[2,2]</Name>
-									<Value>0.999944690433417</Value>
+									<Value>0.999964067782344</Value>
 								</Value>
 								<Value>
 									<Name>TranslationVector[0]</Name>
-									<Value>-4.71255368704072</Value>
+									<Value>33.5199580124552</Value>
 								</Value>
 								<Value>
 									<Name>TranslationVector[1]</Name>
-									<Value>-40.7775069262611</Value>
+									<Value>-6.95797891372347</Value>
 								</Value>
 								<Value>
 									<Name>TranslationVector[2]</Name>
-									<Value>400.9524890272</Value>
+									<Value>347.221991340739</Value>
 								</Value>
 								<Value>
 									<Name>CalibPatternRef[0]</Name>

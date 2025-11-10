@@ -73,6 +73,58 @@ VAR
 	ipImageRes: ITcVnImage;
 // 	i					: INT;
 	counter				: INT;
+	
+	// QR code Dictionary lookup variables
+	// ring buffer for last 8 QR numbers
+    aQrIds      : ARRAY[0..7] OF DINT;   // filled FIFO-style
+    iQrWrite    : INT := 0;              // next write index (0..7)
+    nQrCount    : INT := 0;              // Nr of valid items (0..8)
+    idQr        : DINT;                  // parsed numeric QR id (from sQRCode)
+    bNewQrPulse : BOOL;                  // one-scan pulse when we store a new id
+	
+	  // Pose result of the QR (object pose in camera coordinates)
+    aTagR       : TcVnMatrix3x3_LREAL;   // rotation matrix (QR->camera)
+    aTagT       : TcVnVector3_LREAL;     // translation vector (mm; QR->camera)
+
+    // convenience: latches
+    bHavePose   : BOOL;
+	
+	 // --- one-shot control
+    bRunOnce    : BOOL := FALSE;    // toggle TRUE for one cycle to run the test
+    bBusy       : BOOL := FALSE;
+	
+    // (optional) GP mapping guard
+    bParsedOk   : BOOL;
+	
+	 fQrSizeMM   : LREAL := 23.0;         // <<< set your QR edge length (mm)
+    aPts3D      : ARRAY[0..3] OF TcVnPoint3_LREAL;   // model points (QR frame)
+    aPts2D      : ARRAY[0..3] OF TcVnPoint2_LREAL;   // image points (pixels)
+    ipObjPts    : ITcVnContainer;        // vector<TcVnPoint3_LREAL>
+    ipImgPts    : ITcVnContainer;        // vector<TcVnPoint2_LREAL>
+	
+	ipObjectPoints : ITcVnContainer;   // vector<TcVnPoint3_LREAL>  (3D model points)
+    ipImagePoints  : ITcVnContainer;   // vector<TcVnPoint2_LREAL>  (2D image points)
+	bReprojError  : LREAL;
+
+    // --- Intrinsics (we try to read them; else we synthesize)
+    aK              : TcVnMatrix3x3_LREAL;         // camera matrix
+//     aDist80          : TcVnArray8_LREAL := [0,0,0,0,0,0,0,0]; // distortion zeroed for the synthetic test
+	aDist80      : ARRAY[0..7] OF LREAL;   // zeros by default
+    // --- SolvePnP outputs
+    aR              : TcVnMatrix3x3_LREAL;
+    aTt              : TcVnVector3_LREAL;
+    bSolved         : BOOL;
+	
+	    // 2D/3D points (REAL versions!)
+    aPts2D_R : ARRAY[0..3] OF TcVnPoint2_REAL;
+    aPts3D_R : ARRAY[0..3] OF TcVnPoint3_REAL;
+	    // --- containers (must be REAL types per Exp signature)
+    ipRefPts    : ITcVnContainer;   // vector<TcVnPoint3_REAL>
+	fx, fy      : LREAL;
+    cx, cy      : LREAL;
+    Z_true      : LREAL := 350.0;   // mm, fronto-parallel distance
+    L_mm        : LREAL := 40.0;    // square edge length (mm)
+	bCalibReady     : BOOL := FALSE;
 END_VAR
 
 ]]></Declaration>
@@ -86,19 +138,117 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[// process_gvl.fCameraControl.eCameraState :=process_gvl.fCameraControl.fbCameraControl.GetState();
-// 
-// process_gvl.fCameraControl.hr := F_VN_ReadQRCode(
-// 				process_gvl.fCameraControl.ipImageIn,
-// 				process_gvl.fCameraControl.ipDecodedData,
-// // 				process_gvl.fCameraControl.ipContours,
-// // 				process_gvl.fCameraControl.nCodeNumber,
-// // 				process_gvl.fCameraControl.eSearchStrategy,
-// // 				process_gvl.fCameraControl.ipAngles,
-// 				process_gvl.fCameraControl.hr);
-				
-				
-				]]></ST>
+        <ST><![CDATA[// Read the Calibration Params from the Image Provider
+IF bInit THEN
+	bInit := FALSE;
+// 	hr := fbCam.GetCameraMatrix(aCameraMatrix);
+// 	hr := fbCam.GetDistortionCoefficients(aDistortionCoefficients);
+	hr := fbCam.GetRotationMatrix(aRotationMatrix);
+	hr := fbCam.GetTranslationVector(aTranslationVector);
+END_IF
+
+
+eState := fbCam.GetState();
+
+CASE eState OF
+    TCVN_CS_ERROR:
+        hr := fbCam.Reset();
+
+    TCVN_CS_INITIAL, TCVN_CS_INITIALIZING, TCVN_CS_INITIALIZED,
+    TCVN_CS_OPENING, TCVN_CS_OPENED, TCVN_CS_STARTACQUISITION:
+        hr := fbCam.StartAcquisition();
+END_CASE
+
+IF eState = TCVN_CS_ACQUIRING THEN
+  
+       // ------------------ one-shot guard ------------------
+IF bRunOnce AND NOT bBusy THEN
+    bBusy   := TRUE;
+    bSolved := FALSE;
+    hr      := S_OK;
+
+    // ========== 1) Intrinsics (synthetic) ==========
+    fx := 2800.0;      fy := 2800.0;
+    cx := 1295.5;      cy := 971.5;
+
+    aK[0,0] := fx;  aK[0,1] := 0.0; aK[0,2] := cx;
+    aK[1,0] := 0.0; aK[1,1] := fy;  aK[1,2] := cy;
+    aK[2,0] := 0.0; aK[2,1] := 0.0; aK[2,2] := 1.0;
+
+    // aDist8[] defaults to zero (no distortion)
+
+    // ========== 2) Build 3D model (REAL) ==========
+    // square centered at origin, Z=0 (QR plane)
+    aPts3D_R[0][0] := LREAL_TO_REAL(-L_mm*0.5);  aPts3D_R[0][1] := LREAL_TO_REAL(-L_mm*0.5);  aPts3D_R[0][2] := 0.0; // TL
+    aPts3D_R[1][0] := LREAL_TO_REAL( L_mm*0.5);  aPts3D_R[1][1] := LREAL_TO_REAL(-L_mm*0.5);  aPts3D_R[1][2] := 0.0; // TR
+    aPts3D_R[2][0] := LREAL_TO_REAL( L_mm*0.5);  aPts3D_R[2][1] := LREAL_TO_REAL( L_mm*0.5);  aPts3D_R[2][2] := 0.0; // BR
+    aPts3D_R[3][0] := LREAL_TO_REAL(-L_mm*0.5);  aPts3D_R[3][1] := LREAL_TO_REAL( L_mm*0.5);  aPts3D_R[3][2] := 0.0; // BL
+
+    // ========== 3) Synthesize consistent image points (LREAL_TO_REAL) ==========
+    // u = cx + fx * X/Z,  v = cy + fy * Y/Z  (fronto-parallel pose at Z_true)
+    aPts2D_R[0][0] := LREAL_TO_REAL( cx + fx * (-L_mm*0.5) / Z_true );  aPts2D_R[0][1] := LREAL_TO_REAL( cy + fy * (-L_mm*0.5) / Z_true );
+    aPts2D_R[1][0] := LREAL_TO_REAL( cx + fx * ( L_mm*0.5) / Z_true );  aPts2D_R[1][1] := LREAL_TO_REAL( cy + fy * (-L_mm*0.5) / Z_true );
+    aPts2D_R[2][0] := LREAL_TO_REAL( cx + fx * ( L_mm*0.5) / Z_true );  aPts2D_R[2][1] := LREAL_TO_REAL( cy + fy * ( L_mm*0.5) / Z_true );
+    aPts2D_R[3][0] := LREAL_TO_REAL( cx + fx * (-L_mm*0.5) / Z_true );  aPts2D_R[3][1] := LREAL_TO_REAL( cy + fy * ( L_mm*0.5) / Z_true );
+
+    // ========== 4) Create REAL containers ==========
+    ipRefPts := 0; ipImgPts := 0;
+
+    hr := F_VN_CreateContainer(
+            ipContainer := ipRefPts,
+            nTypeGuid   := ContainerType_Vector_TcVnPoint3_REAL,
+            nElementNum := 4,
+            hrPrev      := hr);
+
+    IF SUCCEEDED(hr) THEN
+        hr := F_VN_CreateContainer(
+                ipContainer := ipImgPts,
+                nTypeGuid   := ContainerType_Vector_TcVnPoint2_REAL,
+                nElementNum := 4,
+                hrPrev      := hr);
+    END_IF
+
+    // ========== 5) Fill containers ==========
+    IF SUCCEEDED(hr) THEN
+        hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[0], ipRefPts, 0, hr);
+        hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[1], ipRefPts, 1, hr);
+        hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[2], ipRefPts, 2, hr);
+        hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[3], ipRefPts, 3, hr);
+                                     
+        hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[0], ipImgPts, 0, hr);
+        hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[1], ipImgPts, 1, hr);
+        hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[2], ipImgPts, 2, hr);
+        hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[3], ipImgPts, 3, hr);
+    END_IF
+
+    // ========== 6) SolvePnP (Exp signature) ==========
+    IF SUCCEEDED(hr) THEN
+        hr := F_VN_SolvePnPExp(
+                ipImagePoints           := ipImgPts,     // vector<TcVnPoint2_REAL>
+                ipReferencePoints       := ipRefPts,     // vector<TcVnPoint3_REAL>
+                aCameraMatrix           := aK,           // LREAL
+                aDistortionCoefficients := aDist80,       // ARRAY[0..7] OF LREAL (zeros)
+                aRotationMatrix         := aR,           // LREAL
+                aTranslationVector      := aTt,           // LREAL
+                fReprojError            := bReprojError,      // LREAL out
+                eMethod                 := TCVN_SPM_ITERATIVE,
+                bUseExtrinsicGuess      := FALSE,
+                hrPrev                  := hr);
+
+        bSolved := SUCCEEDED(hr);
+        // Expect ~identity R and T ≈ [0, 0, Z_true] (mm)
+    END_IF
+
+    // ========== 7) Cleanup ==========
+    ipRefPts := 0;
+    ipImgPts := 0;
+END_IF
+END_IF
+
+// allow retrigger
+IF NOT bRunOnce THEN
+    bBusy := FALSE;
+END_IF]]></ST>
       </Implementation>
     </Method>
     <Method Name="EstimatePose" Id="{5ce97ce8-47dc-4044-9d0a-d7addc7f0154}">
@@ -107,7 +257,404 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[// Read the Calibration Params from the Image Provider
+IF bInit THEN
+	bInit := FALSE;
+	hr := fbCam.GetCameraMatrix(aCameraMatrix);
+	hr := fbCam.GetDistortionCoefficients(aDistortionCoefficients);
+	hr := fbCam.GetRotationMatrix(aRotationMatrix);
+	hr := fbCam.GetTranslationVector(aTranslationVector);
+END_IF
+
+
+eState := fbCam.GetState();
+
+CASE eState OF
+    TCVN_CS_ERROR:
+        hr := fbCam.Reset();
+
+    TCVN_CS_INITIAL, TCVN_CS_INITIALIZING, TCVN_CS_INITIALIZED,
+    TCVN_CS_OPENING, TCVN_CS_OPENED, TCVN_CS_STARTACQUISITION:
+        hr := fbCam.StartAcquisition();
+END_CASE
+// When acquiring, do software trigger → grab → process
+IF eState = TCVN_CS_ACQUIRING THEN
+	IF bRunOnce AND NOT bBusy THEN
+		bBusy   := TRUE;
+		bSolved := FALSE;
+		hr      := S_OK;
+		hr := fbCam.TriggerImage();
+		bPending := TRUE;
+		END_IF
+	
+		IF bPending THEN
+			hr := fbCam.GetCurrentImage(ipImageRaw);
+	
+			IF SUCCEEDED(hr) AND (ipImageRaw <> 0) THEN
+				// 1) Bayer GR8 -> GRAY
+				hr := F_VN_ConvertColorSpace(
+						ipSrcImage := ipImageRaw,
+						ipDestImage := ipImageGray,
+						eTransform := TCVN_CST_BAYER_GR_TO_GRAY,
+						hrPrev := hr);
+	
+				// 2) Detect QR
+				hr := F_VN_ReadQRCodeExp(
+						ipSrcImage      := ipImageGray,
+						ipDecodedData   := ipDecoded,
+						ipContours      := ipContours,
+						nCodeNumber     := 1,
+						eSearchStrategy := TCVN_CSS_ONLY_NOT_INVERTED + TCVN_CSS_ONLY_NOT_FLIPPED,
+						hrPrev          := hr);
+	
+				// 3) Prepare RGB canvas if we detected something
+				IF ipDecoded<>0 AND ipContours<>0 THEN
+					hr := F_VN_ConvertColorSpace(
+							ipSrcImage := ipImageGray,
+							ipDestImage := ipImageRGB,
+							eTransform := TCVN_CST_GRAY_TO_RGB,
+							hrPrev := hr);
+				END_IF
+	
+				// 4) If decoded, export text & draw
+				IF (hr = S_OK) AND (ipDecoded <> 0) THEN
+					hr := F_VN_ExportSubContainer_String(
+							ipContainer := ipDecoded,
+							nIndex := 0,
+							sText := sQRCode,
+							nMaxLength := SIZEOF(sQRCode)-1,
+							hrPrev := hr);
+	
+					IF (hr = S_OK) AND (ipContours <> 0) THEN
+						hr := F_VN_DrawContours(ipContours, -1, ipImageRGB, clrRed, 3, hr);
+					END_IF
+	
+					// --- NEW: parse numeric ID and store into ring buffer (last 8) ---
+					idQr := STRING_TO_DINT(sQRCode);        
+					aQrIds[iQrWrite] := idQr;
+					iQrWrite := (iQrWrite + 1) MOD 8;
+					IF nQrCount < 8 THEN nQrCount := nQrCount + 1; END_IF;
+				
+				END_IF
+	
+				// 5) Get the four corners from contour (you already computed ptTop/Right/Bottom/Left)
+				//    Assumed mapping: ptTop  = top-left, ptRight= top-right, ptBottom= bottom-right, ptLeft= bottom-left
+				//    If your extrema deliver a different convention, reorder accordingly.
+			   IF (ipContours <> 0) THEN
+		ipContour := 0;
+		hr := F_VN_GetAt_ITcVnContainer(ipContours, ipContour, 0, hr);
+	
+		IF ipContour <> 0 THEN
+			ipContour.GetElementNum(nPts);
+			IF nPts > 0 THEN
+				// 1) Corner extraction (TL, TR, BR, BL by extrema)
+				hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_TOP_LEFT,     aExtremePoint:=ptTop,    hrPrev:=S_OK);
+				hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_RIGHT_TOP,    aExtremePoint:=ptRight,  hrPrev:=hr);
+				hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_BOTTOM_RIGHT, aExtremePoint:=ptBottom, hrPrev:=hr);
+				hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_LEFT_BOTTOM,  aExtremePoint:=ptLeft,   hrPrev:=hr);
+	
+				IF SUCCEEDED(hr) THEN
+					// 2) Debug overlay
+					hr := F_VN_DrawPointExp(TO_UDINT(ptTop[0]),    TO_UDINT(ptTop[1]),    ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+					hr := F_VN_DrawPointExp(TO_UDINT(ptRight[0]),  TO_UDINT(ptRight[1]),  ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+					hr := F_VN_DrawPointExp(TO_UDINT(ptBottom[0]), TO_UDINT(ptBottom[1]), ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+					hr := F_VN_DrawPointExp(TO_UDINT(ptLeft[0]),   TO_UDINT(ptLeft[1]),   ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+	
+					// 3) Build model points for SolvePnP (QR center at origin, size fQrSizeMM)
+					aPts3D[0][0] := -fQrSizeMM*0.5;  aPts3D[0][1] := -fQrSizeMM*0.5;  aPts3D[0][2] := 0.0; // TL
+					aPts3D[1][0] :=  fQrSizeMM*0.5;  aPts3D[1][1] := -fQrSizeMM*0.5;  aPts3D[1][2] := 0.0; // TR
+					aPts3D[2][0] :=  fQrSizeMM*0.5;  aPts3D[2][1] :=  fQrSizeMM*0.5;  aPts3D[2][2] := 0.0; // BR
+					aPts3D[3][0] := -fQrSizeMM*0.5;  aPts3D[3][1] :=  fQrSizeMM*0.5;  aPts3D[3][2] := 0.0; // BL
+	
+					// 4) Image points in the same order: TL, TR, BR, BL
+					aPts2D[0][0] := ptTop[0];     aPts2D[0][1] := ptTop[1];
+					aPts2D[1][0] := ptRight[0];   aPts2D[1][1] := ptRight[1];
+					aPts2D[2][0] := ptBottom[0];  aPts2D[2][1] := ptBottom[1];
+					aPts2D[3][0] := ptLeft[0];    aPts2D[3][1] := ptLeft[1];
+	
+					// 5) Create containers (vector<TcVnPoint3_LREAL> and vector<TcVnPoint2_LREAL>)
+					ipObjPts := 0; ipImgPts := 0;  // reset handles
+					hr := F_VN_CreateContainer(
+							ipContainer := ipObjPts,
+							nTypeGuid   := ContainerType_Vector_TcVnPoint3_LREAL,
+							nElementNum := 4,
+							hrPrev      := hr);
+	
+					hr := F_VN_CreateContainer(
+							ipContainer := ipImgPts,
+							nTypeGuid   := ContainerType_Vector_TcVnPoint2_LREAL,
+							nElementNum := 4,
+							hrPrev      := hr);
+	
+					// 6) Fill containers
+					IF SUCCEEDED(hr) THEN
+						hr := F_VN_SetAt_TcVnPoint3_LREAL(aPts3D[0], ipObjPts, 0, hr);
+						hr := F_VN_SetAt_TcVnPoint3_LREAL(aPts3D[1], ipObjPts, 1, hr);
+						hr := F_VN_SetAt_TcVnPoint3_LREAL(aPts3D[2], ipObjPts, 2, hr);
+						hr := F_VN_SetAt_TcVnPoint3_LREAL(aPts3D[3], ipObjPts, 3, hr);
+	
+						hr := F_VN_SetAt_TcVnPoint2_LREAL(aPts2D[0], ipImgPts, 0, hr);
+						hr := F_VN_SetAt_TcVnPoint2_LREAL(aPts2D[1], ipImgPts, 1, hr);
+						hr := F_VN_SetAt_TcVnPoint2_LREAL(aPts2D[2], ipImgPts, 2, hr);
+						hr := F_VN_SetAt_TcVnPoint2_LREAL(aPts2D[3], ipImgPts, 3, hr);
+					END_IF
+	
+					// 7) SolvePnP
+					bHavePose := FALSE;				
+					IF SUCCEEDED(hr) THEN
+						hr := F_VN_SolvePnP(
+								ipReferencePoints       := ipObjPts,
+								ipImagePoints           := ipImgPts,
+								aCameraMatrix           := aCameraMatrix,
+								aDistortionCoefficients := aDistortionCoefficients,
+								aRotationMatrix         := aTagR,
+								aTranslationVector      := aTagT,
+								fReprojError 			:= bReprojError, 
+	//                             ETcVnSolvePnPMethod		:= 2,   // <-- correct enum
+								hrPrev                  := hr);
+	
+						IF SUCCEEDED(hr) THEN
+							bHavePose := TRUE;
+							// you now have pose: x_cam = aTagR * x_qr + aTagT
+						END_IF
+					END_IF
+	
+					// 8) Release temp containers (tidy)
+					ipObjPts := 0;
+					ipImgPts := 0;
+				END_IF
+            END_IF
+        END_IF
+    END_IF
+END_IF
+
+            // 6) Show in ADS Image Watch
+            hr := F_VN_CopyIntoDisplayableImage(ipSrcImage:= ipImageRGB, ipDestImage:=ipImageDisp1, hr );
+            hr := F_VN_TransformIntoDisplayableImage(ipImageRGB, ipImageDisp, hr);
+
+//             // 7) OPTIONAL: ENUM+CASE mapping of idQr → GP registers (only if parsed OK)
+//             IF bParsedOk THEN
+//                 CASE idQr OF
+//                     1001:
+//                         process_gvl.fRobotOutput.General_Integers.GPInt_01 := 17;
+//                         process_gvl.fRobotOutput.General_Floats.GPFloat_01 := 120.0;
+//                         process_gvl.fRobotOutput.General_Floats.GPFloat_02 := 80.0;
+//                     2002:
+//                         process_gvl.fRobotOutput.General_Integers.GPInt_01 := 23;
+//                         process_gvl.fRobotOutput.General_Floats.GPFloat_01 := 200.0;
+//                         process_gvl.fRobotOutput.General_Floats.GPFloat_02 := 50.0;
+//                     // add your other IDs here…
+//                     ELSE
+//                         process_gvl.fRobotOutput.General_Integers.GPInt_01 := 0;
+//                         process_gvl.fRobotOutput.General_Floats.GPFloat_01 := 0.0;
+//                         process_gvl.fRobotOutput.General_Floats.GPFloat_02 := 0.0;
+//                 END_CASE
+//             END_IF
+
+            // cleanup for next trigger
+            ipDecoded    := 0;
+            ipContours   := 0;
+            ipImageRaw   := 0;
+            ipImageGray  := 0;
+            ipImageRGB   := 0;
+            bPending     := FALSE;
+        END_IF
+    END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="QRCodefinal" Id="{ff59f934-43e6-4d05-ac42-873ca753f38f}">
+      <Declaration><![CDATA[METHOD QRCodefinal : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// --- Provider state machine ---
+eState := fbCam.GetState();
+
+CASE eState OF
+    TCVN_CS_ERROR:
+        hr := fbCam.Reset();
+
+    TCVN_CS_INITIAL, TCVN_CS_INITIALIZING, TCVN_CS_INITIALIZED,
+    TCVN_CS_OPENING, TCVN_CS_OPENED, TCVN_CS_STARTACQUISITION:
+        hr := fbCam.StartAcquisition();
+END_CASE
+
+// --- Read calibration once, when ACQUIRING ---
+IF (eState = TCVN_CS_ACQUIRING) AND NOT bCalibReady THEN
+    hr := fbCam.GetCameraMatrix(aCameraMatrix);
+    IF SUCCEEDED(hr) THEN
+        hr := fbCam.GetDistortionCoefficients(aDistortionCoefficients);  // length must match your calibration
+    END_IF
+    bCalibReady := SUCCEEDED(hr);
+END_IF
+
+// --- Work only when ACQUIRING ---
+IF eState = TCVN_CS_ACQUIRING THEN
+
+    // Software trigger (edge)
+    rSoftTrig(CLK := bSoftTrig);
+    IF rSoftTrig.Q THEN
+        hr := fbCam.TriggerImage();
+        bPending := TRUE;
+    END_IF
+
+    // One-shot trigger support (optional)
+    IF bRunOnce AND NOT bBusy THEN
+        bBusy := TRUE;
+        hr := fbCam.TriggerImage();
+        bPending := TRUE;
+    END_IF
+
+    IF bPending THEN
+        hr := fbCam.GetCurrentImage(ipImageRaw);
+
+        IF SUCCEEDED(hr) AND (ipImageRaw <> 0) THEN
+            // 1) RAW (Bayer GR8) -> GRAY
+            hr := F_VN_ConvertColorSpace(
+                    ipSrcImage := ipImageRaw,
+                    ipDestImage := ipImageGray,
+                    eTransform := TCVN_CST_BAYER_GR_TO_GRAY,
+                    hrPrev := hr);
+
+            // 2) QR decode (+ contours)
+            hr := F_VN_ReadQRCodeExp(
+                    ipSrcImage      := ipImageGray,
+                    ipDecodedData   := ipDecoded,
+                    ipContours      := ipContours,
+                    nCodeNumber     := 1,
+                    eSearchStrategy := TCVN_CSS_ONLY_NOT_INVERTED + TCVN_CSS_ONLY_NOT_FLIPPED,
+                    hrPrev          := hr);
+
+            // 3) Prepare RGB canvas if something was found
+            IF (ipDecoded <> 0) AND (ipContours <> 0) THEN
+                hr := F_VN_ConvertColorSpace(
+                        ipSrcImage := ipImageGray,
+                        ipDestImage := ipImageRGB,
+                        eTransform := TCVN_CST_GRAY_TO_RGB,
+                        hrPrev := hr);
+            END_IF
+
+            // 4) If decoded, export text, draw contour, store ID
+            IF SUCCEEDED(hr) AND (ipDecoded <> 0) THEN
+                hr := F_VN_ExportSubContainer_String(
+                        ipContainer := ipDecoded,
+                        nIndex := 0,
+                        sText := sQRCode,
+                        nMaxLength := SIZEOF(sQRCode)-1,
+                        hrPrev := hr);
+
+                IF SUCCEEDED(hr) AND (ipContours <> 0) THEN
+                    hr := F_VN_DrawContours(ipContours, -1, ipImageRGB, clrRed, 3, hr);
+                END_IF
+
+                // push into ring buffer (no validation here; add if needed)
+                idQr := STRING_TO_DINT(sQRCode);
+                aQrIds[iQrWrite] := idQr;
+                iQrWrite := (iQrWrite + 1) MOD 8;
+                IF nQrCount < 8 THEN nQrCount := nQrCount + 1; END_IF
+            END_IF
+
+            // 5) Extract QR corner points (TL, TR, BR, BL)
+            IF (ipContours <> 0) THEN
+                ipContour := 0;
+                hr := F_VN_GetAt_ITcVnContainer(ipContours, ipContour, 0, hr);
+
+                IF (ipContour <> 0) THEN
+                    ipContour.GetElementNum(nPts);
+
+                    IF nPts > 0 THEN
+                        // Extremes → TL, TR, BR, BL
+                        hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_TOP_LEFT,     aExtremePoint:=ptTop,    hrPrev:=S_OK);
+                        hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_RIGHT_TOP,    aExtremePoint:=ptRight,  hrPrev:=hr);
+                        hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_BOTTOM_RIGHT, aExtremePoint:=ptBottom, hrPrev:=hr);
+                        hr := F_VN_ContourExtremePoint(ipContour:=ipContour, eDirection:=TCVN_EPD_LEFT_BOTTOM,  aExtremePoint:=ptLeft,   hrPrev:=hr);
+
+                        IF SUCCEEDED(hr) THEN
+                            // draw corner marks
+                            hr := F_VN_DrawPointExp(TO_UDINT(ptTop[0]),    TO_UDINT(ptTop[1]),    ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+                            hr := F_VN_DrawPointExp(TO_UDINT(ptRight[0]),  TO_UDINT(ptRight[1]),  ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+                            hr := F_VN_DrawPointExp(TO_UDINT(ptBottom[0]), TO_UDINT(ptBottom[1]), ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+                            hr := F_VN_DrawPointExp(TO_UDINT(ptLeft[0]),   TO_UDINT(ptLeft[1]),   ipImageRGB, TCVN_DS_PLUS, clrBlue, 5, -1, TCVN_LT_4_CONNECTED, hr);
+
+                            // --- Build 3D model (REAL) TL,TR,BR,BL (Z=0 plane) ---
+                            aPts3D_R[0][0] := LREAL_TO_REAL(-fQrSizeMM*0.5);  aPts3D_R[0][1] := LREAL_TO_REAL(-fQrSizeMM*0.5);  aPts3D_R[0][2] := 0.0;
+                            aPts3D_R[1][0] := LREAL_TO_REAL( fQrSizeMM*0.5);  aPts3D_R[1][1] := LREAL_TO_REAL(-fQrSizeMM*0.5);  aPts3D_R[1][2] := 0.0;
+                            aPts3D_R[2][0] := LREAL_TO_REAL( fQrSizeMM*0.5);  aPts3D_R[2][1] := LREAL_TO_REAL( fQrSizeMM*0.5);  aPts3D_R[2][2] := 0.0;
+                            aPts3D_R[3][0] := LREAL_TO_REAL(-fQrSizeMM*0.5);  aPts3D_R[3][1] := LREAL_TO_REAL( fQrSizeMM*0.5);  aPts3D_R[3][2] := 0.0;
+
+                            // --- 2D image points (REAL) in the same order ---
+                            aPts2D_R[0][0] := LREAL_TO_REAL(ptTop[0]);    aPts2D_R[0][1] := LREAL_TO_REAL(ptTop[1]);
+                            aPts2D_R[1][0] := LREAL_TO_REAL(ptRight[0]);  aPts2D_R[1][1] := LREAL_TO_REAL(ptRight[1]);
+                            aPts2D_R[2][0] := LREAL_TO_REAL(ptBottom[0]); aPts2D_R[2][1] := LREAL_TO_REAL(ptBottom[1]);
+                            aPts2D_R[3][0] := LREAL_TO_REAL(ptLeft[0]);   aPts2D_R[3][1] := LREAL_TO_REAL(ptLeft[1]);
+
+                            // --- Create REAL containers and fill ---
+                            ipRefPts := 0; ipImgPts := 0;
+                            hr := F_VN_CreateContainer(ipRefPts, ContainerType_Vector_TcVnPoint3_REAL, 4, hr);
+                            IF SUCCEEDED(hr) THEN
+                                hr := F_VN_CreateContainer(ipImgPts, ContainerType_Vector_TcVnPoint2_REAL, 4, hr);
+                            END_IF
+
+                            IF SUCCEEDED(hr) THEN
+                                hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[0], ipRefPts, 0, hr);
+                                hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[1], ipRefPts, 1, hr);
+                                hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[2], ipRefPts, 2, hr);
+                                hr := F_VN_SetAt_TcVnPoint3_REAL(aPts3D_R[3], ipRefPts, 3, hr);
+
+                                hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[0], ipImgPts, 0, hr);
+                                hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[1], ipImgPts, 1, hr);
+                                hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[2], ipImgPts, 2, hr);
+                                hr := F_VN_SetAt_TcVnPoint2_REAL(aPts2D_R[3], ipImgPts, 3, hr);
+                            END_IF
+
+                            // --- SolvePnP (Exp) → full 6D pose ---
+                            bHavePose := FALSE;
+                            IF SUCCEEDED(hr) AND bCalibReady THEN
+                                hr := F_VN_SolvePnPExp(
+                                        ipImagePoints           := ipImgPts,
+                                        ipReferencePoints       := ipRefPts,
+                                        aCameraMatrix           := aCameraMatrix,
+                                        aDistortionCoefficients := aDistortionCoefficients, // exact length!
+                                        aRotationMatrix         := aTagR,
+                                        aTranslationVector      := aTagT,
+                                        fReprojError            := bReprojError,
+                                        eMethod                 := TCVN_SPM_ITERATIVE,      // your build
+                                        bUseExtrinsicGuess      := FALSE,
+                                        hrPrev                  := hr);
+
+                                bHavePose := SUCCEEDED(hr);
+                            END_IF
+
+                            // tidy temp containers
+                            ipRefPts := 0; ipImgPts := 0;
+                        END_IF
+                    END_IF
+                END_IF
+            END_IF
+
+            // 6) Show in ADS Image Watch
+            hr := F_VN_CopyIntoDisplayableImage(ipSrcImage:= ipImageRGB, ipDestImage:=ipImageDisp1, hr );
+            hr := F_VN_TransformIntoDisplayableImage(ipImageRGB, ipImageDisp, hr);
+
+            // cleanup for next trigger
+            ipDecoded    := 0;
+            ipContours   := 0;
+            ipImageRaw   := 0;
+            ipImageGray  := 0;
+            ipImageRGB   := 0;
+            bPending     := FALSE;
+        END_IF
+    END_IF
+END_IF
+
+// allow one-shot retrigger
+IF NOT bRunOnce THEN
+    bBusy := FALSE;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="TriggerCamera" Id="{9802e0e5-f872-4b06-8a83-9f3b0e36212d}">
@@ -139,6 +686,7 @@ CASE eState OF
     TCVN_CS_OPENING, TCVN_CS_OPENED, TCVN_CS_STARTACQUISITION:
         hr := fbCam.StartAcquisition();
 END_CASE
+
 // When acquiring, do software trigger → grab → process
 IF eState = TCVN_CS_ACQUIRING THEN
     // rising edge on software trigger
@@ -146,8 +694,9 @@ IF eState = TCVN_CS_ACQUIRING THEN
     IF rSoftTrig.Q THEN
         hr := fbCam.TriggerImage();
         bPending := TRUE;
+// 		bSoftTrig := FALSE; // immediately reset to prevent repeated edge
     END_IF
-
+	
     IF bPending THEN
         // get the newly triggered frame (Bayer GR8 from camera)
         hr := fbCam.GetCurrentImage(ipImageRaw);
@@ -190,11 +739,17 @@ IF eState = TCVN_CS_ACQUIRING THEN
                         sText := sQRCode,
                         nMaxLength := SIZEOF(sQRCode)-1,
                         hrPrev := hr);
-
-                // draw contour(s) in red (line thickness = 3)
-                IF (hr = S_OK) AND (ipContours <> 0)THEN
-                    hr := F_VN_DrawContours(ipContours, -1, ipImageRGB, clrRed, 3, hr);
-                END_IF
+// 				idQr   := STRING_TO_DINT(sQRCode);
+// 				IF (idQr>=1) AND (idQr<=8) THEN					 
+//                 // draw contour(s) in red (line thickness = 3)
+// 					aQrIds[iQrWrite] := idQr;
+// 					iQrWrite := (iQrWrite + 1) MOD 8;
+// 						IF (hr = S_OK) AND (ipContours <> 0)THEN
+// 							hr := F_VN_DrawContours(ipContours, -1, ipImageRGB, clrRed, 3, hr);
+// 						END_IF
+// 				ELSE
+// 					// send Task id for re-running the plate detection TP program
+// 				END_IF
             END_IF
 			
 		
@@ -222,14 +777,7 @@ IF eState = TCVN_CS_ACQUIRING THEN
 					END_IF
 				END_IF
 			END_IF
-// 			hr := F_VN_GetForwardIterator(ipContour, ipIterator, hr);
 			
-// 			WHILE SUCCEEDED(hr) AND_THEN ipIterator.CheckIfEnd() <> S_OK DO
-// 				hr := F_VN_GetContainer(ipIterator, ipContour, hr);
-// 				hr := F_VN_IncrementIterator(ipIterator, hr);
-
-// 				// Calculate the image position
-// 				hr := F_VN_ContourCenterOfMass(ipContour, aPointImage, hr);	
 				FOR i:=0 TO 3 DO
 				// Coordinate Transformation to retrieve the real world position
 				hr := F_VN_TransformCoordinatesImageToWorld_Point(
@@ -242,8 +790,7 @@ IF eState = TCVN_CS_ACQUIRING THEN
 					fZ						:= 0, 
 					hrPrev					:= hr);																							
 				END_FOR
-// 			END_WHILE
-		
+				
 			// 6) Show in ADS Image Watch (display the annotated RGB)
 // 			hr := F_VN_CopyIntoDisplayableImage(ipSrcImage:= ipImageRaw, ipDestImage:=ipImageDispUndis, hr );
 			hr := F_VN_CopyIntoDisplayableImage(ipSrcImage:= ipImageRGB, ipDestImage:=ipImageDisp1, hr );
@@ -259,6 +806,10 @@ IF eState = TCVN_CS_ACQUIRING THEN
         END_IF
     END_IF
 END_IF
+
+// bSoftTrig := FALSE;
+
+
 
 ]]></ST>
       </Implementation>

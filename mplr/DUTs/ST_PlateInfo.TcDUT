@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_PlateInfo" Id="{25c46df1-1500-4d31-960d-91b275207a7f}">
+    <Declaration><![CDATA[TYPE ST_PlateInfo :
+STRUCT
+	bTaskID		: STRING(20); // Unique key from QR
+// 	bOrigin		: 	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
