@@ -85,7 +85,7 @@ VAR
 	  // Pose result of the QR (object pose in camera coordinates)
     aTagR       : TcVnMatrix3x3_LREAL;   // rotation matrix (QR->camera)
     aTagT       : TcVnVector3_LREAL;     // translation vector (mm; QR->camera)
-
+	rv   		: TcVnVector3_LREAL;
     // convenience: latches
     bHavePose   : BOOL;
 	
@@ -468,6 +468,10 @@ END_IF
       <Declaration><![CDATA[METHOD QRCodefinal : BOOL
 VAR_INPUT
 END_VAR
+
+VAR
+	fb_RobotCam : FB_Robot;
+END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[// --- Provider state machine ---
@@ -626,6 +630,17 @@ IF eState = TCVN_CS_ACQUIRING THEN
                                         hrPrev                  := hr);
 
                                 bHavePose := SUCCEEDED(hr);
+								
+								IF bHavePose THEN
+									rv := RmatToRotVec(aTagR);
+									
+									process_gvl.fRobotOutput.General_Register1.Floats.Floats[0] := LREAL_TO_REAL(rv[0]);
+									process_gvl.fRobotOutput.General_Register1.Floats.Floats[1] := LREAL_TO_REAL(rv[1]);
+									process_gvl.fRobotOutput.General_Register1.Floats.Floats[2] := LREAL_TO_REAL(rv[2]);
+									process_gvl.fRobotOutput.General_Register1.Floats.Floats[3] := LREAL_TO_REAL(aTagT[0]);
+									process_gvl.fRobotOutput.General_Register1.Floats.Floats[4] := LREAL_TO_REAL(aTagT[1]);
+									process_gvl.fRobotOutput.General_Register1.Floats.Floats[5] := LREAL_TO_REAL(aTagT[2]);
+								END_IF
                             END_IF
 
                             // tidy temp containers
@@ -654,6 +669,42 @@ END_IF
 IF NOT bRunOnce THEN
     bBusy := FALSE;
 END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RmatToRotVec" Id="{cc06e4b1-193d-4dca-b7ff-1fa34b52a8d2}">
+      <Declaration><![CDATA[METHOD RmatToRotVec : TcVnVector3_LREAL
+VAR_INPUT
+	    Rot : TcVnMatrix3x3_LREAL;
+END_VAR
+VAR
+    tr, cosT, theta, s_a : LREAL;
+    v 		: TcVnVector3_LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[tr   := Rot[0,0] + Rot[1,1] + Rot[2,2];
+cosT := (tr - 1.0) * 0.5;
+IF cosT > 1.0 THEN
+	cosT := 1.0;
+END_IF
+IF cosT < -1.0 THEN 
+	cosT := -1.0; 
+END_IF
+
+theta := ACOS(cosT);
+IF ABS(theta) < 1e-6 THEN
+    v[0] := 0; v[1] := 0; v[2] := 0;
+ELSE
+    s_a := 1.0 / (2.0 * SIN(theta) + 1E-12);
+    v[0] := (Rot[2,1] - Rot[1,2]) * s_a * theta;
+    v[1] := (Rot[0,2] - Rot[2,0]) * s_a * theta;
+    v[2] := (Rot[1,0] - Rot[0,1]) * s_a * theta;
+END_IF
+
+
+RmatToRotVec := v;
+
 ]]></ST>
       </Implementation>
     </Method>

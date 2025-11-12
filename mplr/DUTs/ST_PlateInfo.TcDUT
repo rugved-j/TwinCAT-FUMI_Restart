@@ -4,7 +4,8 @@
     <Declaration><![CDATA[TYPE ST_PlateInfo :
 STRUCT
 	bTaskID		: STRING(20); // Unique key from QR
-// 	bOrigin		: 	
+// 	fOrigin		: 
+//	fWaypoint1	: 
 END_STRUCT
 END_TYPE
 ]]></Declaration>
