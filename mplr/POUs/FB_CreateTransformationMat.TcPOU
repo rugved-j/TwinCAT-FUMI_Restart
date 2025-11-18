@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_CreateTransformationMat" Id="{27127d3d-49a3-4775-8441-756268864ef2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CreateTransformationMat
+VAR_INPUT
+	R_mat : TcVnMatrix3x3_LREAL;   // rotation
+    T_mat : TcVnVector3_LREAL;     // translation 
+END_VAR
+VAR_OUTPUT
+	Tx_mat : TcVnMatrix;            // generic Vision matrix header
+	Tr_mat : ARRAY[0..3, 0..3] OF LREAL;	
+END_VAR
+VAR
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Top-left 3x3 = R
+Tr_mat[0,0] := R_mat[0,0];  Tr_mat[0,1] := R_mat[0,1];  Tr_mat[0,2] := R_mat[0,2];
+Tr_mat[1,0] := R_mat[1,0];  Tr_mat[1,1] := R_mat[1,1];  Tr_mat[1,2] := R_mat[1,2];
+Tr_mat[2,0] := R_mat[2,0];  Tr_mat[2,1] := R_mat[2,1];  Tr_mat[2,2] := R_mat[2,2];
+
+// Right column = t
+Tr_mat[0,3] := T_mat[0];
+Tr_mat[1,3] := T_mat[1];
+Tr_mat[2,3] := T_mat[2];
+
+// Bottom row = [0 0 0 1]
+Tr_mat[3,0] := 0.0;     
+Tr_mat[3,1] := 0.0;     
+Tr_mat[3,2] := 0.0;     
+Tr_mat[3,3] := 1.0;
+
+// ---- publish as TcVnMatrix (header) ----
+Tx_mat.nRows := 4;
+Tx_mat.nCols := 4;
+Tx_mat.eType := TCVN_ET_LREAL;        // element type = LREAL (per ETcVnElementType)
+Tx_mat.pData := ADR(Tr_mat);           // pointer to backing storage
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

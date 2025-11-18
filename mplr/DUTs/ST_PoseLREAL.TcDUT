@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_PoseLREAL" Id="{54128b47-2bd8-4eb0-8d8a-a22074e8cdeb}">
+    <Declaration><![CDATA[TYPE ST_PoseLREAL :
+STRUCT
+	R_Mat : TcVnMatrix3x3_LREAL;
+    T_Mat : TcVnVector3_LREAL;
+	X_Mat : TcVnMatrix;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

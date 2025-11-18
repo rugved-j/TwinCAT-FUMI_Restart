@@ -5,8 +5,15 @@
 VAR_INPUT
 END_VAR
 VAR_OUTPUT
+	r1_matrix       : TcVnMatrix3x3_LREAL;
+	v1_matrix 		: TcVnVector3_LREAL;
 END_VAR
 VAR
+	_TCPPoseT : ARRAY[0..2] OF LREAL := [1.0, 1.0, 1.0];
+	fb_Convert_1 : FB_MatConversion;
+	
+	fbmakeT1 : FB_CreateTransformationMat; 
+	T4x4_matrix_1       : TcVnMatrix;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -295,6 +302,53 @@ IF bTaskStatus THEN
 	PlaceFlask := TRUE;
 	SendTaskId(0); 
 END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RobotPose" Id="{bc2c46b9-c4bd-4037-afa9-b779b1b75b0c}">
+      <Declaration><![CDATA[METHOD RobotPose : TcVnMatrix
+VAR_INPUT
+END_VAR
+VAR
+	pose_x : REAL;
+	pose_y : REAL;
+	pose_z : REAL;
+	pose_rx: REAL;
+	pose_ry: REAL;
+	pose_rz: REAL;
+	Tpose_mat : ARRAY[0..3, 0..3] OF LREAL;
+END_VAR
+
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// pose_x:= 1000*LREAL_TO_REAL(process_gvl.fRobotInput.TCP.TCP_Position_XYZ_m[0]);
+// pose_y:= 1000*LREAL_TO_REAL(process_gvl.fRobotInput.TCP.TCP_Position_XYZ_m[1]);
+// pose_z:= 1000*LREAL_TO_REAL(process_gvl.fRobotInput.TCP.TCP_Position_XYZ_m[2]);
+// pose_rx:=process_gvl.fRobotInput.TCP.TCP_Position_RXRYRZ_rad[0];
+// pose_ry:=process_gvl.fRobotInput.TCP.TCP_Position_RXRYRZ_rad[1];
+// pose_rz:=process_gvl.fRobotInput.TCP.TCP_Position_RXRYRZ_rad[2];
+
+	pose_x := 0.1;
+	pose_y := 0.1;
+	pose_z := 0.1;
+	pose_rx:= 0.1;
+	pose_ry:= 0.1;
+	pose_rz:= 0.1;
+
+r1_matrix := fb_Convert_1.RotVecToRmat(rx:= pose_rx, ry:= pose_ry, rz:=pose_rz);
+v1_matrix := fb_Convert_1.Make3x3Vec(pose_x, pose_y, pose_z);
+// fbmakeT1.R_mat := r1_matrix;
+// fbmakeT1.T_mat := v1_matrix;
+// fbmakeT1();
+// // T4x4_robotpose:=fbmakeT1.Tx_mat;
+// RobotPose := fbmakeT1.Tx_mat;
+// // RobotTCPPose REF= _TCPPoseT;
+// // ---- publish as TcVnMatrix (header) ----
+// // T4x4_robotpose.nRows := 4;
+// // T4x4_robotpose.nCols := 4;
+// // T4x4_robotpose.eType := TCVN_ET_LREAL;        // element type = LREAL (per ETcVnElementType)
+// // T4x4_robotpose.pData := ADR(Tpose_mat);           // pointer to backing storage
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="SendTaskId" Id="{5f0c7446-b3a9-4ffc-98dd-e66f918a0a09}">

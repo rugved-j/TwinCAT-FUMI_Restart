@@ -13,7 +13,7 @@ VAR
 	
 	bMove : BOOL;
 	nIdlePosition : INT := 1;
-	
+	bFlag : BOOL := FALSE;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -25,7 +25,7 @@ END_VAR
               <v n="UseVarInstForMethods">false</v>
               <v n="StatesCount">15</v>
               <v n="HistoryCount">0</v>
-              <v n="TransitionsCount">18</v>
+              <v n="TransitionsCount">19</v>
               <v n="RegionsCount">0</v>
               <v n="TracesCount">0</v>
               <v n="StatesInitString">":=[(ID := 1, Name := 'GeneratedStartStateForAbort1', StateType := _UML_SC_StateTypes.InitialState, StartOfTransitionIndex := 1, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := False, HasExitAction := False) , 
@@ -34,15 +34,15 @@ END_VAR
 (ID := 4, Name := 'State4', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 3, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
 (ID := 5, Name := 'EndState1', StateType := _UML_SC_StateTypes.FastState, StartOfTransitionIndex := 4, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := False, HasExitAction := False) , 
 (ID := 6, Name := 'State8', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 5, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 7, Name := 'State5', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 6, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 8, Name := 'State3', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 7, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 9, Name := 'StartState1', StateType := _UML_SC_StateTypes.FastState, StartOfTransitionIndex := 9, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := False, HasExitAction := False) , 
-(ID := 10, Name := 'State1', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 10, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 11, Name := 'State10', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 12, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 12, Name := 'State5_copy', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 13, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 13, Name := 'State9', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 15, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 14, Name := 'State7', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 17, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
-(ID := 15, Name := 'State6', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 18, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) ];
+(ID := 7, Name := 'State5', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 6, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 8, Name := 'State3', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 8, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 9, Name := 'StartState1', StateType := _UML_SC_StateTypes.FastState, StartOfTransitionIndex := 10, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := False, HasExitAction := False) , 
+(ID := 10, Name := 'State1', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 11, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 11, Name := 'State10', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 13, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 12, Name := 'State5_copy', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 14, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 13, Name := 'State9', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 16, OutGoingTransitionsCount := 2, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 14, Name := 'State7', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 18, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) , 
+(ID := 15, Name := 'State6', StateType := _UML_SC_StateTypes.SlowState, StartOfTransitionIndex := 19, OutGoingTransitionsCount := 1, RegionCount := 0, RegionStartIndex := 0, RegionEndIndex := 0, CompletionTransitionID := 0, MaxDoCycles := 32766, HasEntryAction := False, HasDoAction := True, HasExitAction := False) ];
 "</v>
               <v n="TransitionsInitString">":=[(ID := 1, StartStateID := 1, EndStateID := 9, Priority := 1, HasAction := False, IsCompletion := True,IsPseudoException := False,IsException := False), 
 (ID := 2, StartStateID := 3, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
@@ -50,18 +50,19 @@ END_VAR
 (ID := 4, StartStateID := 5, EndStateID := 2, Priority := 1, HasAction := False, IsCompletion := True,IsPseudoException := False,IsException := False), 
 (ID := 5, StartStateID := 6, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
 (ID := 6, StartStateID := 7, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 7, StartStateID := 8, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 8, StartStateID := 8, EndStateID := 13, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
-(ID := 9, StartStateID := 9, EndStateID := 10, Priority := 1, HasAction := False, IsCompletion := True,IsPseudoException := False,IsException := False), 
-(ID := 10, StartStateID := 10, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 11, StartStateID := 10, EndStateID := 7, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
-(ID := 12, StartStateID := 11, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 13, StartStateID := 12, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 14, StartStateID := 12, EndStateID := 8, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
-(ID := 15, StartStateID := 13, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 16, StartStateID := 13, EndStateID := 4, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
-(ID := 17, StartStateID := 14, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
-(ID := 18, StartStateID := 15, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True)];
+(ID := 7, StartStateID := 7, EndStateID := 11, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
+(ID := 8, StartStateID := 8, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
+(ID := 9, StartStateID := 8, EndStateID := 13, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
+(ID := 10, StartStateID := 9, EndStateID := 10, Priority := 1, HasAction := False, IsCompletion := True,IsPseudoException := False,IsException := False), 
+(ID := 11, StartStateID := 10, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
+(ID := 12, StartStateID := 10, EndStateID := 7, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
+(ID := 13, StartStateID := 11, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
+(ID := 14, StartStateID := 12, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
+(ID := 15, StartStateID := 12, EndStateID := 8, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
+(ID := 16, StartStateID := 13, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
+(ID := 17, StartStateID := 13, EndStateID := 4, Priority := 2, HasAction := False, IsCompletion := False,IsPseudoException := False,IsException := False), 
+(ID := 18, StartStateID := 14, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True), 
+(ID := 19, StartStateID := 15, EndStateID := 2, Priority := 1, HasAction := True, IsCompletion := False,IsPseudoException := False,IsException := True)];
 "</v>
               <v n="RegionsInitString">""</v>
               <v n="StateNamesString">"GeneratedStartStateForAbort1:INT:=1;
@@ -692,7 +693,7 @@ State6:INT:=15;
                     <v n="RepresentedElement">10</v>
                     <v n="IsElementVisible">true</v>
                     <v n="TopPosition">120</v>
-                    <v n="LeftPosition">190</v>
+                    <v n="LeftPosition">140</v>
                     <v n="WidthValue">103</v>
                     <v n="MinWidthValue">0</v>
                     <v n="Height">49</v>
@@ -1078,6 +1079,87 @@ State6:INT:=15;
                   <v n="IsModified">false</v>
                   <v n="ARGBElementColor">0</v>
                 </o>
+                <v>5795537f-d6bf-480b-af09-956410ce3798</v>
+                <o>
+                  <v n="HasGraphicalRepresentation">true</v>
+                  <v n="StartUMLElement">{9953206f-ae42-4f57-9209-2195f71896f0}</v>
+                  <v n="HighlightedLine">false</v>
+                  <v n="ZOrder">0U</v>
+                  <v n="SpecialHandling">false</v>
+                  <v n="ActionLocalVariableName">""</v>
+                  <v n="ActionParametersString">""</v>
+                  <n n="ActionName" />
+                  <v n="ActionText">""</v>
+                  <v n="InjectedActionCode">""</v>
+                  <v n="InjectedActionCodeBefore">true</v>
+                  <v n="ActionTextLength">100</v>
+                  <v n="ConditionText">"TRUE"</v>
+                  <v n="LengthConditionText">100</v>
+                  <v n="RelationID">14</v>
+                  <v n="TriggerlessStatechartTransition">true</v>
+                  <v n="EndUMLElement">{7eb3c618-800c-4a0f-93a7-2d05b21d7dc3}</v>
+                  <o n="UMLRelationVisualisation" t="UMLRelationVisualisation">
+                    <v n="RelationID">{5795537f-d6bf-480b-af09-956410ce3798}</v>
+                    <v n="FlagPosition" t="Double">0.5</v>
+                    <d n="flagsX" t="Hashtable" ckt="String" cvt="Int32">
+                      <v>ConditionPosition</v>
+                      <v>0</v>
+                    </d>
+                    <d n="flagsY" t="Hashtable" ckt="String" cvt="Int32">
+                      <v>ConditionPosition</v>
+                      <v>10</v>
+                    </d>
+                    <o n="StartAnchor" t="UMLAnchorPoint">
+                      <v n="AnchorID">0</v>
+                      <v n="AnchorLeftPosition">479</v>
+                      <v n="AnchorTopPosition">164</v>
+                      <v n="AnchorRelationID">{5795537f-d6bf-480b-af09-956410ce3798}</v>
+                      <v n="StartAnchor">true</v>
+                      <v n="EndAnchor">false</v>
+                      <v n="AnchorDockedState" t="Docked">Bottom</v>
+                    </o>
+                    <o n="EndAnchor" t="UMLAnchorPoint">
+                      <v n="AnchorID">1</v>
+                      <v n="AnchorLeftPosition">479</v>
+                      <v n="AnchorTopPosition">235</v>
+                      <v n="AnchorRelationID">{5795537f-d6bf-480b-af09-956410ce3798}</v>
+                      <v n="StartAnchor">false</v>
+                      <v n="EndAnchor">true</v>
+                      <v n="AnchorDockedState" t="Docked">Top</v>
+                    </o>
+                    <v n="NextAnchorID">1</v>
+                    <d n="AnchorPoints" t="Hashtable" />
+                    <v n="RelationIsLinear">true</v>
+                    <v n="RelationIsFreeHand">false</v>
+                  </o>
+                  <v n="ReferenceGuid">{5795537f-d6bf-480b-af09-956410ce3798}</v>
+                  <v n="RelationGuid">{5795537f-d6bf-480b-af09-956410ce3798}</v>
+                  <v n="RelationName">""</v>
+                  <n n="RelationStereotypes" />
+                  <v n="RelationType" t="RelationTypes">Transition</v>
+                  <v n="IsReferenceTo">false</v>
+                  <v n="StartElementArrowFlag" t="ArrowTypes">Slim</v>
+                  <v n="Priority">1</v>
+                  <v n="GeneratesCode">false</v>
+                  <v n="StartElementShowArrow">false</v>
+                  <v n="StartElementCardnality">""</v>
+                  <v n="EndElementCardnality">""</v>
+                  <v n="EndElementArrowFlag" t="ArrowTypes">Slim</v>
+                  <v n="EndElementShowArrow">true</v>
+                  <v n="StartElementRoleName">""</v>
+                  <v n="EndElementRoleName">""</v>
+                  <v n="UserCreated">true</v>
+                  <v n="GeneratedByCode">false</v>
+                  <v n="AllowRoutingOptimisation">true</v>
+                  <d n="flagTexts" t="Hashtable" ckt="String" cvt="String">
+                    <v>Priority</v>
+                    <v>1</v>
+                  </d>
+                  <v n="Position">-1L</v>
+                  <v n="PositionCounter">1L</v>
+                  <v n="IsModified">false</v>
+                  <v n="ARGBElementColor">0</v>
+                </o>
                 <v>59c475d0-511a-4881-9636-3c924122c5d4</v>
                 <o>
                   <v n="HasGraphicalRepresentation">true</v>
@@ -1153,12 +1235,12 @@ State6:INT:=15;
                   <v n="IsModified">false</v>
                   <v n="ARGBElementColor">0</v>
                 </o>
-                <v>5f98264f-c612-48fb-a8d7-6c0c06698f2a</v>
+                <v>8d64eb34-6877-4bf1-9b15-152f5eaae541</v>
                 <o>
                   <v n="HasGraphicalRepresentation">true</v>
-                  <v n="StartUMLElement">{9953206f-ae42-4f57-9209-2195f71896f0}</v>
+                  <v n="StartUMLElement">{7eb3c618-800c-4a0f-93a7-2d05b21d7dc3}</v>
                   <v n="HighlightedLine">false</v>
-                  <v n="ZOrder">53U</v>
+                  <v n="ZOrder">0U</v>
                   <v n="SpecialHandling">false</v>
                   <v n="ActionLocalVariableName">""</v>
                   <v n="ActionParametersString">""</v>
@@ -1167,41 +1249,52 @@ State6:INT:=15;
                   <v n="InjectedActionCode">""</v>
                   <v n="InjectedActionCodeBefore">true</v>
                   <v n="ActionTextLength">100</v>
-                  <v n="ConditionText">"bStartProcess=TRUE"</v>
+                  <v n="ConditionText">"stTransitions.DetectedPlates=TRUE"</v>
                   <v n="LengthConditionText">100</v>
-                  <v n="RelationID">3</v>
+                  <v n="RelationID">15</v>
                   <v n="TriggerlessStatechartTransition">true</v>
-                  <v n="EndUMLElement">{7eb3c618-800c-4a0f-93a7-2d05b21d7dc3}</v>
+                  <v n="EndUMLElement">{9effd4fa-caf0-478a-9d7a-ad8cb82d7146}</v>
                   <o n="UMLRelationVisualisation" t="UMLRelationVisualisation">
-                    <v n="RelationID">{5f98264f-c612-48fb-a8d7-6c0c06698f2a}</v>
+                    <v n="RelationID">{8d64eb34-6877-4bf1-9b15-152f5eaae541}</v>
                     <v n="FlagPosition" t="Double">0.5</v>
                     <d n="flagsX" t="Hashtable" />
                     <d n="flagsY" t="Hashtable" />
                     <o n="StartAnchor" t="UMLAnchorPoint">
                       <v n="AnchorID">0</v>
-                      <v n="AnchorLeftPosition">479</v>
-                      <v n="AnchorTopPosition">164</v>
-                      <v n="AnchorRelationID">{5f98264f-c612-48fb-a8d7-6c0c06698f2a}</v>
+                      <v n="AnchorLeftPosition">385</v>
+                      <v n="AnchorTopPosition">255</v>
+                      <v n="AnchorRelationID">{8d64eb34-6877-4bf1-9b15-152f5eaae541}</v>
                       <v n="StartAnchor">true</v>
                       <v n="EndAnchor">false</v>
                       <v n="AnchorDockedState" t="Docked">NotDocked</v>
                     </o>
                     <o n="EndAnchor" t="UMLAnchorPoint">
-                      <v n="AnchorID">1</v>
-                      <v n="AnchorLeftPosition">479</v>
-                      <v n="AnchorTopPosition">235</v>
-                      <v n="AnchorRelationID">{5f98264f-c612-48fb-a8d7-6c0c06698f2a}</v>
+                      <v n="AnchorID">2</v>
+                      <v n="AnchorLeftPosition">165</v>
+                      <v n="AnchorTopPosition">164</v>
+                      <v n="AnchorRelationID">{8d64eb34-6877-4bf1-9b15-152f5eaae541}</v>
                       <v n="StartAnchor">false</v>
                       <v n="EndAnchor">true</v>
-                      <v n="AnchorDockedState" t="Docked">NotDocked</v>
+                      <v n="AnchorDockedState" t="Docked">Right</v>
                     </o>
-                    <v n="NextAnchorID">1</v>
-                    <d n="AnchorPoints" t="Hashtable" />
-                    <v n="RelationIsLinear">true</v>
+                    <v n="NextAnchorID">2</v>
+                    <d n="AnchorPoints" t="Hashtable" ckt="Int32" cvt="UMLAnchorPoint">
+                      <v>1</v>
+                      <o>
+                        <v n="AnchorID">1</v>
+                        <v n="AnchorLeftPosition">165</v>
+                        <v n="AnchorTopPosition">255</v>
+                        <v n="AnchorRelationID">{8d64eb34-6877-4bf1-9b15-152f5eaae541}</v>
+                        <v n="StartAnchor">false</v>
+                        <v n="EndAnchor">false</v>
+                        <v n="AnchorDockedState" t="Docked">NotDocked</v>
+                      </o>
+                    </d>
+                    <v n="RelationIsLinear">false</v>
                     <v n="RelationIsFreeHand">false</v>
                   </o>
-                  <v n="ReferenceGuid">{5f98264f-c612-48fb-a8d7-6c0c06698f2a}</v>
-                  <v n="RelationGuid">{5f98264f-c612-48fb-a8d7-6c0c06698f2a}</v>
+                  <v n="ReferenceGuid">{8d64eb34-6877-4bf1-9b15-152f5eaae541}</v>
+                  <v n="RelationGuid">{8d64eb34-6877-4bf1-9b15-152f5eaae541}</v>
                   <v n="RelationName">""</v>
                   <n n="RelationStereotypes" />
                   <v n="RelationType" t="RelationTypes">Transition</v>
@@ -1218,7 +1311,7 @@ State6:INT:=15;
                   <v n="EndElementRoleName">""</v>
                   <v n="UserCreated">true</v>
                   <v n="GeneratedByCode">false</v>
-                  <v n="AllowRoutingOptimisation">true</v>
+                  <v n="AllowRoutingOptimisation">false</v>
                   <d n="flagTexts" t="Hashtable" ckt="String" cvt="String">
                     <v>Priority</v>
                     <v>1</v>
@@ -1399,7 +1492,7 @@ State6:INT:=15;
               </o>
               <v n="IsFastStateDiagram">false</v>
               <l n="StereoTypeProfile" t="ArrayList" />
-              <v n="RelationRoleID">12</v>
+              <v n="RelationRoleID">15</v>
               <d n="PositionSerialization" t="Hashtable" ckt="Int64" cvt="Guid">
                 <v>1</v>
                 <v>3a91ce73-2b07-4aa9-9946-ba18db788a5d</v>
@@ -1445,8 +1538,6 @@ State6:INT:=15;
                 <v>47bafbd9-11a3-47ed-9ee5-6108ce8fbc66</v>
                 <v>24</v>
                 <v>479c6fca-d0fa-4ac6-a78d-f80a80a47929</v>
-                <v>26</v>
-                <v>5f98264f-c612-48fb-a8d7-6c0c06698f2a</v>
                 <v>27</v>
                 <v>dd73b7b4-d140-4ae5-a01a-2af8f38bd769</v>
                 <v>28</v>
@@ -1465,6 +1556,10 @@ State6:INT:=15;
                 <v>9effd4fa-caf0-478a-9d7a-ad8cb82d7146</v>
                 <v>35</v>
                 <v>b86288a4-e45e-4da8-9596-1cd98f9660f6</v>
+                <v>36</v>
+                <v>5795537f-d6bf-480b-af09-956410ce3798</v>
+                <v>37</v>
+                <v>8d64eb34-6877-4bf1-9b15-152f5eaae541</v>
               </d>
             </o>
           </Data>
@@ -1520,7 +1615,9 @@ END_IF
     <Action Name="MAIN_DetectPlates_DO" Id="{b071054b-4ef5-473c-a928-0c5848113138}">
       <Implementation>
         <ST><![CDATA[// Initialize camera and detect QR codes
-stTransitions.DetectedPlates := fbCamera.QRCodefinal();
+// stTransitions.DetectedPlates := fbCamera.QRCodefinal();
+
+stTransitions.DetectedPlates := bFlag;
 // Start UR TP program for detection of QR codes
 // Write data to robot]]></ST>
       </Implementation>
@@ -1590,7 +1687,7 @@ stTransitions.MotorPositionReached:=FALSE;
     </Action>
     <Action Name="MAIN_SM" Id="{ba645db9-16d0-42aa-be8a-fb5214d69fb2}">
       <Implementation>
-        <ST><![CDATA[fbMotorJog.MotorMain(bMove, nIdlePosition);]]></ST>
+        <ST><![CDATA[fbMotorJog.MotorMove(bMove, nIdlePosition);]]></ST>
       </Implementation>
     </Action>
     <Action Name="MAIN_StartState_DO" Id="{2be4d1bb-aed2-4b8d-9e31-6e78ceff24e2}">

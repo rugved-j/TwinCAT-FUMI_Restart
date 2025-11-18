@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="E_PlateNum" Id="{2d0865b5-772d-4d37-8ab8-f5f55fbe8412}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+{attribute 'to_string'}
+TYPE E_PlateNum :
+(
+	ePlate1 := 0,
+	ePlate2,
+	ePlate3,
+	ePlate4,
+	ePlate5,
+	ePlate6,
+	ePlate7,
+	ePlate8
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

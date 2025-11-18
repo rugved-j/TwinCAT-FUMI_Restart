@@ -9,6 +9,7 @@ VAR_GLOBAL
 	fCameraControl		:	ST_CameraControl;	
 	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
 	TxBufferEL			: ComBuffer;
+//	Plate information
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="25c46df1-1500-4d31-960d-91b275207a7f">ST_PLATEINFO</Type>
+      <From>ST_PlateInfo</From>
+      <To>ST_Origins</To>
+    </RenamedType>
+  </Renames>
+</Refactors>

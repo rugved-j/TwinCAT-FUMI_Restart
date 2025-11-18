@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MultiplyMatrices4x4" Id="{360f378c-6024-4d7a-9317-c986825d6aec}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MultiplyMatrices4x4
+VAR_INPUT
+	M1 : TcVnMatrix;
+	M2 : TcVnMatrix;
+	hr : HRESULT :=S_OK;
+END_VAR
+VAR_OUTPUT
+	M_result : TcVnMatrix;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+hr := F_VN_MultiplyMatrices(stSrcMatrix1 := M1, stSrcMatrix2 := M2, hrPrev := S_OK, stDestMatrix := M_result);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_Origins" Id="{25c46df1-1500-4d31-960d-91b275207a7f}">
+    <Declaration><![CDATA[TYPE ST_Origins :
+STRUCT
+	fOrigin1		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin2		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin3		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin4		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin5		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin6		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin7		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+	fOrigin8		: ARRAY[0..5]	OF LREAL := [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

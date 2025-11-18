@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<TcEventSources Version="2">
+	<Source>
+		<GUID>{7CEB73C6-40BB-48AA-AD07-10328146ACA7}</GUID>
+		<Name LcId="1031">TcWeighingEventClass</Name>
+		<Name LcId="1033">TcWeighingEventClass</Name>
+		<Event>
+			<Id>#x1</Id>
+			<Message LcId="1031">Dbg: {0}.</Message>
+			<Message LcId="1033">Dbg: {0}.</Message>
+		</Event>
+		<Event>
+			<Id>#x1001</Id>
+			<Message LcId="1031"><![CDATA[Fehler in der Transition PREOP->SAFEOP.]]></Message>
+			<Message LcId="1033"><![CDATA[Error in Transition PREOP->SAFEOP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1002</Id>
+			<Message LcId="1031"><![CDATA[Fehler in der Transition SAFEOP->OP.]]></Message>
+			<Message LcId="1033"><![CDATA[Error in Transition SAFEOP->OP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1003</Id>
+			<Message LcId="1031"><![CDATA[Fehler in der Transition SAFEOP->OP: Keine Task zugewiesen. Das Modul wird nicht zyklisch ausgeführt.]]></Message>
+			<Message LcId="1033"><![CDATA[Error in Transition SAFEOP->OP: No Task assigned. Module will not be executed cyclically.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1004</Id>
+			<Message LcId="1031"><![CDATA[Fehler in der Transition OP->SAFEOP.]]></Message>
+			<Message LcId="1033"><![CDATA[Error in Transition OP->SAFEOP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1005</Id>
+			<Message LcId="1031"><![CDATA[Fehler in der Transition SAFEOP->PREOP.]]></Message>
+			<Message LcId="1033"><![CDATA[Error in Transition SAFEOP->PREOP.]]></Message>
+		</Event>
+		<Event>
+			<Id>#x1006</Id>
+			<Message LcId="1031">Das Cyclic caller interface ist zugewiesen. Methoden dürfen nicht aufgerufen werden.</Message>
+			<Message LcId="1033">Cyclic caller is assigned. Methods can not be called.</Message>
+		</Event>
+		<Event>
+			<Id>#x1007</Id>
+			<Message LcId="1031">Ungültiger Zustand des Moduls.</Message>
+			<Message LcId="1033">Invalid object state.</Message>
+		</Event>
+		<Event>
+			<Id>#x1008</Id>
+			<Message LcId="1031">Ungültige Symbolgröße.</Message>
+			<Message LcId="1033">Invalid symbol size.</Message>
+		</Event>
+		<Event>
+			<Id>#x1009</Id>
+			<Message LcId="1031">Ungültiger Nummer des Datenbereichs.</Message>
+			<Message LcId="1033">Invalid data area number.</Message>
+		</Event>
+		<Event>
+			<Id>#x2001</Id>
+			<Message LcId="1031">Fehler beim allokieren von dynamischem Speicher. Bitte überprüfen sie die Größe des Routerspeichers.</Message>
+			<Message LcId="1033">Memory could not be allocated dynamically. Check size of rotuer memory.</Message>
+		</Event>
+		<Event>
+			<Id>#x3001</Id>
+			<Message LcId="1031">Ein Null-Zeiger wurde zugewiesen.</Message>
+			<Message LcId="1033">Null pointer was allocated.</Message>
+		</Event>
+		<Event>
+			<Id>#x3002</Id>
+			<Message LcId="1031">Fehler beim allokieren von dynamischem Speicher. Bitte überprüfen sie die Größe des Routerspeichers.</Message>
+			<Message LcId="1033">Memory could not be allocated dynamically. Check size of rotuer memory.</Message>
+		</Event>
+		<Event>
+			<Id>#x3003</Id>
+			<Message LcId="1031">Cuttoff muss größer als Null und kleiner als Samplingrate/2 sein.</Message>
+			<Message LcId="1033">Cutoff must be greater than zero and smaller than Samplingrate/2.</Message>
+		</Event>
+		<Event>
+			<Id>#x3004</Id>
+			<Message LcId="1031">Samplingrate muss größer als Null sein.</Message>
+			<Message LcId="1033">Samplingrate must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3005</Id>
+			<Message LcId="1031">SamplesToFilter muss größer als Null sein.</Message>
+			<Message LcId="1033">SamplesToFilter must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3008</Id>
+			<Message LcId="1031">Order muss größer als Null und kleiner als elf sein.</Message>
+			<Message LcId="1033">Order must be greater than zero and smaller than eleven.</Message>
+		</Event>
+		<Event>
+			<Id>#x3009</Id>
+			<Message LcId="1031">WindowLength muss größer als Null sein.</Message>
+			<Message LcId="1033">WindowLength must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3010</Id>
+			<Message LcId="1031">Threshold muss größer oder gleich Null sein.</Message>
+			<Message LcId="1033">Threshold must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3011</Id>
+			<Message LcId="1031">MaxStd muss größer oder gleich Null sein.</Message>
+			<Message LcId="1033">MaxStd must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3012</Id>
+			<Message LcId="1031">MaxWeightDeviation muss größer oder gleich Null sein.</Message>
+			<Message LcId="1033">MaxWeightDeviation must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x3013</Id>
+			<Message LcId="1031">ReferenceHigh muss größer als ReferenceLow sein.</Message>
+			<Message LcId="1033">ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x3014</Id>
+			<Message LcId="1031">RawHigh muss größer als RawLow sein.</Message>
+			<Message LcId="1033">RawHigh must be greater than RawLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x3015</Id>
+			<Message LcId="1031">RawHigh muss größer als RawLow sein. ReferenceHigh muss größer als ReferenceLow sein.</Message>
+			<Message LcId="1033">RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x3016</Id>
+			<Message LcId="1031">RelativeWeightLimit muss größer oder gleich null und kleiner als eins sein.</Message>
+			<Message LcId="1033">RelativeWeightLimit must be greater or equal than zero and smaller than one.</Message>
+		</Event>
+		<Event>
+			<Id>#x3017</Id>
+			<Message LcId="1031">NotchFrequency muss größer als Null oder kleiner als fSamplingrate/2 sein.</Message>
+			<Message LcId="1033">NotchFrequency must be greater than zero and smaller than fSamplingrate/2.</Message>
+		</Event>
+		<Event>
+			<Id>#x4001</Id>
+			<Message LcId="1031">Fehlende Konfiguration.</Message>
+			<Message LcId="1033">Missing configuration.</Message>
+		</Event>
+		<Event>
+			<Id>#x4002</Id>
+			<Message LcId="1031">Ein Null-Zeiger wurde zugewiesen.</Message>
+			<Message LcId="1033">Null pointer was allocated.</Message>
+		</Event>
+		<Event>
+			<Id>#x4003</Id>
+			<Message LcId="1031">Ungültige Eingangsgröße.</Message>
+			<Message LcId="1033">Invalid input size.</Message>
+		</Event>
+		<Event>
+			<Id>#x4004</Id>
+			<Message LcId="1031">Die Größe vom Ausgang darf nicht kleinr als der Eingang sein.</Message>
+			<Message LcId="1033">Output size array cant be smaller than input array size.</Message>
+		</Event>
+		<Event>
+			<Id>#x4005</Id>
+			<Message LcId="1031">Fehler während der Laufzeit. Ungültiger Datentyp.</Message>
+			<Message LcId="1033">Error during runtime. Invalid data type.</Message>
+		</Event>
+		<Event>
+			<Id>#x6001</Id>
+			<Message LcId="1031">Die Kalibrierung wurde nicht erfolgreich durchgeführt. RawHigh muss größer als RawLow sein. ReferenceHigh muss größer als ReferenceLow sein.</Message>
+			<Message LcId="1033">Calibration has not been processed successfully. RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x6002</Id>
+			<Message LcId="1031">Der Tara-Vorgang konnte nicht ausgelöst werden, weil der Kalibrierungsvorgang noch nicht abgeschlossen war.</Message>
+			<Message LcId="1033">The tare process could not be triggered because the calibration process had not yet been completed.</Message>
+		</Event>
+		<Event>
+			<Id>#x6003</Id>
+			<Message LcId="1031">Ungültiger Zustand.</Message>
+			<Message LcId="1033">Invalid state.</Message>
+		</Event>
+		<Event>
+			<Id>#x7003</Id>
+			<Message LcId="1031">Cuttoff muss größer als Null und kleiner als Samplingrate/2 sein.</Message>
+			<Message LcId="1033">Cutoff must be greater than zero and smaller than Samplingrate/2.</Message>
+		</Event>
+		<Event>
+			<Id>#x7004</Id>
+			<Message LcId="1031">Samplingrate muss größer als Null sein.</Message>
+			<Message LcId="1033">Samplingrate must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7005</Id>
+			<Message LcId="1031">SamplesToFilter muss größer als Null sein.</Message>
+			<Message LcId="1033">SamplesToFilter must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7008</Id>
+			<Message LcId="1031">Order muss größer als Null und kleiner als elf sein.</Message>
+			<Message LcId="1033">Order must be greater than zero and smaller than eleven.</Message>
+		</Event>
+		<Event>
+			<Id>#x7009</Id>
+			<Message LcId="1031">WindowLength muss größer als Null sein.</Message>
+			<Message LcId="1033">WindowLength must be greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7010</Id>
+			<Message LcId="1031">Threshold muss größer oder gleich Null sein.</Message>
+			<Message LcId="1033">Threshold must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7011</Id>
+			<Message LcId="1031">MaxStd muss größer oder gleich Null sein.</Message>
+			<Message LcId="1033">MaxStd must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7012</Id>
+			<Message LcId="1031">MaxWeightDeviation muss größer oder gleich Null sein.</Message>
+			<Message LcId="1033">MaxWeightDeviation must be equal or greater than zero.</Message>
+		</Event>
+		<Event>
+			<Id>#x7013</Id>
+			<Message LcId="1031">ReferenceHigh muss größer als ReferenceLow sein.</Message>
+			<Message LcId="1033">ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x7014</Id>
+			<Message LcId="1031">RawHigh muss größer als RawLow sein.</Message>
+			<Message LcId="1033">RawHigh must be greater than RawLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x7015</Id>
+			<Message LcId="1031">RawHigh muss größer als RawLow sein. ReferenceHigh muss größer als ReferenceLow sein.</Message>
+			<Message LcId="1033">RawHigh must be greater than RawLow. ReferenceHigh must be greater than ReferenceLow.</Message>
+		</Event>
+		<Event>
+			<Id>#x7016</Id>
+			<Message LcId="1031">NotchFrequency muss größer als Null oder kleiner als fSamplingrate/2 sein.</Message>
+			<Message LcId="1033">NotchFrequency must be greater than zero and smaller than fSamplingrate/2.</Message>
+		</Event>
+	</Source>
+</TcEventSources>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="FB_MatConversion" Id="{a3c2d956-d70a-4172-963b-05e82bcc155c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MatConversion
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Make3x3Vec" Id="{e3577580-f959-470f-b0ae-0d7a585b505b}">
+      <Declaration><![CDATA[METHOD Make3x3Vec : TcVnVector3_LREAL
+VAR_INPUT
+	x : LREAL;
+    y : LREAL;
+    z : LREAL;
+END_VAR
+VAR
+    v : TcVnVector3_LREAL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+v[0] := x;
+v[1] := y;
+v[2] := z;
+
+Make3x3Vec := v;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RmatToRotVec" Id="{cc06e4b1-193d-4dca-b7ff-1fa34b52a8d2}">
+      <Declaration><![CDATA[METHOD RmatToRotVec : TcVnVector3_LREAL
+VAR_INPUT
+	    Rot : TcVnMatrix3x3_LREAL;
+END_VAR
+VAR
+    tr, cosT, theta, s_a : LREAL;
+    v 		: TcVnVector3_LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[tr   := Rot[0,0] + Rot[1,1] + Rot[2,2];
+cosT := (tr - 1.0) * 0.5;
+IF cosT > 1.0 THEN
+	cosT := 1.0;
+END_IF
+IF cosT < -1.0 THEN 
+	cosT := -1.0; 
+END_IF
+
+theta := ACOS(cosT);
+IF ABS(theta) < 1e-6 THEN
+    v[0] := 0; v[1] := 0; v[2] := 0;
+ELSE
+    s_a := 1.0 / (2.0 * SIN(theta) + 1E-12);
+    v[0] := (Rot[2,1] - Rot[1,2]) * s_a * theta;
+    v[1] := (Rot[0,2] - Rot[2,0]) * s_a * theta;
+    v[2] := (Rot[1,0] - Rot[0,1]) * s_a * theta;
+END_IF
+
+
+RmatToRotVec := v;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RotVecToRmat" Id="{4f1cc0f3-9489-449f-b6e6-cf5c4d03d81e}">
+      <Declaration><![CDATA[METHOD RotVecToRmat : TcVnMatrix3x3_LREAL
+VAR_INPUT
+	rx : LREAL;   // roll  about X (rad)
+    ry : LREAL;   // pitch about Y (rad)
+    rz : LREAL;   // yaw   about Z (rad)
+END_VAR
+VAR_OUTPUT
+    R_mat  : TcVnMatrix3x3_LREAL;  // Rotation matrix (Rz*Ry*Rx)
+END_VAR
+VAR
+    cX, sX, cY, sY, cZ, sZ : LREAL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Compute once per call/scan
+cX := COS(rx);  sX := SIN(rx);
+cY := COS(ry);  sY := SIN(ry);
+cZ := COS(rz);  sZ := SIN(rz);
+
+// ZYX convention: R = Rz * Ry * Rx
+R_mat[0,0] :=  cZ*cY;              R_mat[0,1] :=  cZ*sY*sX - sZ*cX;   R_mat[0,2] :=  cZ*sY*cX + sZ*sX;
+R_mat[1,0] :=  sZ*cY;              R_mat[1,1] :=  sZ*sY*sX + cZ*cX;   R_mat[1,2] :=  sZ*sY*cX - cZ*sX;
+R_mat[2,0] := -sY;                 R_mat[2,1] :=  cY*sX;              R_mat[2,2] :=  cY*cX;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
