@@ -105,7 +105,7 @@ VAR
     ipRefPts    : ITcVnContainer;   // vector<TcVnPoint3_REAL>
 	bCalibReady     : BOOL := FALSE;
 	
-	fbMakeT : FB_CreateTransformationMat;
+	fbMakeT   : FB_CreateTransformationMat;
 	fbMakeT_1 : FB_CreateTransformationMat;
 //     R_matrix       : TcVnMatrix3x3_LREAL;
 //     t_matrix       : TcVnVector3_LREAL;
@@ -115,11 +115,14 @@ VAR
 	fbConvert : FB_MatConversion;
 	fbRob : FB_Robot;
 	fbMultiplyMat		: FB_MultiplyMatrices4x4;
-	
 END_VAR
 	
 VAR_OUTPUT
 	_pose : ST_PoseLREAL;
+END_VAR
+
+VAR_IN_OUT
+	
 END_VAR
 
 ]]></Declaration>

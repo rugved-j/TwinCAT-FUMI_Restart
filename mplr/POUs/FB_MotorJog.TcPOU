@@ -80,7 +80,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[MotorMove(bMove, nIdlePosition);
+        <ST><![CDATA[MotorMove(bMove);
 RETURN;
 
 IF nIdlePosition < 1 OR nIdlePosition > 2 THEN		// Rejects other Position values
@@ -180,10 +180,7 @@ Reset(axis := Axis1);
       <Declaration><![CDATA[METHOD MotorMove : BOOL
 VAR_INPUT
 	bMove : BOOL;
-	nIdlePosition : INT; // 1: 63, 2: 70
-	
-
-
+// 	nIdlePosition : INT; // 1: 63, 2: 70
 END_VAR
 
 VAR
@@ -195,9 +192,9 @@ VAR
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF nIdlePosition < 1 OR nIdlePosition > 2 THEN		// Rejects other Position values
-	nIdlePosition := 1;
-END_IF
+        <ST><![CDATA[// IF nIdlePosition < 1 OR nIdlePosition > 2 THEN		// Rejects other Position values
+// 	nIdlePosition := 1;
+// END_IF
 
 Axis1();
 
@@ -218,7 +215,8 @@ CASE state OF
 			state := MOVESTATE_ERROR;
 		END_IF
 		
-	MOVESTATE_IDLE:		
+	MOVESTATE_IDLE:	
+		process_gvl.bMotorHalted := FALSE;	
 		trLoad(CLK := process_gvl.fRobotInput.General_Bits.GPBitIN_15<>0);
 		trDose(CLK := process_gvl.fRobotInput.General_Bits.GPBitIN_16<>0);
 		
@@ -254,6 +252,7 @@ CASE state OF
 		ELSIF bExecIssued AND NOT MoveAxis1.Busy THEN
 			// Finished successfully → choose next
 			bExecIssued := FALSE;
+			process_gvl.bMotorHalted := TRUE;
 			state := SEL(bMove, MOVESTATE_NEWTARGETPOSITION, MOVESTATE_IDLE);
 		END_IF
 		
@@ -277,6 +276,7 @@ CASE state OF
 			state := MOVESTATE_ERROR; 
 		ELSIF  bExecIssued AND NOT MoveAxis1.Busy THEN
 			bExecIssued := FALSE;
+			process_gvl.bMotorHalted := TRUE;
 			state := SEL(bMove, MOVESTATE_FORWARD, MOVESTATE_IDLE);
 		END_IF 		
 

@@ -14,6 +14,7 @@ VAR
 	
 	fbmakeT1 : FB_CreateTransformationMat; 
 	T4x4_matrix_1       : TcVnMatrix;
+	bTaskStatus		: 	BOOL ;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -25,12 +26,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(30);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_7;
 
 IF bTaskStatus THEN
 	DeGripFingerA := TRUE;
@@ -44,12 +45,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(40);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_8;
 
 IF bTaskStatus THEN
 	DeGripFingerB := TRUE;
@@ -63,7 +64,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
@@ -82,12 +83,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_11;
 
 IF bTaskStatus THEN
 	DeGripFingerD := TRUE;
@@ -101,7 +102,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
@@ -120,7 +121,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+	
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
@@ -133,18 +134,51 @@ IF bTaskStatus THEN
 END_IF]]></ST>
       </Implementation>
     </Method>
+    <Method Name="DetectPlates" Id="{f16668a0-4f99-4dfb-bdc6-94828d85536f}">
+      <Declaration><![CDATA[METHOD DetectPlates : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(2);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_2;
+IF bTaskStatus THEN
+	DetectPlates := TRUE;
+	SendTaskId(0);
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="DoseTargetWeight" Id="{4434586f-aa9d-47f6-a214-3d8862b43a26}">
+      <Declaration><![CDATA[METHOD DoseTargetWeight : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(10);
+
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_10;
+
+IF bTaskStatus THEN
+	DoseTargetWeight := TRUE;
+	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
     <Method Name="GripFingerA" Id="{05f27375-c5c7-4ec3-b3ab-79e6ca8d39d5}">
       <Declaration><![CDATA[METHOD GripFingerA : BOOL
 VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(10);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_4;
 
 IF bTaskStatus THEN
 	GripFingerA := TRUE;
@@ -158,12 +192,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(20);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_5;
 
 IF bTaskStatus THEN
 	GripFingerB := TRUE;
@@ -177,12 +211,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_9;
 
 IF bTaskStatus THEN
 	GripFingerC := TRUE;
@@ -196,7 +230,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
@@ -215,7 +249,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
@@ -234,7 +268,7 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
@@ -244,6 +278,20 @@ bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
 IF bTaskStatus THEN
 	GripFingerF := TRUE;
 	SendTaskId(0); 
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="MotorMove" Id="{6912425a-e95f-4985-92e1-f60daf947370}">
+      <Declaration><![CDATA[METHOD MotorMove : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SendTaskId(3);
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_3;
+IF bTaskStatus THEN
+	MotorMove := TRUE;
+	SendTaskId(0);
 END_IF]]></ST>
       </Implementation>
     </Method>
@@ -272,12 +320,12 @@ VAR_INPUT
 END_VAR
 
 VAR
-	bTaskStatus : BOOL := FALSE; //
+
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_6;
 
 IF bTaskStatus THEN
 	PickFlask := TRUE;
@@ -296,7 +344,7 @@ END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[SendTaskId(7);
 
-bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_35;		// Define the GPBitIN_xx number for respective task number on TP 
+bTaskStatus := process_gvl.fRobotInput.General_Bits.GPBitIN_6;		// Define the GPBitIN_xx number for respective task number on TP 
 
 IF bTaskStatus THEN
 	PlaceFlask := TRUE;

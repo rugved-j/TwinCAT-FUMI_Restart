@@ -7312,7 +7312,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{B90C8679-85E6-4432-9BB2-0CA5A5166EF3}" Name="mplr" PrjFilePath="mplr\mplr.plcproj" TmcFilePath="mplr\MPLR.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{18022DF0-A634-67E0-A579-DC6B3DED73A4}" TmcPath="mplr\MPLR.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{CA62AC67-EE9B-5B78-37B6-7B55A42AD9AD}" TmcPath="mplr\MPLR.tmc">
 					<Name>mplr Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">

@@ -10,6 +10,10 @@ VAR_GLOBAL
 	RxBufferEL			: ComBuffer;	(* Receive data buffer; used with all receive function blocks *)
 	TxBufferEL			: ComBuffer;
 //	Plate information
+	
+	bMotorHalted		: BOOL;
+	fOriginCount		: INT := 0;		// count number of origins detected
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
