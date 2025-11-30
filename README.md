@@ -64,8 +64,8 @@ A public, work-sample repository showcasing a **production-style pick–place an
 
   * `MAIN.TcPOU` – main program/statechart call & orchestration
   * `FB_Camera/` – perception/pose packaging helpers (if included)
-  * `FB_Dosing/` – stepper + PID dosing logic
-  * `FB_UR/` – UR O2T/T2O structs, sequence handshake, safety/interlocks
+  * `FB_Motor/` – stepper + PID dosing logic
+  * `FB_Robot/` – sequence handshake, safety/interlocks
   * `Types/` – DUTs for pose, command enums, config structs
 * `Docs/`
 
@@ -75,9 +75,6 @@ A public, work-sample repository showcasing a **production-style pick–place an
 
   * Example GSDML/DUT mapping notes for UR PROFINET device
   * I/O mapping snapshots (EL7062, EL3078)
-
-*(Folder names may vary depending on your export; adjust as needed.)*
-
 ---
 
 ## Getting started (engineering PC)
